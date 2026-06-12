@@ -1,0 +1,419 @@
+﻿<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>الشهادات | منصة كنوز القرآن</title>
+<meta name="description" content="إدارة شهادات الطلاب - لوحة تحكم المعلم" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" /><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="../css/teacher/teacher-base.css" rel="stylesheet" />
+<style>
+      .cert-card { background: linear-gradient(135deg, #fff 0%, rgba(15,109,128,0.02) 100%); border-radius: 16px; padding: 24px; border: 1px solid rgba(15,109,128,0.06); box-shadow: 0 4px 20px rgba(15,109,128,0.03); }
+      .cert-icon { font-size: 2.5rem; }
+      .cert-number { font-size: 0.8rem; color: #6b7a7e; }
+    </style>
+</head>
+  <body>
+    <aside class="teacher-sidebar p-3">
+  <div class="d-flex align-items-center gap-2 mb-4 px-2 pt-2">
+    <img src="../images/logo.png" alt="كنوز القرآن" class="teacher-sidebar-logo">
+    <span class="fw-bold fs-6 sidebar-brand">كنوز القرآن</span>
+  </div>
+  <span class="sidebar-section-label px-2 mb-2 d-block">القائمة الرئيسية</span>
+  <nav class="d-flex flex-column gap-1 flex-grow-1">
+    <a class="teacher-sidebar-link" href="dashboard.html"><i class="fa-solid fa-chart-pie" style="width:20px;"></i>لوحة التحكم</a>
+    <a class="teacher-sidebar-link" href="courses.html"><i class="fa-solid fa-book-open" style="width:20px;"></i>الدورات</a>
+    <a class="teacher-sidebar-link" href="students.html"><i class="fa-solid fa-users" style="width:20px;"></i>الطلبات</a>
+    <a class="teacher-sidebar-link" href="sessions.html"><i class="fa-solid fa-video" style="width:20px;"></i>الجلسات</a>
+    <a class="teacher-sidebar-link" href="schedule.html"><i class="fa-solid fa-calendar-days" style="width:20px;"></i>الجدول</a>
+    <a class="teacher-sidebar-link" href="messages.html"><i class="fa-solid fa-envelope" style="width:20px;"></i>الرسائل</a>
+    <a class="teacher-sidebar-link" href="exams.html"><i class="fa-solid fa-pen-to-square" style="width:20px;"></i>الامتحانات</a>
+    <a class="teacher-sidebar-link active" href="certificates.html"><i class="fa-solid fa-certificate" style="width:20px;"></i>الشهادات</a>
+  </nav>
+  <div class="sidebar-divider border-top pt-3 mt-auto">
+    <a class="teacher-sidebar-link" href="reports.html"><i class="fa-solid fa-chart-simple" style="width:20px;"></i>التقارير</a>
+    <a class="teacher-sidebar-link" href="settings.html"><i class="fa-solid fa-gear" style="width:20px;"></i>الإعدادات</a>
+    <a class="teacher-sidebar-link logout" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket" style="width:20px;"></i>تسجيل الخروج</a>
+  </div>
+</aside>
+<!-- Mobile Offcanvas -->
+<div class="offcanvas offcanvas-start teacher-offcanvas" tabindex="-1" id="teacherOffcanvas">
+  <div class="offcanvas-header">
+    <img src="../images/logo.png" alt="كنوز القرآن" style="height:36px;">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="offcanvas-profile">
+      <img src="../images/logo.png" alt="المعلمة" class="offcanvas-avatar">
+      <h6 class="offcanvas-name">أ. نورة</h6>
+      <small class="offcanvas-role">معلمة قرآن كريم</small>
+    </div>
+    <nav class="p-3 d-flex flex-column gap-1">
+    <a class="teacher-sidebar-link" href="dashboard.html"><i class="fa-solid fa-chart-pie" style="width:20px;"></i>لوحة التحكم</a>
+    <a class="teacher-sidebar-link" href="courses.html"><i class="fa-solid fa-book-open" style="width:20px;"></i>الدورات</a>
+    <a class="teacher-sidebar-link" href="students.html"><i class="fa-solid fa-users" style="width:20px;"></i>الطلبات</a>
+    <a class="teacher-sidebar-link" href="sessions.html"><i class="fa-solid fa-video" style="width:20px;"></i>الجلسات</a>
+    <a class="teacher-sidebar-link" href="exams.html"><i class="fa-solid fa-pen-to-square" style="width:20px;"></i>الامتحانات</a>
+    <a class="teacher-sidebar-link active" href="certificates.html"><i class="fa-solid fa-certificate" style="width:20px;"></i>الشهادات</a>
+    </nav>
+    <div class="p-3 mt-2">
+      <a href="settings.html" class="teacher-sidebar-link"><i class="fa-solid fa-gear" style="width:20px;"></i>الإعدادات</a>
+      <a href="../index.html" class="teacher-sidebar-link logout"><i class="fa-solid fa-arrow-right-from-bracket" style="width:20px;"></i>تسجيل الخروج</a>
+    </div>
+  </div>
+</div>
+    <header class="teacher-header">
+      <div>
+        <button class="hamburger-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#teacherOffcanvas" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+        <h6 class="d-inline header-greeting d-none d-sm-inline">مرحباً بكِ، أ. نورة</h6>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="small header-last-login d-none d-md-inline">آخر دخول: اليوم ٨:١٥ ص</span>
+        <div class="dropdown">
+          <a href="#" class="teacher-header-icon position-relative" data-bs-toggle="dropdown" aria-expanded="false" title="الإشعارات">
+            <i class="fa-solid fa-bell"></i>
+            <span class="teacher-badge-dot"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:300px;padding:0;">
+            <div class="px-3 py-2 fw-bold border-bottom" style="color:#1f2937;font-size:0.9rem;">الإشعارات</div>
+            <div style="max-height:280px;overflow-y:auto;">
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-success" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">تسجيل جديد</div><div style="font-size:0.78rem;color:#6b7a7e;">انضمت طالبة جديدة لدورة التجويد</div><div style="font-size:0.7rem;color:#aab7bc;">منذ 5 دقائق</div></div>
+                </div>
+              </a>
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-primary" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">امتحان جديد</div><div style="font-size:0.78rem;color:#6b7a7e;">قدمت الطالبة سارة امتحان التجويد</div><div style="font-size:0.7rem;color:#aab7bc;">منذ ساعة</div></div>
+                </div>
+              </a>
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-warning" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">تذكير بجلسة</div><div style="font-size:0.78rem;color:#6b7a7e;">لديك جلسة بعد 30 دقيقة مع مجموعة الفتح</div><div style="font-size:0.7rem;color:#aab7bc;">منذ 3 ساعات</div></div>
+                </div>
+              </a>
+            </div>
+            <a class="dropdown-item text-center py-2 border-top fw-semibold" href="notifications.html" style="font-size:0.85rem;color:#0F6D80;">عرض كل الإشعارات</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="teacher-header-icon" data-bs-toggle="dropdown" aria-expanded="false" title="الإعدادات">
+            <i class="fa-solid fa-gear"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:200px;padding:8px;">
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html""><i class="fa-regular fa-user mr-2 text-primary opacity-75"></i>الملف الشخصي</a></li>
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html""><i class="fa-solid fa-palette mr-2 text-primary opacity-75"></i>المظهر</a></li>
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html""><i class="fa-solid fa-gear mr-2 text-primary opacity-75"></i>الإعدادات المتقدمة</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item rounded-2 py-2 text-danger" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>تسجيل الخروج</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../images/logo.png" alt="المعلمة" class="teacher-avatar" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:180px;padding:8px;">
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html""><i class="fa-regular fa-user mr-2 text-primary opacity-75"></i>الملف الشخصي</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item rounded-2 py-2 text-danger" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>تسجيل الخروج</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <nav class="bottom-mobile-nav">
+      <a class="mobile-nav-item" href="dashboard.html"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-pie"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+      <a class="mobile-nav-item" href="courses.html"><span class="mobile-nav-icon"><i class="fa-solid fa-book-open"></i></span><span class="mobile-nav-label">الدورات</span></a>
+      <a class="mobile-nav-item" href="students.html"><span class="mobile-nav-icon"><i class="fa-solid fa-users"></i></span><span class="mobile-nav-label">الطلبات</span></a>
+      <a class="mobile-nav-item" href="sessions.html"><span class="mobile-nav-icon"><i class="fa-solid fa-video"></i></span><span class="mobile-nav-label">الجلسات</span></a>
+      <a class="mobile-nav-item" href="exams.html"><span class="mobile-nav-icon"><i class="fa-solid fa-pen-to-square"></i></span><span class="mobile-nav-label">الامتحانات</span></a>
+          <a class="mobile-nav-item active" href="certificates.html"><span class="mobile-nav-icon"><i class="fa-solid fa-certificate"></i></span><span class="mobile-nav-label">الشهادات</span></a></nav>
+    <main class="teacher-main">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+        <h5 class="fw-bold mb-0">الشهادات</h5>
+        <button class="add-btn" onclick="showAddCertificateModal()"><i class="fa-solid fa-plus ml-1"></i>إصدار شهادة جديدة</button>
+      </div>
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="teacher-stat-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(15,109,128,0.08); color: #0F6D80;"><i class="fa-solid fa-certificate"></i></div>
+            <div>
+              <p class="stat-number mb-0">15</p>
+              <p class="stat-label mb-0">إجمالي الشهادات</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="teacher-stat-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(25,135,84,0.08); color: #198754;"><i class="fa-solid fa-check-circle"></i></div>
+            <div>
+              <p class="stat-number mb-0">12</p>
+              <p class="stat-label mb-0">صادرة</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="teacher-stat-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(255,193,7,0.08); color: #cc9a06;"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <p class="stat-number mb-0">3</p>
+              <p class="stat-label mb-0">قيد الإصدار</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="teacher-stat-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(220,53,69,0.08); color: #dc3545;"><i class="fa-solid fa-ban"></i></div>
+            <div>
+              <p class="stat-number mb-0">0</p>
+              <p class="stat-label mb-0">ملغية</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-3" id="certificateCards">
+        <div class="col-md-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <div>
+                <span class="cert-icon d-block mb-2" style="color:#0F6D80;"><i class="fa-solid fa-certificate"></i></span>
+                <h6 class="fw-bold mb-1">إجازة برواية حفص</h6>
+                <span class="cert-number">#CERT-001</span>
+              </div>
+              <span class="teacher-badge teacher-badge-success" style="font-size:0.7rem;">صادرة</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fw-bold small">مريم أحمد</span>
+                <span class="small text-secondary opacity-75 d-block">تحفيظ الكبار</span>
+              </div>
+              <span class="small text-secondary opacity-50">٢٠٢٦-٠٦-٠١</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <div>
+                <span class="cert-icon d-block mb-2" style="color:#0F6D80;"><i class="fa-solid fa-certificate"></i></span>
+                <h6 class="fw-bold mb-1">شهادة تجويد</h6>
+                <span class="cert-number">#CERT-002</span>
+              </div>
+              <span class="teacher-badge teacher-badge-success" style="font-size:0.7rem;">صادرة</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fw-bold small">سارة نور</span>
+                <span class="small text-secondary opacity-75 d-block">دورة التجويد</span>
+              </div>
+              <span class="small text-secondary opacity-50">٢٠٢٦-٠٦-٠٢</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <div>
+                <span class="cert-icon d-block mb-2" style="color:#cc9a06;"><i class="fa-solid fa-certificate"></i></span>
+                <h6 class="fw-bold mb-1">شهادة حفظ الجزء ٣٠</h6>
+                <span class="cert-number">#CERT-003</span>
+              </div>
+              <span class="teacher-badge teacher-badge-warning" style="font-size:0.7rem;">في الانتظار</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fw-bold small">رنا سامر</span>
+                <span class="small text-secondary opacity-75 d-block">تحفيظ الصغار</span>
+              </div>
+              <span class="small text-secondary opacity-50">٢٠٢٦-٠٦-٠٥</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <div>
+                <span class="cert-icon d-block mb-2" style="color:#0F6D80;"><i class="fa-solid fa-certificate"></i></span>
+                <h6 class="fw-bold mb-1">إجازة القراءات العشر</h6>
+                <span class="cert-number">#CERT-004</span>
+              </div>
+              <span class="teacher-badge teacher-badge-success" style="font-size:0.7rem;">صادرة</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fw-bold small">نور عادل</span>
+                <span class="small text-secondary opacity-75 d-block">القراءات العشر</span>
+              </div>
+              <span class="small text-secondary opacity-50">٢٠٢٦-٠٦-٠٣</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <div>
+                <span class="cert-icon d-block mb-2" style="color:#0F6D80;"><i class="fa-solid fa-certificate"></i></span>
+                <h6 class="fw-bold mb-1">شهادة تلاوة متقنة</h6>
+                <span class="cert-number">#CERT-005</span>
+              </div>
+              <span class="teacher-badge teacher-badge-success" style="font-size:0.7rem;">صادرة</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fw-bold small">آمنة حسن</span>
+                <span class="small text-secondary opacity-75 d-block">مراجعة وتثبيت</span>
+              </div>
+              <span class="small text-secondary opacity-50">٢٠٢٦-٠٦-٠٤</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <div>
+                <span class="cert-icon d-block mb-2" style="color:#cc9a06;"><i class="fa-solid fa-certificate"></i></span>
+                <h6 class="fw-bold mb-1">شهادة حفظ الأحاديث</h6>
+                <span class="cert-number">#CERT-006</span>
+              </div>
+              <span class="teacher-badge teacher-badge-warning" style="font-size:0.7rem;">في الانتظار</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fw-bold small">مريم أحمد</span>
+                <span class="small text-secondary opacity-75 d-block">تحفيظ الكبار</span>
+              </div>
+              <span class="small text-secondary opacity-50">٢٠٢٦-٠٦-٠٦</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <div>
+                <span class="cert-icon d-block mb-2" style="color:#0F6D80;"><i class="fa-solid fa-certificate"></i></span>
+                <h6 class="fw-bold mb-1">إجازة برواية قالون</h6>
+                <span class="cert-number">#CERT-007</span>
+              </div>
+              <span class="teacher-badge teacher-badge-success" style="font-size:0.7rem;">صادرة</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fw-bold small">سارة نور</span>
+                <span class="small text-secondary opacity-75 d-block">التجويد النظري</span>
+              </div>
+              <span class="small text-secondary opacity-50">٢٠٢٦-٠٦-٠٤</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <div>
+                <span class="cert-icon d-block mb-2" style="color:#cc9a06;"><i class="fa-solid fa-certificate"></i></span>
+                <h6 class="fw-bold mb-1">شهادة حضور دورة</h6>
+                <span class="cert-number">#CERT-008</span>
+              </div>
+              <span class="teacher-badge teacher-badge-warning" style="font-size:0.7rem;">في الانتظار</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fw-bold small">نور عادل</span>
+                <span class="small text-secondary opacity-75 d-block">القراءات العشر</span>
+              </div>
+              <span class="small text-secondary opacity-50">٢٠٢٦-٠٦-٠٧</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      var certUploadData = null;
+      var certConfirmData = null;
+
+      function showAddCertificateModal() {
+        certUploadData = null;
+        certConfirmData = null;
+        var students = ['مريم أحمد','سارة نور','رنا سامر','نور عادل','آمنة حسن','ريم عبدالله','هدى سامي','لينا عمر'];
+        var studentOptions = students.map(function(s){ return '<option>'+s+'</option>'; }).join('');
+        var studentChecks = students.map(function(s){ return '<label class="d-flex align-items-center gap-2 py-1"><input type="checkbox" class="form-check-input student-check" value="'+s+'" checked /> <span style="font-size:0.85rem;">'+s+'</span></label>'; }).join('');
+
+        Swal.fire({
+          title: 'إصدار شهادة جديدة',
+          html:
+            '<div class="text-end">' +
+              '<div class="d-flex gap-3 mb-3 justify-content-center">' +
+                '<label class="d-flex align-items-center gap-1" style="font-size:0.85rem;"><input type="radio" name="certMode" value="single" checked onchange="certMode=\'single\';document.getElementById(\'singleGroup\').style.display=\'\';document.getElementById(\'multiGroup\').style.display=\'none\';" /> طالبة واحدة</label>' +
+                '<label class="d-flex align-items-center gap-1" style="font-size:0.85rem;"><input type="radio" name="certMode" value="group" onchange="certMode=\'group\';document.getElementById(\'singleGroup\').style.display=\'none\';document.getElementById(\'multiGroup\').style.display=\'\';" /> مجموعة طالبات</label>' +
+              '</div>' +
+              '<div id="singleGroup">' +
+                '<div class="mb-3"><select class="teacher-input form-control">'+studentOptions+'</select></div>' +
+              '</div>' +
+              '<div id="multiGroup" style="display:none;">' +
+                '<div class="mb-2" style="max-height:160px;overflow-y:auto;border:1px solid rgba(15,109,128,0.06);border-radius:10px;padding:10px;">'+studentChecks+'</div>' +
+              '</div>' +
+              '<div class="mb-3"><select class="teacher-input form-control"><option>إجازة برواية حفص</option><option>شهادة تجويد</option><option>شهادة حفظ</option><option>إجازة القراءات العشر</option><option>شهادة تلاوة</option><option>شهادة حضور دورة</option></select></div>' +
+              '<div class="row g-2 mb-3"><div class="col-6"><select class="teacher-input form-control"><option>تحفيظ الكبار</option><option>تحفيظ الصغار</option><option>دورة التجويد</option><option>القراءات العشر</option><option>مراجعة وتثبيت</option></select></div><div class="col-6"><input class="teacher-input form-control" type="date" /></div></div>' +
+              '<div class="mb-3"><label class="d-block small fw-medium mb-1" style="color:#3f484b;text-align:start;">رفع ملف الشهادة (صورة أو PDF)</label><input class="form-control teacher-input" type="file" id="certFileInput" accept="image/*,.pdf" onchange="handleCertUpload(event)" /></div>' +
+              '<div id="certPreview" class="text-center mb-2" style="display:none;"></div>' +
+            '</div>',
+          confirmButtonText: 'إصدار',
+          confirmButtonColor: '#0F6D80',
+          showCancelButton: true,
+          cancelButtonText: 'إلغاء',
+          width: 500,
+          preConfirm: function() {
+            var mode = document.querySelector('input[name="certMode"]:checked').value;
+            if (mode === 'single') {
+              var name = document.querySelector('#singleGroup select').value;
+              if (!name) { Swal.showValidationMessage('اختر اسم الطالبة'); return false; }
+              certConfirmData = { mode: 'single', name: name };
+            } else {
+              var checks = document.querySelectorAll('.student-check:checked');
+              if (checks.length === 0) { Swal.showValidationMessage('اختر طالبة واحدة على الأقل'); return false; }
+              certConfirmData = { mode: 'group', count: checks.length };
+            }
+            return true;
+          }
+        }).then(function(result) {
+          if (result.isConfirmed && certConfirmData) {
+            var count = certConfirmData.mode === 'single' ? 1 : certConfirmData.count;
+            var name = certConfirmData.mode === 'single' ? certConfirmData.name : 'مجموعة';
+            var html = '<div class="text-center"><i class="fa-solid fa-check-circle text-success" style="font-size:3rem;"></i><h5 class="mt-3 fw-bold">تم إصدار '+count+' شهادة</h5>';
+            if (certUploadData) {
+              var ext = certUploadData.name.split('.').pop();
+              html += '<div class="mt-3"><a href="'+certUploadData.url+'" download="شهادة_'+name+'.'+ext+'" class="btn" style="background:#0F6D80;color:#fff;border-radius:10px;padding:10px 28px;font-weight:600;"><i class="fa-solid fa-download mr-1"></i>تحميل الشهادة</a></div>';
+            }
+            html += '</div>';
+            Swal.fire({ icon: 'success', title: null, html: html, confirmButtonColor: '#0F6D80', confirmButtonText: 'حسناً' });
+          }
+        });
+      }
+
+      function handleCertUpload(e) {
+        var file = e.target.files[0];
+        if (!file) { certUploadData = null; document.getElementById('certPreview').style.display = 'none'; return; }
+        var reader = new FileReader();
+        reader.onload = function(ev) {
+          certUploadData = { name: file.name, url: ev.target.result };
+          var preview = document.getElementById('certPreview');
+          if (file.type.startsWith('image/')) {
+            preview.innerHTML = '<img src="'+ev.target.result+'" style="max-width:100%;max-height:120px;border-radius:8px;border:1px solid rgba(15,109,128,0.08);" />';
+          } else {
+            preview.innerHTML = '<span class="small text-success"><i class="fa-solid fa-file-pdf mr-1"></i>'+file.name+'</span>';
+          }
+          preview.style.display = '';
+        };
+        reader.readAsDataURL(file);
+      }
+    </script>
+    <script src="../js/teacher/teacher.js"></script>
+    
+</body>
+</html>

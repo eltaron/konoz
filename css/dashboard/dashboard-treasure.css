@@ -1,0 +1,11 @@
+.map-juz { padding: 16px 8px; border-radius: 14px; text-align: center; transition: all 0.3s; cursor: default; border: 1px solid transparent; }
+.map-juz:hover { transform: translateY(-2px); }
+.map-juz .juz-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 1rem; transition: all 0.3s; }
+.map-juz.completed { background: rgba(245,189,88,0.06); border-color: rgba(245,189,88,0.15); }
+.map-juz.completed .juz-icon { background: #F5BD58; color: #5f4100; }
+.map-juz.current { background: rgba(15,109,128,0.04); border-color: #0F6D80; }
+.map-juz.current .juz-icon { background: #0F6D80; color: #fff; animation: pulse 2s infinite; }
+.map-juz.locked { opacity: 0.35; }
+.map-juz.locked .juz-icon { background: #e0e3e4; color: #bec8cc; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(15,109,128,0.2); } 50% { box-shadow: 0 0 0 10px rgba(15,109,128,0); } }
+.surah-tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.6rem; background: rgba(15,109,128,0.04); color: #3f484b; }

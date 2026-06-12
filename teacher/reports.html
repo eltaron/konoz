@@ -1,0 +1,254 @@
+<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>التقارير | منصة كنوز القرآن</title>
+<meta name="description" content="التقارير والإحصائيات - لوحة تحكم المعلم" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" /><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="../css/teacher/teacher-base.css" rel="stylesheet" />
+<style>
+  .stat-number { font-size: 1.8rem; font-weight: 800; color: #0F6D80; }
+  .stat-label { font-size: 0.85rem; color: #6b7a7e; font-weight: 500; }
+  .teachr-stat-card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 20px rgba(15,109,128,0.04); border: 1px solid rgba(15,109,128,0.04); transition: transform 0.2s; height: 100%; }
+  .teachr-stat-card:hover { transform: translateY(-2px); }
+  .export-btn { background: #0F6D80; color: #fff; border: none; border-radius: 10px; padding: 8px 20px; font-weight: 600; transition: all 0.2s; }
+  .export-btn:hover { background: #0c5665; color: #fff; }
+</style>
+</head>
+  <body>
+    <aside class="teacher-sidebar p-3">
+  <div class="d-flex align-items-center gap-2 mb-4 px-2 pt-2">
+    <img src="../images/logo.png" alt="كنوز القرآن" class="teacher-sidebar-logo">
+    <span class="fw-bold fs-6 sidebar-brand">كنوز القرآن</span>
+  </div>
+  <span class="sidebar-section-label px-2 mb-2 d-block">القائمة الرئيسية</span>
+  <nav class="d-flex flex-column gap-1 flex-grow-1">
+    <a class="teacher-sidebar-link active" href="dashboard.html"><i class="fa-solid fa-chart-pie" style="width:20px;"></i>لوحة التحكم</a>
+    <a class="teacher-sidebar-link" href="courses.html"><i class="fa-solid fa-book-open" style="width:20px;"></i>الدورات</a>
+    <a class="teacher-sidebar-link" href="students.html"><i class="fa-solid fa-users" style="width:20px;"></i>الطلبات</a>
+    <a class="teacher-sidebar-link" href="sessions.html"><i class="fa-solid fa-video" style="width:20px;"></i>الجلسات</a>
+    <a class="teacher-sidebar-link" href="schedule.html"><i class="fa-solid fa-calendar-days" style="width:20px;"></i>الجدول</a>
+    <a class="teacher-sidebar-link" href="messages.html"><i class="fa-solid fa-envelope" style="width:20px;"></i>الرسائل</a>
+    <a class="teacher-sidebar-link" href="exams.html"><i class="fa-solid fa-pen-to-square" style="width:20px;"></i>الامتحانات</a>
+    <a class="teacher-sidebar-link" href="certificates.html"><i class="fa-solid fa-certificate" style="width:20px;"></i>الشهادات</a>
+  </nav>
+  <div class="sidebar-divider border-top pt-3 mt-auto">
+    <a class="teacher-sidebar-link" href="reports.html"><i class="fa-solid fa-chart-simple" style="width:20px;"></i>التقارير</a>
+    <a class="teacher-sidebar-link" href="settings.html"><i class="fa-solid fa-gear" style="width:20px;"></i>الإعدادات</a>
+    <a class="teacher-sidebar-link logout" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket" style="width:20px;"></i>تسجيل الخروج</a>
+  </div>
+</aside>
+<!-- Mobile Offcanvas -->
+<div class="offcanvas offcanvas-start teacher-offcanvas" tabindex="-1" id="teacherOffcanvas">
+  <div class="offcanvas-header">
+    <img src="../images/logo.png" alt="كنوز القرآن" style="height:36px;">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="offcanvas-profile">
+      <img src="../images/logo.png" alt="المعلمة" class="offcanvas-avatar">
+      <h6 class="offcanvas-name">أ. نورة</h6>
+      <small class="offcanvas-role">معلمة قرآن كريم</small>
+    </div>
+    <nav class="p-3 d-flex flex-column gap-1">
+    <a class="teacher-sidebar-link active" href="dashboard.html"><i class="fa-solid fa-chart-pie" style="width:20px;"></i>لوحة التحكم</a>
+    <a class="teacher-sidebar-link" href="courses.html"><i class="fa-solid fa-book-open" style="width:20px;"></i>الدورات</a>
+    <a class="teacher-sidebar-link" href="students.html"><i class="fa-solid fa-users" style="width:20px;"></i>الطلبات</a>
+    <a class="teacher-sidebar-link" href="sessions.html"><i class="fa-solid fa-video" style="width:20px;"></i>الجلسات</a>
+    <a class="teacher-sidebar-link" href="exams.html"><i class="fa-solid fa-pen-to-square" style="width:20px;"></i>الامتحانات</a>
+    <a class="teacher-sidebar-link" href="certificates.html"><i class="fa-solid fa-certificate" style="width:20px;"></i>الشهادات</a>
+    </nav>
+    <div class="p-3 mt-2">
+      <a href="settings.html" class="teacher-sidebar-link"><i class="fa-solid fa-gear" style="width:20px;"></i>الإعدادات</a>
+      <a href="../index.html" class="teacher-sidebar-link logout"><i class="fa-solid fa-arrow-right-from-bracket" style="width:20px;"></i>تسجيل الخروج</a>
+    </div>
+  </div>
+</div>
+    <header class="teacher-header">
+      <div>
+        <button class="hamburger-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#teacherOffcanvas" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+        <h6 class="d-inline header-greeting d-none d-sm-inline">مرحباً بكِ، أ. نورة</h6>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="small header-last-login d-none d-md-inline">آخر دخول: اليوم ٨:١٥ ص</span>
+        <div class="dropdown">
+          <a href="#" class="teacher-header-icon position-relative" data-bs-toggle="dropdown" aria-expanded="false" title="الإشعارات">
+            <i class="fa-solid fa-bell"></i>
+            <span class="teacher-badge-dot"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:300px;padding:0;">
+            <div class="px-3 py-2 fw-bold border-bottom" style="color:#1f2937;font-size:0.9rem;">الإشعارات</div>
+            <div style="max-height:280px;overflow-y:auto;">
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-success" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">تسجيل جديد</div><div style="font-size:0.78rem;color:#6b7a7e;">انضمت طالبة جديدة لدورة التجويد</div><div style="font-size:0.7rem;color:#aab7bc;">منذ 5 دقائق</div></div>
+                </div>
+              </a>
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-primary" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">امتحان جديد</div><div style="font-size:0.78rem;color:#6b7a7e;">قدمت الطالبة سارة امتحان التجويد</div><div style="font-size:0.7rem;color:#aab7bc;">منذ ساعة</div></div>
+                </div>
+              </a>
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-warning" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">تذكير بجلسة</div><div style="font-size:0.78rem;color:#6b7a7e;">لديك جلسة بعد 30 دقيقة مع مجموعة الفتح</div><div style="font-size:0.7rem;color:#aab7bc;">منذ 3 ساعات</div></div>
+                </div>
+              </a>
+            </div>
+            <a class="dropdown-item text-center py-2 border-top fw-semibold" href="notifications.html" style="font-size:0.85rem;color:#0F6D80;">عرض كل الإشعارات</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="teacher-header-icon" data-bs-toggle="dropdown" aria-expanded="false" title="الإعدادات">
+            <i class="fa-solid fa-gear"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:200px;padding:8px;">
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html"><i class="fa-regular fa-user mr-2 text-primary opacity-75"></i>الملف الشخصي</a></li>
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html"><i class="fa-solid fa-palette mr-2 text-primary opacity-75"></i>المظهر</a></li>
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html"><i class="fa-solid fa-gear mr-2 text-primary opacity-75"></i>الإعدادات المتقدمة</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item rounded-2 py-2 text-danger" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>تسجيل الخروج</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../images/logo.png" alt="المعلمة" class="teacher-avatar" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:180px;padding:8px;">
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html"><i class="fa-regular fa-user mr-2 text-primary opacity-75"></i>الملف الشخصي</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item rounded-2 py-2 text-danger" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>تسجيل الخروج</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <nav class="bottom-mobile-nav">
+      <a class="mobile-nav-item active" href="dashboard.html"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-pie"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+      <a class="mobile-nav-item" href="courses.html"><span class="mobile-nav-icon"><i class="fa-solid fa-book-open"></i></span><span class="mobile-nav-label">الدورات</span></a>
+      <a class="mobile-nav-item" href="students.html"><span class="mobile-nav-icon"><i class="fa-solid fa-users"></i></span><span class="mobile-nav-label">الطلبات</span></a>
+      <a class="mobile-nav-item" href="sessions.html"><span class="mobile-nav-icon"><i class="fa-solid fa-video"></i></span><span class="mobile-nav-label">الجلسات</span></a>
+      <a class="mobile-nav-item" href="exams.html"><span class="mobile-nav-icon"><i class="fa-solid fa-pen-to-square"></i></span><span class="mobile-nav-label">الامتحانات</span></a>
+      <a class="mobile-nav-item" href="certificates.html"><span class="mobile-nav-icon"><i class="fa-solid fa-certificate"></i></span><span class="mobile-nav-label">الشهادات</span></a>
+    </nav>
+    <main class="teacher-main">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+        <h5 class="fw-bold mb-0">التقارير والإحصائيات</h5>
+        <button class="export-btn" onclick="exportReport()"><i class="fa-solid fa-download ml-1"></i>تصدير التقرير</button>
+      </div>
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="teachr-stat-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(15,109,128,0.08); color: #0F6D80;"><i class="fa-solid fa-user-graduate"></i></div>
+            <div>
+              <p class="stat-number mb-0">٢٤</p>
+              <p class="stat-label mb-0">إجمالي الطالبات</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="teachr-stat-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(25,135,84,0.08); color: #198754;"><i class="fa-solid fa-video"></i></div>
+            <div>
+              <p class="stat-number mb-0">١٢</p>
+              <p class="stat-label mb-0">إجمالي الجلسات</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="teachr-stat-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(255,193,7,0.08); color: #cc9a06;"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div>
+              <p class="stat-number mb-0">٨</p>
+              <p class="stat-label mb-0">إجمالي الامتحانات</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="teachr-stat-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(111,66,193,0.08); color: #6f42c1;"><i class="fa-solid fa-percent"></i></div>
+            <div>
+              <p class="stat-number mb-0">٨٥٪</p>
+              <p class="stat-label mb-0">نسبة الإنجاز</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="teacher-card mb-4">
+        <h6 class="teacher-section-title"><i class="fa-solid fa-users text-primary"></i>تقارير الطالبات</h6>
+        <div class="table-responsive">
+          <table class="table teacher-table table-borderless mb-0">
+            <thead>
+              <tr><th>الطالبة</th><th>الدورة</th><th>نسبة الحضور</th><th>معدل الامتحانات</th><th>الشهادات</th><th>الحالة</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="fw-bold">مريم أحمد</td><td>تحفيظ الكبار</td><td>٩٥٪</td><td>٩٨٪</td><td>٣</td><td><span class="teacher-badge teacher-badge-success">ممتاز</span></td></tr>
+              <tr><td class="fw-bold">سارة نور</td><td>التجويد النظري</td><td>٨٨٪</td><td>٩٢٪</td><td>٢</td><td><span class="teacher-badge teacher-badge-success">ممتاز</span></td></tr>
+              <tr><td class="fw-bold">نور عادل</td><td>القراءات العشر</td><td>٧٦٪</td><td>٨٥٪</td><td>١</td><td><span class="teacher-badge teacher-badge-info">جيد جداً</span></td></tr>
+              <tr><td class="fw-bold">رنا سامر</td><td>تحفيظ الصغار</td><td>٩٢٪</td><td>٨٨٪</td><td>٢</td><td><span class="teacher-badge teacher-badge-success">ممتاز</span></td></tr>
+              <tr><td class="fw-bold">آمنة حسن</td><td>تحفيظ الكبار</td><td>٦٠٪</td><td>٧٠٪</td><td>٠</td><td><span class="teacher-badge teacher-badge-warning">متوسط</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row g-3 mb-4">
+        <div class="col-lg-6">
+          <div class="teacher-card h-100">
+            <h6 class="teacher-section-title"><i class="fa-solid fa-calendar-week text-primary"></i>إحصائيات الجلسات</h6>
+            <div class="table-responsive">
+              <table class="table teacher-table table-borderless mb-0">
+                <thead>
+                  <tr><th>الشهر</th><th>الجلسات المنعقدة</th><th>تم الحضور</th><th>غياب</th><th>نسبة الحضور</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>فبراير</td><td>١٠</td><td>٩</td><td>١</td><td>٩٠٪</td></tr>
+                  <tr><td>مارس</td><td>١٢</td><td>١٠</td><td>٢</td><td>٨٣٪</td></tr>
+                  <tr><td>أبريل</td><td>٨</td><td>٧</td><td>١</td><td>٨٨٪</td></tr>
+                  <tr><td>مايو</td><td>١١</td><td>١٠</td><td>١</td><td>٩١٪</td></tr>
+                  <tr><td>يونيو</td><td>٦</td><td>٥</td><td>١</td><td>٨٣٪</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="teacher-card h-100">
+            <h6 class="teacher-section-title"><i class="fa-solid fa-chart-bar text-primary"></i>أداء الامتحانات</h6>
+            <div class="table-responsive">
+              <table class="table teacher-table table-borderless mb-0">
+                <thead>
+                  <tr><th>الامتحان</th><th>متوسط الدرجات</th><th>أعلى درجة</th><th>أقل درجة</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="fw-bold">التجويد النظري</td><td>٨٥</td><td>٩٨</td><td>٦٥</td></tr>
+                  <tr><td class="fw-bold">تحفيظ الكبار</td><td>٩٠</td><td>١٠٠</td><td>٧٢</td></tr>
+                  <tr><td class="fw-bold">القراءات العشر</td><td>٧٨</td><td>٩٥</td><td>٥٥</td></tr>
+                  <tr><td class="fw-bold">تحفيظ الصغار</td><td>٨٨</td><td>٩٦</td><td>٧٠</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mb-3">
+        <button class="export-btn mx-1" onclick="exportReport('pdf')"><i class="fa-solid fa-file-pdf ml-1"></i>تصدير PDF</button>
+        <button class="export-btn mx-1" style="background:#198754;" onclick="exportReport('excel')"><i class="fa-solid fa-file-excel ml-1"></i>تصدير Excel</button>
+      </div>
+    </main>
+    <script>
+      function exportReport(type) {
+        Swal.fire({ icon: 'info', title: 'تصدير التقرير', text: 'جاري تجهيز التقرير للتصدير', confirmButtonColor: '#0F6D80', confirmButtonText: 'حسناً' });
+      }
+    </script>
+    <script src="../js/teacher/teacher.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

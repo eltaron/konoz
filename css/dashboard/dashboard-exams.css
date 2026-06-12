@@ -1,0 +1,6 @@
+.exam-card { padding: 16px; border-radius: 14px; background: #f7fafb; border: 1px solid rgba(15,109,128,0.04); transition: all 0.2s; }
+.exam-card:hover { border-color: rgba(15,109,128,0.15); }
+.exam-card.upcoming { border-right: 4px solid #0F6D80; }
+.exam-card.completed { border-right: 4px solid #27ae60; }
+.exam-card.failed { border-right: 4px solid #e74c3c; }
+.grade-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; }

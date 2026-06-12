@@ -1,0 +1,235 @@
+<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>الشهادات والإجازات | منصة كنوز القرآن</title>
+    <meta name="description" content="الشهادات والإجازات المعتمدة من منصة كنوز القرآن." />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/dashboard/dashboard-base.css" rel="stylesheet" />
+    <link href="../css/dashboard/dashboard-certificates.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="dash-header">
+      <div class="d-flex align-items-center gap-2 d-md-none">
+        <button class="btn p-2 text-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileDashMenu"><i class="fa-solid fa-bars fs-5"></i></button>
+      </div>
+      <div class="d-flex align-items-center gap-2 flex-grow-1 justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <a href="../index.html"><img src="../images/logo.png" alt="كنوز القرآن" style="height: 40px;" /></a>
+          <span class="fw-bold d-none d-sm-inline" style="color: #0F6D80;">كنوز القرآن</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="dropdown">
+            <button class="btn p-2 text-primary position-relative" style="background: transparent; border: none;" data-bs-toggle="dropdown">
+              <i class="fa-regular fa-bell fs-6"></i>
+              <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill" style="background: var(--pumpkin); font-size: 0.55rem; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;">3</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="width: 260px; border: none;">
+              <h6 class="px-3 py-2 small fw-bold" style="color: #0F6D80;">الإشعارات</h6>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 موعد الاختبار غداً</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 تم تحديث نتيجة التجويد</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 الحلقة القادمة بعد ساعة</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn p-2 text-primary" style="background: transparent; border: none;" data-bs-toggle="dropdown"><i class="fa-solid fa-gear fs-6"></i></button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-sliders mr-2" style="width: 16px;"></i>الإعدادات</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="text-decoration-none" data-bs-toggle="dropdown">
+              <img src="../images/logo.png" alt="الطالبة" class="rounded-circle border-2" style="width: 40px; height: 40px; object-fit: cover; border-color: #F5BD58 !important;" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <div class="px-3 py-2">
+                <p class="fw-bold small mb-0" style="color: #0F6D80;">عائشة أحمد</p>
+                <small class="text-secondary opacity-75">aisha@example.com</small>
+              </div>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="dashboard-sidebar">
+      <div class="text-center py-4 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+        <div class="position-relative d-inline-block mb-2">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2" style="width: 80px; height: 80px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <span class="position-absolute bottom-0 start-0 badge rounded-3 px-2 py-1 small fw-bold" style="background: #F5BD58; color: #5f4100; font-size: 0.6rem; transform: translate(-4px, 4px);">متميز</span>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+        <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+      </div>
+      <nav class="p-3 d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+        <a href="hifdh-journey.html" class="sidebar-link"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+          <a href="schedule.html" class="sidebar-link"><i class="fa-solid fa-calendar" style="width: 20px;"></i> جدولي</a>
+          <a href="messages.html" class="sidebar-link"><i class="fa-solid fa-envelope" style="width: 20px;"></i> رسائلي</a>
+        <a href="certificates.html" class="sidebar-link active"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+        <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+      </nav>
+      <div class="p-3">
+        <a href="live.html" class="btn w-100 rounded-3 py-3 fw-bold d-flex align-items-center justify-content-center gap-2" style="background: #0F6D80; color: #fff;"><i class="fa-solid fa-video"></i> انضم للبث المباشر</a>
+      </div>
+    </aside>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileDashMenu" style="width: 280px;">
+      <div class="offcanvas-header border-bottom" style="border-color: rgba(15,109,128,0.06);">
+        <img src="../images/logo.png" alt="كنوز القرآن" style="height: 36px;" />
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="margin: calc(-.5 * var(--bs-offcanvas-padding-y)) auto calc(-.5 * var(--bs-offcanvas-padding-x)) calc(-.5 * var(--bs-offcanvas-padding-y));"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <div class="text-center py-4" style="background: #f7fafb;">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2 mb-2" style="width: 72px; height: 72px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+          <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+        </div>
+        <nav class="p-3 d-flex flex-column gap-1">
+          <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+          <a href="hifdh-journey.html" class="sidebar-link"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+          <a href="certificates.html" class="sidebar-link active"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+          <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+          <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="dashboard-main px-3 px-md-4">
+      <h1 class="fw-bold mb-1" style="color: #0F6D80; font-size: 1.6rem;" data-aos="fade-up">الشهادات والإجازات</h1>
+      <p class="text-secondary opacity-75 mb-4" data-aos="fade-up">جميع شهاداتك وإجازاتك المعتمدة من المنصة</p>
+
+      <!-- Stats -->
+      <div class="row g-3 mb-4" data-aos="fade-up">
+        <div class="col-4">
+          <div class="dash-card text-center">
+            <h3 class="fw-bold mb-0" style="color: #0F6D80;">٥</h3>
+            <small class="text-secondary opacity-75">الإجازات</small>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="dash-card text-center">
+            <h3 class="fw-bold mb-0" style="color: var(--pumpkin);">٨</h3>
+            <small class="text-secondary opacity-75">الشهادات</small>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="dash-card text-center">
+            <h3 class="fw-bold mb-0" style="color: #0F6D80;">٣</h3>
+            <small class="text-secondary opacity-75">قيد الإنجاز</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificates List -->
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="dash-card" data-aos="fade-up">
+            <h5 class="fw-bold mb-3" style="color: #0F6D80;"><i class="fa-solid fa-certificate mr-2"></i>الإجازات</h5>
+            <div class="d-flex flex-column gap-2" id="ijazatList"></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="dash-card" data-aos="fade-up">
+            <h5 class="fw-bold mb-3" style="color: #0F6D80;"><i class="fa-solid fa-award mr-2"></i>الشهادات</h5>
+            <div class="d-flex flex-column gap-2" id="certList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="dash-card mt-4" data-aos="fade-up">
+        <h5 class="fw-bold mb-3" style="color: #0F6D80;"><i class="fa-solid fa-medal mr-2"></i>الشارات والأوسمة</h5>
+        <div class="row g-3" id="badgesGrid"></div>
+      </div>
+
+      <!-- Request Certificate -->
+    </main>
+
+    <nav class="bottom-mobile-nav">
+  <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-school"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+  <a href="schedule.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-calendar"></i></span><span class="mobile-nav-label">جدولي</span></a>
+  <a href="messages.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-envelope"></i></span><span class="mobile-nav-label">رسائلي</span></a>
+  <a href="hifdh-journey.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-line"></i></span><span class="mobile-nav-label">التقدم</span></a>
+  <a href="settings.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-sliders"></i></span><span class="mobile-nav-label">الإعدادات</span></a>
+</nav>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      const ijazat = [
+        { title: 'إجازة القاعدة النورانية', date: '٢٠/١٠/٢٠٢٤', teacher: 'د. محمد عبدالله', img: '../images/certificates/اجازات نور بيان/1.jpeg' },
+        { title: 'إجازة رواية حفص عن عاصم', date: '١٥/٠٨/٢٠٢٤', teacher: 'د. محمد عبدالله', img: '../images/certificates/اجازات فتح الرحمن/3.jpeg' },
+        { title: 'إجازة متن الجزرية', date: '٠٣/٠٦/٢٠٢٤', teacher: 'أ. نورهان علي', img: '../images/certificates/أجازات جزرية/3.jpeg' },
+        { title: 'إجازة القراءات السبع', date: '٢٢/٠٤/٢٠٢٤', teacher: 'د. مريم حسن', img: '../images/certificates/اجازات فتح الرحمن/2.jpeg' },
+        { title: 'إجازة الأربعين النووية', date: '١٠/٠٢/٢٠٢٤', teacher: 'أ. آمنة خالد', img: '../images/certificates/اجازات في احاديث  الاربعون النووية/1.jpeg' },
+      ];
+      const certs = [
+        { title: 'شهادة حفظ الجزء العاشر', date: '٠٥/١١/٢٠٢٤', type: 'حفظ', img: '../images/certificates/جزء عم وتبارك/10.jpeg' },
+        { title: 'شهادة حفظ الجزء التاسع', date: '٢٠/٠٩/٢٠٢٤', type: 'حفظ', img: '../images/certificates/جزء عم وتبارك/9.jpeg' },
+        { title: 'شهادة التلاوة المجودة', date: '١٤/٠٨/٢٠٢٤', type: 'تجويد', img: '../images/certificates/العلوم الشرعية/5.jpeg' },
+        { title: 'شهادة حضور دورة التجويد', date: '٣٠/٠٧/٢٠٢٤', type: 'دورة', img: '../images/certificates/دورة اعداد القارئ/2.jpeg' },
+        { title: 'شهادة حفظ الجزء الثامن', date: '١٢/٠٦/٢٠٢٤', type: 'حفظ', img: '../images/certificates/جزء عم وتبارك/8.jpeg' },
+        { title: 'شهادة اللغة العربية (نحو)', date: '٠٥/٠٥/٢٠٢٤', type: 'دورة', img: '../images/certificates/العلوم الشرعية/3.jpeg' },
+        { title: 'شهادة العقيدة الإسلامية', date: '١٨/٠٣/٢٠٢٤', type: 'دورة', img: '../images/certificates/العلوم الشرعية/7.jpeg' },
+        { title: 'شهادة حضور دورة الفقه', date: '٢٢/٠١/٢٠٢٤', type: 'دورة', img: '../images/certificates/العلوم الشرعية/11.jpeg' },
+      ];
+      const badges = [
+        { title: 'الحافظة المثابرة', icon: 'fa-fire', color: '#e74c3c', desc: '٣٠ يوم متتالي' },
+        { title: 'نجمة التلاوة', icon: 'fa-star', color: '#f39c12', desc: 'التجويد الممتاز' },
+        { title: 'التميز', icon: 'fa-crown', color: '#0F6D80', desc: 'أولى الفصل' },
+        { title: 'الاجتهاد', icon: 'fa-book-open', color: '#8e44ad', desc: 'أكثر من ١٠٠ ساعة' },
+        { title: 'الختمة', icon: 'fa-check-double', color: '#27ae60', desc: 'إتمام الختمة الأولى' },
+        { title: 'المشاركة', icon: 'fa-users', color: '#2980b9', desc: 'المشاركة في ١٠ حلقات' },
+      ];
+
+      document.getElementById('ijazatList').innerHTML = ijazat.map(i => `
+        <div class="cert-card-full">
+          <img src="${i.img}" alt="${i.title}" class="rounded-2" style="width: 72px; height: 54px; object-fit: cover;" />
+          <div class="flex-grow-1">
+            <p class="fw-bold small mb-0" style="color: #0F6D80;">${i.title}</p>
+            <small class="text-secondary opacity-75">${i.teacher} — ${i.date}</small>
+          </div>
+          <button class="btn p-2" style="color: #0F6D80;" onclick="Swal.fire({icon:'success',title:'تم التحميل',text:'سيتم تحميل الشهادة',confirmButtonColor:'#0F6D80',confirmButtonText:'حسناً'})"><i class="fa-solid fa-download"></i></button>
+        </div>
+      `).join('');
+
+      document.getElementById('certList').innerHTML = certs.map(c => `
+        <div class="cert-card-full">
+          <img src="${c.img}" alt="${c.title}" class="rounded-2" style="width: 72px; height: 54px; object-fit: cover;" />
+          <div class="flex-grow-1">
+            <p class="fw-bold small mb-0" style="color: #0F6D80;">${c.title}</p>
+            <small class="text-secondary opacity-75">${c.type} — ${c.date}</small>
+          </div>
+          <button class="btn p-2" style="color: #0F6D80;" onclick="Swal.fire({icon:'success',title:'تم التحميل',text:'سيتم تحميل الشهادة',confirmButtonColor:'#0F6D80',confirmButtonText:'حسناً'})"><i class="fa-solid fa-download"></i></button>
+        </div>
+      `).join('');
+
+      document.getElementById('badgesGrid').innerHTML = badges.map(b => `
+        <div class="col-4 col-md-2 text-center">
+          <div class="badge-icon mx-auto mb-2" style="background: ${b.color}15; color: ${b.color};"><i class="fa-solid ${b.icon}"></i></div>
+          <p class="fw-bold small mb-0" style="color: #0F6D80;">${b.title}</p>
+          <small class="text-secondary opacity-75">${b.desc}</small>
+        </div>
+      `).join('');
+
+      AOS.init({ duration: 600, once: true });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

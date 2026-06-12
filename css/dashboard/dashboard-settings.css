@@ -1,0 +1,8 @@
+.form-control-custom { border: 1.5px solid rgba(15,109,128,0.1); border-radius: 10px; padding: 10px 14px; font-size: 0.9rem; transition: all 0.2s; }
+.form-control-custom:focus { border-color: #0F6D80; box-shadow: 0 0 0 3px rgba(15,109,128,0.06); }
+.toggle-switch { width: 44px; height: 24px; border-radius: 12px; cursor: pointer; transition: all 0.3s; position: relative; }
+.toggle-switch.on { background: #0F6D80; }
+.toggle-switch.off { background: #e0e3e4; }
+.toggle-switch::after { content: ''; width: 20px; height: 20px; border-radius: 50%; background: #fff; position: absolute; top: 2px; transition: all 0.3s; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.toggle-switch.on::after { right: 22px; }
+.toggle-switch.off::after { right: 2px; }

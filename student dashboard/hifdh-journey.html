@@ -1,0 +1,385 @@
+<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>رحلة الحفظ | منصة كنوز القرآن</title>
+    <meta name="description" content="تتبعي رحلة حفظك للقرآن الكريم على منصة كنوز القرآن." />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/dashboard/dashboard-base.css" rel="stylesheet" />
+    <link href="../css/dashboard/dashboard-hifdh.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="dash-header">
+      <div class="d-flex align-items-center gap-2 d-md-none">
+        <button class="btn p-2 text-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileDashMenu"><i class="fa-solid fa-bars fs-5"></i></button>
+      </div>
+      <div class="d-flex align-items-center gap-2 flex-grow-1 justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <a href="../index.html"><img src="../images/logo.png" alt="كنوز القرآن" style="height: 40px;" /></a>
+          <span class="fw-bold d-none d-sm-inline" style="color: #0F6D80;">كنوز القرآن</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="dropdown">
+            <button class="btn p-2 text-primary position-relative" style="background: transparent; border: none;" data-bs-toggle="dropdown">
+              <i class="fa-regular fa-bell fs-6"></i>
+              <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill" style="background: var(--pumpkin); font-size: 0.55rem; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;">3</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="width: 260px; border: none;">
+              <h6 class="px-3 py-2 small fw-bold" style="color: #0F6D80;">الإشعارات</h6>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 موعد الاختبار غداً</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 تم تحديث نتيجة التجويد</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 الحلقة القادمة بعد ساعة</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn p-2 text-primary" style="background: transparent; border: none;" data-bs-toggle="dropdown"><i class="fa-solid fa-gear fs-6"></i></button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-sliders mr-2" style="width: 16px;"></i>الإعدادات</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="text-decoration-none" data-bs-toggle="dropdown">
+              <img src="../images/logo.png" alt="الطالبة" class="rounded-circle border-2" style="width: 40px; height: 40px; object-fit: cover; border-color: #F5BD58 !important;" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <div class="px-3 py-2">
+                <p class="fw-bold small mb-0" style="color: #0F6D80;">عائشة أحمد</p>
+                <small class="text-secondary opacity-75">aisha@example.com</small>
+              </div>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar Desktop -->
+    <aside class="dashboard-sidebar">
+      <div class="text-center py-4 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+        <div class="position-relative d-inline-block mb-2">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2" style="width: 80px; height: 80px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <span class="position-absolute bottom-0 start-0 badge rounded-3 px-2 py-1 small fw-bold" style="background: #F5BD58; color: #5f4100; font-size: 0.6rem; transform: translate(-4px, 4px);">متميز</span>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+        <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+      </div>
+      <nav class="p-3 d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+        <a href="hifdh-journey.html" class="sidebar-link active"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+                  <a href="schedule.html" class="sidebar-link"><i class="fa-solid fa-calendar" style="width: 20px;"></i> جدولي</a>
+          <a href="messages.html" class="sidebar-link"><i class="fa-solid fa-envelope" style="width: 20px;"></i> رسائلي</a>
+<a href="certificates.html" class="sidebar-link"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+        <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+      </nav>
+      <div class="p-3">
+        <a href="live.html" class="btn w-100 rounded-3 py-3 fw-bold d-flex align-items-center justify-content-center gap-2" style="background: #0F6D80; color: #fff;"><i class="fa-solid fa-video"></i> انضم للبث المباشر</a>
+      </div>
+    </aside>
+
+    <!-- Mobile Offcanvas -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileDashMenu" style="width: 280px;">
+      <div class="offcanvas-header border-bottom" style="border-color: rgba(15,109,128,0.06);">
+        <img src="../images/logo.png" alt="كنوز القرآن" style="height: 36px;" />
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="margin: calc(-.5 * var(--bs-offcanvas-padding-y)) auto calc(-.5 * var(--bs-offcanvas-padding-x)) calc(-.5 * var(--bs-offcanvas-padding-y));"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <div class="text-center py-4" style="background: #f7fafb;">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2 mb-2" style="width: 72px; height: 72px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+          <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+        </div>
+        <nav class="p-3 d-flex flex-column gap-1">
+          <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+          <a href="hifdh-journey.html" class="sidebar-link active"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+                    <a href="schedule.html" class="sidebar-link"><i class="fa-solid fa-calendar" style="width: 20px;"></i> جدولي</a>
+          <a href="messages.html" class="sidebar-link"><i class="fa-solid fa-envelope" style="width: 20px;"></i> رسائلي</a>
+<a href="certificates.html" class="sidebar-link"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+          <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+          <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="dashboard-main px-3 px-md-4">
+      <h1 class="fw-bold mb-1" style="color: #0F6D80; font-size: 1.6rem;" data-aos="fade-up">رحلة الحفظ</h1>
+      <p class="text-secondary opacity-75 mb-4" data-aos="fade-up">تتبعي تقدمك في حفظ القرآن الكريم خطوة بخطوة</p>
+
+      <!-- Stats -->
+      <div class="row g-3 mb-4" data-aos="fade-up">
+        <div class="col-6 col-md-3">
+          <div class="dash-card text-center">
+            <i class="fa-solid fa-book-quran fs-4 mb-1" style="color: #0F6D80;"></i>
+            <h3 class="fw-bold mb-0" style="color: #0F6D80;" id="statJuz">12</h3>
+            <small class="text-secondary opacity-75">الأجزاء المنجزة</small>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="dash-card text-center">
+            <i class="fa-regular fa-clock fs-4 mb-1" style="color: var(--pumpkin);"></i>
+            <h3 class="fw-bold mb-0" style="color: var(--pumpkin);"><span id="todayMinutes">١٥٠</span></h3>
+            <small class="text-secondary opacity-75">دقائق اليوم</small>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="dash-card text-center">
+            <i class="fa-regular fa-calendar-check fs-4 mb-1" style="color: #0F6D80;"></i>
+            <h3 class="fw-bold mb-0" style="color: #0F6D80;"><span id="streakDays">٢٣</span></h3>
+            <small class="text-secondary opacity-75">يوم متتالي</small>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="dash-card text-center">
+            <i class="fa-solid fa-rotate fs-4 mb-1" style="color: var(--pumpkin);"></i>
+            <h3 class="fw-bold mb-0" style="color: var(--pumpkin);;"><span id="reviewRate">٨٥</span>٪</h3>
+            <small class="text-secondary opacity-75">معدل المراجعة</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Main Column: Juz Grid + Weekly Log -->
+        <div class="col-lg-8">
+          <div class="dash-card" data-aos="fade-up">
+            <h5 class="fw-bold mb-3" style="color: #0F6D80;">خريطة الأجزاء</h5>
+            <div class="row g-2" id="juzGrid"></div>
+          </div>
+
+          <!-- Weekly Activity Log -->
+          <div class="dash-card mt-4" data-aos="fade-up">
+            <h5 class="fw-bold mb-3" style="color: #0F6D80;">سجل الأنشطة اليومي</h5>
+            <div id="weeklyLog"></div>
+            <p class="small text-secondary opacity-75 mt-2 mb-0 text-center">سجلي نشاطك كل يوم من أيام الأسبوع بالضغط على أيام المواظبة 👆</p>
+          </div>
+        </div>
+
+        <!-- Side: Streak + Goals -->
+        <div class="col-lg-4">
+          <div class="dash-card mb-4" data-aos="fade-up">
+            <h5 class="fw-bold mb-3" style="color: #0F6D80;">أيام المواظبة</h5>
+            <div class="d-flex flex-wrap gap-2 justify-content-center" id="streakCalendar"></div>
+            <p class="small text-center text-secondary opacity-75 mt-3 mb-0">اضغطي على اليوم لتسجيلي إنجازك</p>
+          </div>
+
+          <!-- Tasks Summary -->
+          <div class="dash-card mb-4" data-aos="fade-up">
+            <h5 class="fw-bold mb-3" style="color: #0F6D80;">إحصائيات الأسبوع</h5>
+            <div id="weekStats"></div>
+          </div>
+
+          <div class="dash-card" data-aos="fade-up">
+            <h5 class="fw-bold mb-3" style="color: #0F6D80;">الأهداف الأسبوعية</h5>
+            <div class="d-flex flex-column gap-3">
+              <div>
+                <div class="d-flex justify-content-between small mb-1"><span>حفظ صفحة جديدة</span><span id="goalHifdh">٣/٥</span></div>
+                <div class="progress" style="height: 6px; background: #e0e3e4;"><div class="progress-bar rounded-3" id="barHifdh" style="width: 60%; background: #0F6D80;"></div></div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between small mb-1"><span>مراجعة جزء كامل</span><span id="goalReview">١/٣</span></div>
+                <div class="progress" style="height: 6px; background: #e0e3e4;"><div class="progress-bar rounded-3" id="barReview" style="width: 33%; background: var(--pumpkin);"></div></div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between small mb-1"><span>اختبار تجويد</span><span id="goalTest">١/١</span></div>
+                <div class="progress" style="height: 6px; background: #e0e3e4;"><div class="progress-bar rounded-3" id="barTest" style="width: 100%; background: #0F6D80;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full tracking modal area -->
+      <div class="dash-card mt-4" data-aos="fade-up" style="display:none;" id="dayDetailCard">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h5 class="fw-bold mb-0" style="color: #0F6D80;" id="dayDetailTitle"></h5>
+          <button class="btn btn-sm p-1" style="color: #e74c3c;" onclick="document.getElementById('dayDetailCard').style.display='none'"><i class="fa-solid fa-xmark fs-5"></i></button>
+        </div>
+        <div id="dayDetailBody"></div>
+      </div>
+    </main>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="bottom-mobile-nav">
+  <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-school"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+  <a href="schedule.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-calendar"></i></span><span class="mobile-nav-label">جدولي</span></a>
+  <a href="messages.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-envelope"></i></span><span class="mobile-nav-label">رسائلي</span></a>
+  <a href="hifdh-journey.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-line"></i></span><span class="mobile-nav-label">التقدم</span></a>
+  <a href="settings.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-sliders"></i></span><span class="mobile-nav-label">الإعدادات</span></a>
+</nav>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      // ===================== Juz Grid =====================
+      const juzStatus = [1,2,3,4,5,6,7,8,9,10,11,12].reduce((o,i) => (o[i]='done',o), {});
+      juzStatus[12] = 'current';
+      for (let i=13;i<=30;i++) juzStatus[i]='locked';
+      const grid = document.getElementById('juzGrid');
+      for (let i=1;i<=30;i++) {
+        const s = juzStatus[i];
+        grid.innerHTML += `
+          <div class="col-4 col-md-2">
+            <div class="juz-box ${s === 'done' ? 'completed' : s === 'current' ? 'current' : 'locked'}">
+              <div class="juz-num">الجزء ${i}</div>
+              <small>${s === 'done' ? '<i class="fa-solid fa-check"></i>' : s === 'current' ? '<i class="fa-solid fa-book-open"></i>' : '<i class="fa-solid fa-lock"></i>'}</small>
+            </div>
+          </div>`;
+      }
+
+      // ===================== Streak Calendar (Interactive) =====================
+      let streakData = JSON.parse(localStorage.getItem('konoz_streak')) || {};
+      const weekDays = ['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
+      const dayShort = ['سب','أحد','اثن','ثلا','أرب','خم','جم'];
+      const taskIcons = { 'حفظ': 'fa-book-quran', 'مراجعة': 'fa-rotate', 'تلاوة': 'fa-microphone', 'اختبار': 'fa-file-pen', 'استماع': 'fa-headphones' };
+      const taskColors = { 'حفظ': '#0F6D80', 'مراجعة': '#f39c12', 'تلاوة': '#27ae60', 'اختبار': '#e74c3c', 'استماع': '#8e44ad' };
+
+      function getWeekNumber() {
+        const now = new Date(); const start = new Date(now.getFullYear(), 0, 1);
+        return Math.ceil((((now - start) / 86400000) + start.getDay() + 1) / 7);
+      }
+
+      function renderStreak() {
+        const cal = document.getElementById('streakCalendar');
+        const todayIdx = (new Date().getDay() + 1) % 7;
+        cal.innerHTML = weekDays.map((d, i) => {
+          const key = `week_${getWeekNumber()}_${i}`;
+          const entry = streakData[key];
+          const cls = entry ? 'done' : (i === todayIdx ? 'today' : 'missed');
+          return `<div class="streak-day ${cls}" style="cursor:pointer;" title="${d}" data-key="${key}" data-day="${d}" data-idx="${i}">${entry ? '✓' : dayShort[i]}</div>`;
+        }).join('');
+      }
+
+      function renderWeekStats() {
+        const thisWeek = Object.keys(streakData).filter(k => k.startsWith(`week_${getWeekNumber()}_`));
+        const counts = { 'حفظ': 0, 'مراجعة': 0, 'تلاوة': 0, 'اختبار': 0, 'استماع': 0 };
+        thisWeek.forEach(k => { const t = streakData[k]?.task; if (counts[t] !== undefined) counts[t]++; });
+        const total = thisWeek.length;
+        document.getElementById('weekStats').innerHTML = total === 0
+          ? '<p class="small text-secondary opacity-75 text-center py-3">لا توجد إنجازات مسجلة هذا الأسبوع 🍃</p>'
+          : Object.entries(counts).filter(([,v]) => v > 0).map(([k,v]) => `
+            <div class="d-flex align-items-center gap-2 mb-2 small">
+              <i class="fa-solid ${taskIcons[k]}" style="color:${taskColors[k]};width:16px;"></i>
+              <span class="flex-grow-1">${k}</span>
+              <span class="fw-bold" style="color:${taskColors[k]};">${v}</span>
+            </div>`).join('') +
+            `<hr class="my-2"/><div class="d-flex justify-content-between small"><span>إجمالي أيام المواظبة</span><span class="fw-bold" style="color:#0F6D80;">${total}</span></div>`;
+
+        // Update goals
+        document.getElementById('goalHifdh').textContent = `${counts['حفظ']}/5`;
+        document.getElementById('goalReview').textContent = `${counts['مراجعة']}/3`;
+        document.getElementById('goalTest').textContent = `${Math.min(counts['اختبار'],1)}/1`;
+        document.getElementById('barHifdh').style.width = `${Math.min(counts['حفظ']/5*100,100)}%`;
+        document.getElementById('barReview').style.width = `${Math.min(counts['مراجعة']/3*100,100)}%`;
+        document.getElementById('barTest').style.width = `${Math.min(counts['اختبار']*100,100)}%`;
+
+        // Update stats
+        const doneDays = Object.keys(streakData).length;
+        document.getElementById('streakDays').textContent = doneDays;
+      }
+
+      function renderWeeklyLog() {
+        const todayIdx = (new Date().getDay() + 1) % 7;
+        const log = document.getElementById('weeklyLog');
+        const weekEntries = weekDays.map((d, i) => {
+          const key = `week_${getWeekNumber()}_${i}`;
+          const entry = streakData[key];
+          const isFuture = i > todayIdx;
+          return { day: d, idx: i, entry, isFuture, key };
+        });
+        log.innerHTML = weekEntries.map(w => {
+          if (w.isFuture) return `<div class="session-log d-flex align-items-center justify-content-between opacity-25"><div><p class="fw-bold small mb-0">${w.day}</p><small class="text-secondary opacity-75">لم يأت بعد</small></div><span class="small" style="color:#bec8cc;"><i class="fa-regular fa-clock"></i></span></div>`;
+          if (!w.entry) return `<div class="session-log d-flex align-items-center justify-content-between" style="border-right-color:#bec8cc;cursor:pointer;" onclick="logAddEntry('${w.key}','${w.day}')"><div><p class="fw-bold small mb-0">${w.day}</p><small class="text-secondary opacity-75">لم يتم التسجيل — اضغطي للتسجيل</small></div><span class="small" style="color:#bec8cc;"><i class="fa fa-plus-circle"></i></span></div>`;
+          return `<div class="session-log d-flex align-items-center justify-content-between" style="cursor:pointer;" onclick="showDayDetail('${w.key}')"><div><p class="fw-bold small mb-0">${w.day}</p><small class="text-secondary opacity-75"><i class="fa-solid ${taskIcons[w.entry.task]}" style="color:${taskColors[w.entry.task]};"></i> ${w.entry.task}</small></div><span class="small fw-medium" style="color:${taskColors[w.entry.task]};">تم ✓</span></div>`;
+        }).join('');
+      }
+
+      function showDayDetail(key) {
+        const entry = streakData[key];
+        if (!entry) return;
+        const card = document.getElementById('dayDetailCard');
+        card.style.display = 'block';
+        const parts = key.split('_');
+        const dayIdx = parseInt(parts[2]);
+        document.getElementById('dayDetailTitle').textContent = 'تفاصيل ' + weekDays[dayIdx];
+        document.getElementById('dayDetailBody').innerHTML = `
+          <div class="row g-3">
+            <div class="col-6"><div class="dash-card text-center py-3"><small class="text-secondary opacity-75">النشاط</small><p class="fw-bold mb-0 mt-1" style="color:${taskColors[entry.task]}"><i class="fa-solid ${taskIcons[entry.task]} mr-1"></i>${entry.task}</p></div></div>
+            <div class="col-6"><div class="dash-card text-center py-3"><small class="text-secondary opacity-75">اليوم</small><p class="fw-bold mb-0 mt-1" style="color:#0F6D80;">${weekDays[dayIdx]}</p></div></div>
+          </div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn w-100 rounded-3 py-2 fw-medium" style="background:#e74c3c;color:#fff;" onclick="deleteEntry('${key}')"><i class="fa-solid fa-trash-can mr-1"></i>حذف التسجيل</button>
+            <button class="btn w-100 rounded-3 py-2 fw-medium" style="background:#0F6D80;color:#fff;" onclick="document.getElementById('dayDetailCard').style.display='none'">إغلاق</button>
+          </div>`;
+        card.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function logAddEntry(key, dayName) {
+        Swal.fire({
+          title: 'سجلي إنجازك في ' + dayName,
+          html: '<p class="small text-secondary opacity-75">اختاري نوع النشاط الذي قمت به</p>',
+          input: 'select', inputOptions: { 'حفظ': '📖 حفظ جديد', 'مراجعة': '🔄 مراجعة', 'تلاوة': '🎤 تلاوة', 'اختبار': '📝 اختبار', 'استماع': '🎧 استماع' },
+          inputPlaceholder: 'اختاري النشاط', showCancelButton: true, confirmButtonColor: '#0F6D80',
+          confirmButtonText: 'تسجيل', cancelButtonText: 'إلغاء', reverseButtons: true,
+          preConfirm: (v) => { if (!v) Swal.showValidationMessage('اختاري نشاطاً'); return v; }
+        }).then(r => {
+          if (r.isConfirmed) { streakData[key] = { task: r.value }; localStorage.setItem('konoz_streak', JSON.stringify(streakData)); renderAll(); }
+        });
+      }
+
+      function deleteEntry(key) {
+        Swal.fire({ title: 'حذف التسجيل؟', text: 'سيتم إزالة هذا الإنجاز', icon: 'warning', showCancelButton: true, confirmButtonColor: '#e74c3c', confirmButtonText: 'حذف', cancelButtonText: 'إلغاء', reverseButtons: true
+        }).then(r => {
+          if (r.isConfirmed) { delete streakData[key]; localStorage.setItem('konoz_streak', JSON.stringify(streakData)); renderAll(); document.getElementById('dayDetailCard').style.display='none'; }
+        });
+      }
+
+      function renderAll() { renderStreak(); renderWeekStats(); renderWeeklyLog(); }
+
+      // Click handler for streak days
+      document.addEventListener('click', function(e) {
+        const el = e.target.closest('.streak-day');
+        if (!el || !el.dataset.key) return;
+        const key = el.dataset.key;
+        const entry = streakData[key];
+        const dayName = el.dataset.day;
+        if (entry) {
+          Swal.fire({
+            title: dayName, html: `<i class="fa-solid ${taskIcons[entry.task]}" style="color:${taskColors[entry.task]};font-size:2rem;"></i><p class="mt-2 fw-bold" style="color:#0F6D80;">تم تسجيل: ${entry.task}</p>`,
+            icon: 'success', showCancelButton: true, confirmButtonColor: '#0F6D80', confirmButtonText: 'عرض التفاصيل',
+            cancelButtonText: 'إغلاق', reverseButtons: true
+          }).then(r => { if (r.isConfirmed) showDayDetail(key); });
+        } else {
+          Swal.fire({
+            title: 'سجلي إنجازك في ' + dayName,
+            html: '<p class="small text-secondary opacity-75">اختاري نوع النشاط الذي قمت به</p>',
+            input: 'select', inputOptions: { 'حفظ': '📖 حفظ جديد', 'مراجعة': '🔄 مراجعة', 'تلاوة': '🎤 تلاوة', 'اختبار': '📝 اختبار', 'استماع': '🎧 استماع' },
+            inputPlaceholder: 'اختاري النشاط', showCancelButton: true, confirmButtonColor: '#0F6D80',
+            confirmButtonText: 'تسجيل', cancelButtonText: 'إلغاء', reverseButtons: true,
+            preConfirm: (v) => { if (!v) Swal.showValidationMessage('اختاري نشاطاً'); return v; }
+          }).then(r => {
+            if (r.isConfirmed) { streakData[key] = { task: r.value }; localStorage.setItem('konoz_streak', JSON.stringify(streakData)); renderAll(); }
+          });
+        }
+      });
+
+      // Initial render
+      renderAll();
+      AOS.init({ duration: 600, once: true });
+    </script>
+  </body>
+</html>

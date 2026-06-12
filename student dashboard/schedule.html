@@ -1,0 +1,263 @@
+﻿<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>جدول الجلسات | منصة كنوز القرآن</title>
+    <meta name="description" content="جدول جلسات الحفظ والمراجعة في منصة كنوز القرآن." />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/dashboard/dashboard-base.css" rel="stylesheet" />
+    <style>
+      .session-card { border-radius: 14px; padding: 20px; background: #fff; border: 1px solid rgba(15,109,128,0.06); transition: 0.2s; }
+      .session-card:hover { border-color: rgba(15,109,128,0.12); box-shadow: 0 2px 12px rgba(15,109,128,0.04); }
+      .badge-attended { background: rgba(40,167,69,0.1); color: #28a745; }
+      .badge-missed { background: rgba(231,76,60,0.1); color: #e74c3c; }
+      .badge-upcoming { background: rgba(15,109,128,0.08); color: #0F6D80; }
+      .stat-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    </style>
+  </head>
+  <body>
+    <header class="dash-header">
+      <div class="d-flex align-items-center gap-2 d-md-none">
+        <button class="btn p-2 text-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileDashMenu"><i class="fa-solid fa-bars fs-5"></i></button>
+      </div>
+      <div class="d-flex align-items-center gap-2 flex-grow-1 justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <a href="../index.html"><img src="../images/logo.png" alt="كنوز القرآن" style="height: 40px;" /></a>
+          <span class="fw-bold d-none d-sm-inline" style="color: #0F6D80;">كنوز القرآن</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="dropdown">
+            <button class="btn p-2 text-primary position-relative" style="background: transparent; border: none;" data-bs-toggle="dropdown">
+              <i class="fa-regular fa-bell fs-6"></i>
+              <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill" style="background: var(--pumpkin); font-size: 0.55rem; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;">3</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="width: 260px; border: none;">
+              <h6 class="px-3 py-2 small fw-bold" style="color: #0F6D80;">الإشعارات</h6>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 موعد الاختبار غداً</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 تم تحديث نتيجة التجويد</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 الحلقة القادمة بعد ساعة</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn p-2 text-primary" style="background: transparent; border: none;" data-bs-toggle="dropdown"><i class="fa-solid fa-gear fs-6"></i></button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-sliders mr-2" style="width: 16px;"></i>الإعدادات</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="text-decoration-none" data-bs-toggle="dropdown">
+              <img src="../images/logo.png" alt="الطالبة" class="rounded-circle border-2" style="width: 40px; height: 40px; object-fit: cover; border-color: #F5BD58 !important;" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <div class="px-3 py-2">
+                <p class="fw-bold small mb-0" style="color: #0F6D80;">عائشة أحمد</p>
+                <small class="text-secondary opacity-75">aisha@example.com</small>
+              </div>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="dashboard-sidebar">
+      <div class="text-center py-4 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+        <div class="position-relative d-inline-block mb-2">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2" style="width: 80px; height: 80px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <span class="position-absolute bottom-0 start-0 badge rounded-3 px-2 py-1 small fw-bold" style="background: #F5BD58; color: #5f4100; font-size: 0.6rem; transform: translate(-4px, 4px);">متميز</span>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+        <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+      </div>
+      <nav class="p-3 d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+        <a href="hifdh-journey.html" class="sidebar-link"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+          <a href="schedule.html" class="sidebar-link"><i class="fa-solid fa-calendar" style="width: 20px;"></i> جدولي</a>
+          <a href="messages.html" class="sidebar-link"><i class="fa-solid fa-envelope" style="width: 20px;"></i> رسائلي</a>
+        <a href="certificates.html" class="sidebar-link"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+        <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+      </nav>
+      <div class="p-3">
+        <a href="live.html" class="btn w-100 rounded-3 py-3 fw-bold d-flex align-items-center justify-content-center gap-2" style="background: #0F6D80; color: #fff;"><i class="fa-solid fa-video"></i> انضم للبث المباشر</a>
+      </div>
+    </aside>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileDashMenu" style="width: 280px;">
+      <div class="offcanvas-header border-bottom" style="border-color: rgba(15,109,128,0.06);">
+        <img src="../images/logo.png" alt="كنوز القرآن" style="height: 36px;" />
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="margin: calc(-.5 * var(--bs-offcanvas-padding-y)) auto calc(-.5 * var(--bs-offcanvas-padding-x)) calc(-.5 * var(--bs-offcanvas-padding-y));"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <div class="text-center py-4" style="background: #f7fafb;">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2 mb-2" style="width: 72px; height: 72px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+          <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+        </div>
+        <nav class="p-3 d-flex flex-column gap-1">
+          <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+          <a href="hifdh-journey.html" class="sidebar-link"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+          <a href="certificates.html" class="sidebar-link"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+          <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+          <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+        </nav>
+        <div class="p-3 mt-2">
+          <a href="live.html" class="btn w-100 rounded-3 py-3 fw-bold d-flex align-items-center justify-content-center gap-2" style="background: #0F6D80; color: #fff;"><i class="fa-solid fa-video"></i> انضم للبث المباشر</a>
+        </div>
+      </div>
+    </div>
+
+    <main class="dashboard-main px-3 px-md-4">
+      <h1 class="fw-bold mb-4" style="color: #0F6D80; font-size: 1.6rem;" data-aos="fade-up">جدول الجلسات</h1>
+
+      <div class="row g-3 mb-4" data-aos="fade-up">
+        <div class="col-md-4">
+          <div class="dash-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(15,109,128,0.06);"><i class="fa-solid fa-calendar-days" style="color: #0F6D80;"></i></div>
+            <div>
+              <small class="text-secondary opacity-75">إجمالي الجلسات</small>
+              <h3 class="fw-bold mb-0" style="color: #0F6D80;">٢٤</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="dash-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(245,189,88,0.08);"><i class="fa-solid fa-clock" style="color: var(--pumpkin);"></i></div>
+            <div>
+              <small class="text-secondary opacity-75">جلسات هذا الأسبوع</small>
+              <h3 class="fw-bold mb-0" style="color: var(--pumpkin);">٣</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="dash-card d-flex align-items-center gap-3">
+            <div class="stat-icon" style="background: rgba(40,167,69,0.06);"><i class="fa-solid fa-arrow-up" style="color: #28a745;"></i></div>
+            <div>
+              <small class="text-secondary opacity-75">جلسات قادمة</small>
+              <h3 class="fw-bold mb-0" style="color: #28a745;">١</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="fw-bold mb-3" style="color: #0F6D80;" data-aos="fade-up">الجلسات القادمة</h5>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+          <div class="session-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <span class="badge badge-upcoming rounded-3 px-3 py-2 fw-medium">قادمة</span>
+              <span class="d-flex align-items-center justify-content-center rounded-2 flex-shrink-0" style="width: 44px; height: 44px; background: rgba(15,109,128,0.06);"><i class="fa-solid fa-chalkboard-user" style="color: #0F6D80;"></i></span>
+            </div>
+            <h6 class="fw-bold mb-2" style="color: #0F6D80;">مراجعة سورة الكهف</h6>
+            <div class="d-flex flex-column gap-1 small text-secondary opacity-75 mb-0">
+              <span><i class="fa-regular fa-user mr-1"></i>المعلمة: سمية علي</span>
+              <span><i class="fa-regular fa-calendar mr-1"></i>الخميس، ١٢ ديسمبر ٢٠٢٤</span>
+              <span><i class="fa-regular fa-clock mr-1"></i>٠٤:٣٠ مساءً - ٠٦:٠٠ مساءً</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="50">
+          <div class="session-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <span class="badge badge-upcoming rounded-3 px-3 py-2 fw-medium">قادمة</span>
+              <span class="d-flex align-items-center justify-content-center rounded-2 flex-shrink-0" style="width: 44px; height: 44px; background: rgba(15,109,128,0.06);"><i class="fa-solid fa-book-quran" style="color: #0F6D80;"></i></span>
+            </div>
+            <h6 class="fw-bold mb-2" style="color: #0F6D80;">حفظ سورة يس (١-٢٠)</h6>
+            <div class="d-flex flex-column gap-1 small text-secondary opacity-75 mb-0">
+              <span><i class="fa-regular fa-user mr-1"></i>المعلمة: مريم خالد</span>
+              <span><i class="fa-regular fa-calendar mr-1"></i>السبت، ١٤ ديسمبر ٢٠٢٤</span>
+              <span><i class="fa-regular fa-clock mr-1"></i>١١:٠٠ صباحاً - ١٢:٣٠ ظهراً</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="session-card h-100">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <span class="badge badge-upcoming rounded-3 px-3 py-2 fw-medium">قادمة</span>
+              <span class="d-flex align-items-center justify-content-center rounded-2 flex-shrink-0" style="width: 44px; height: 44px; background: rgba(15,109,128,0.06);"><i class="fa-solid fa-microphone" style="color: #0F6D80;"></i></span>
+            </div>
+            <h6 class="fw-bold mb-2" style="color: #0F6D80;">تجويد سورة النحل</h6>
+            <div class="d-flex flex-column gap-1 small text-secondary opacity-75 mb-0">
+              <span><i class="fa-regular fa-user mr-1"></i>المعلمة: سمية علي</span>
+              <span><i class="fa-regular fa-calendar mr-1"></i>الإثنين، ١٦ ديسمبر ٢٠٢٤</span>
+              <span><i class="fa-regular fa-clock mr-1"></i>٠٤:٣٠ مساءً - ٠٦:٠٠ مساءً</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="fw-bold mb-3" style="color: #0F6D80;" data-aos="fade-up">آخر الجلسات</h5>
+      <div class="dash-card p-0" data-aos="fade-up">
+        <div class="d-flex flex-column">
+          <div class="session-row d-flex align-items-center gap-3 px-4 py-3 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+            <span class="d-flex align-items-center justify-content-center rounded-2 flex-shrink-0" style="width: 40px; height: 40px; background: rgba(15,109,128,0.06);"><i class="fa-solid fa-book-quran" style="color: #0F6D80; font-size: 0.9rem;"></i></span>
+            <div class="flex-grow-1">
+              <span class="fw-bold small d-block" style="color: #0F6D80;">مراجعة سورة الكهف</span>
+              <small class="text-secondary opacity-75">المعلمة: سمية علي • ١٠ ديسمبر ٢٠٢٤ • ٠٤:٣٠ م</small>
+            </div>
+            <span class="badge badge-attended rounded-3 px-3 py-2 fw-medium">حضرت</span>
+          </div>
+          <div class="session-row d-flex align-items-center gap-3 px-4 py-3 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+            <span class="d-flex align-items-center justify-content-center rounded-2 flex-shrink-0" style="width: 40px; height: 40px; background: rgba(15,109,128,0.06);"><i class="fa-solid fa-microphone" style="color: #0F6D80; font-size: 0.9rem;"></i></span>
+            <div class="flex-grow-1">
+              <span class="fw-bold small d-block" style="color: #0F6D80;">تجويد سورة الفاتحة</span>
+              <small class="text-secondary opacity-75">المعلمة: مريم خالد • ٧ ديسمبر ٢٠٢٤ • ١١:٠٠ ص</small>
+            </div>
+            <span class="badge badge-attended rounded-3 px-3 py-2 fw-medium">حضرت</span>
+          </div>
+          <div class="session-row d-flex align-items-center gap-3 px-4 py-3 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+            <span class="d-flex align-items-center justify-content-center rounded-2 flex-shrink-0" style="width: 40px; height: 40px; background: rgba(15,109,128,0.06);"><i class="fa-solid fa-chalkboard-user" style="color: #0F6D80; font-size: 0.9rem;"></i></span>
+            <div class="flex-grow-1">
+              <span class="fw-bold small d-block" style="color: #0F6D80;">حفظ سورة الملك كاملة</span>
+              <small class="text-secondary opacity-75">المعلمة: سمية علي • ٥ ديسمبر ٢٠٢٤ • ٠٤:٣٠ م</small>
+            </div>
+            <span class="badge badge-attended rounded-3 px-3 py-2 fw-medium">حضرت</span>
+          </div>
+          <div class="session-row d-flex align-items-center gap-3 px-4 py-3 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+            <span class="d-flex align-items-center justify-content-center rounded-2 flex-shrink-0" style="width: 40px; height: 40px; background: rgba(15,109,128,0.06);"><i class="fa-solid fa-book-quran" style="color: #0F6D80; font-size: 0.9rem;"></i></span>
+            <div class="flex-grow-1">
+              <span class="fw-bold small d-block" style="color: #0F6D80;">مراجعة سورة طه</span>
+              <small class="text-secondary opacity-75">المعلمة: مريم خالد • ٣ ديسمبر ٢٠٢٤ • ١١:٠٠ ص</small>
+            </div>
+            <span class="badge badge-missed rounded-3 px-3 py-2 fw-medium">غياب</span>
+          </div>
+          <div class="session-row d-flex align-items-center gap-3 px-4 py-3">
+            <span class="d-flex align-items-center justify-content-center rounded-2 flex-shrink-0" style="width: 40px; height: 40px; background: rgba(15,109,128,0.06);"><i class="fa-solid fa-microphone" style="color: #0F6D80; font-size: 0.9rem;"></i></span>
+            <div class="flex-grow-1">
+              <span class="fw-bold small d-block" style="color: #0F6D80;">تجويد سورة الإخلاص والمعوذتين</span>
+              <small class="text-secondary opacity-75">المعلمة: سمية علي • ٣٠ نوفمبر ٢٠٢٤ • ٠٤:٣٠ م</small>
+            </div>
+            <span class="badge badge-attended rounded-3 px-3 py-2 fw-medium">حضرت</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <nav class="bottom-mobile-nav">
+  <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-school"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+  <a href="schedule.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-calendar"></i></span><span class="mobile-nav-label">جدولي</span></a>
+  <a href="messages.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-envelope"></i></span><span class="mobile-nav-label">رسائلي</span></a>
+  <a href="hifdh-journey.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-line"></i></span><span class="mobile-nav-label">التقدم</span></a>
+  <a href="settings.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-sliders"></i></span><span class="mobile-nav-label">الإعدادات</span></a>
+</nav>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      AOS.init({ duration: 600, once: true });
+    </script>
+  </body>
+</html>

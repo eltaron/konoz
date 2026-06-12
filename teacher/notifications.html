@@ -1,0 +1,243 @@
+﻿<!doctype html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>الإشعارات | منصة كنوز القرآن</title>
+<meta name="description" content="جميع الإشعارات - لوحة تحكم المعلم" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" /><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="../css/teacher/teacher-base.css" rel="stylesheet" />
+<style>
+  .notif-item { padding: 16px 20px; border-bottom: 1px solid rgba(15,109,128,0.04); transition: background 0.15s; }
+  .notif-item:hover { background: rgba(15,109,128,0.02); }
+  .notif-item.unread { background: rgba(15,109,128,0.03); border-right: 3px solid #0F6D80; }
+  .notif-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .notif-time { font-size: 0.72rem; color: #aab7bc; }
+  .notif-type { font-size: 0.75rem; font-weight: 600; }
+  .notif-title { font-size: 0.9rem; }
+  .notif-desc { font-size: 0.82rem; color: #6b7a7e; }
+  .mark-all-btn { border-radius: 8px; border: 1px solid rgba(15,109,128,0.12); background: #fff; color: #0F6D80; font-weight: 600; font-size: 0.82rem; padding: 6px 16px; }
+  .mark-all-btn:hover { background: rgba(15,109,128,0.04); }
+</style>
+</head>
+<body>
+<aside class="teacher-sidebar p-3">
+  <div class="d-flex align-items-center gap-2 mb-4 px-2 pt-2">
+    <img src="../images/logo.png" alt="كنوز القرآن" class="teacher-sidebar-logo">
+    <span class="fw-bold fs-6 sidebar-brand">كنوز القرآن</span>
+  </div>
+  <span class="sidebar-section-label px-2 mb-2 d-block">القائمة الرئيسية</span>
+  <nav class="d-flex flex-column gap-1 flex-grow-1">
+    <a class="teacher-sidebar-link" href="dashboard.html"><i class="fa-solid fa-chart-pie" style="width:20px;"></i>لوحة التحكم</a>
+    <a class="teacher-sidebar-link" href="courses.html"><i class="fa-solid fa-book-open" style="width:20px;"></i>الدورات</a>
+    <a class="teacher-sidebar-link" href="students.html"><i class="fa-solid fa-users" style="width:20px;"></i>الطلبات</a>
+    <a class="teacher-sidebar-link" href="sessions.html"><i class="fa-solid fa-video" style="width:20px;"></i>الجلسات</a>
+    <a class="teacher-sidebar-link" href="schedule.html"><i class="fa-solid fa-calendar-days" style="width:20px;"></i>الجدول</a>
+    <a class="teacher-sidebar-link" href="messages.html"><i class="fa-solid fa-envelope" style="width:20px;"></i>الرسائل</a>
+    <a class="teacher-sidebar-link" href="exams.html"><i class="fa-solid fa-pen-to-square" style="width:20px;"></i>الامتحانات</a>
+    <a class="teacher-sidebar-link" href="certificates.html"><i class="fa-solid fa-certificate" style="width:20px;"></i>الشهادات</a>
+  </nav>
+  <div class="sidebar-divider border-top pt-3 mt-auto">
+    <a class="teacher-sidebar-link" href="reports.html"><i class="fa-solid fa-chart-simple" style="width:20px;"></i>التقارير</a>
+    <a class="teacher-sidebar-link" href="settings.html"><i class="fa-solid fa-gear" style="width:20px;"></i>الإعدادات</a>
+    <a class="teacher-sidebar-link logout" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket" style="width:20px;"></i>تسجيل الخروج</a>
+  </div>
+</aside>
+<!-- Mobile Offcanvas -->
+<div class="offcanvas offcanvas-start teacher-offcanvas" tabindex="-1" id="teacherOffcanvas">
+  <div class="offcanvas-header">
+    <img src="../images/logo.png" alt="كنوز القرآن" style="height:36px;">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="offcanvas-profile">
+      <img src="../images/logo.png" alt="المعلمة" class="offcanvas-avatar">
+      <h6 class="offcanvas-name">أ. نورة</h6>
+      <small class="offcanvas-role">معلمة قرآن كريم</small>
+    </div>
+    <nav class="p-3 d-flex flex-column gap-1">
+    <a class="teacher-sidebar-link" href="dashboard.html"><i class="fa-solid fa-chart-pie" style="width:20px;"></i>لوحة التحكم</a>
+    <a class="teacher-sidebar-link" href="courses.html"><i class="fa-solid fa-book-open" style="width:20px;"></i>الدورات</a>
+    <a class="teacher-sidebar-link" href="students.html"><i class="fa-solid fa-users" style="width:20px;"></i>الطلبات</a>
+    <a class="teacher-sidebar-link" href="sessions.html"><i class="fa-solid fa-video" style="width:20px;"></i>الجلسات</a>
+    <a class="teacher-sidebar-link" href="exams.html"><i class="fa-solid fa-pen-to-square" style="width:20px;"></i>الامتحانات</a>
+    <a class="teacher-sidebar-link" href="certificates.html"><i class="fa-solid fa-certificate" style="width:20px;"></i>الشهادات</a>
+    </nav>
+    <div class="p-3 mt-2">
+      <a href="settings.html" class="teacher-sidebar-link"><i class="fa-solid fa-gear" style="width:20px;"></i>الإعدادات</a>
+      <a href="../index.html" class="teacher-sidebar-link logout"><i class="fa-solid fa-arrow-right-from-bracket" style="width:20px;"></i>تسجيل الخروج</a>
+    </div>
+  </div>
+</div>
+    <header class="teacher-header">
+  <div>
+    <button class="hamburger-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#teacherOffcanvas" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+    <h6 class="d-inline header-greeting d-none d-sm-inline">مرحباً بكِ، أ. نورة</h6>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <span class="small header-last-login d-none d-md-inline">آخر دخول: اليوم ٨:١٥ ص</span>
+    <div class="dropdown">
+      <a href="#" class="teacher-header-icon position-relative" data-bs-toggle="dropdown" aria-expanded="false" title="الإشعارات">
+        <i class="fa-solid fa-bell"></i>
+        <span class="teacher-badge-dot"></span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:300px;padding:0;">
+        <div class="px-3 py-2 fw-bold border-bottom" style="color:#1f2937;font-size:0.9rem;">الإشعارات</div>
+        <div style="max-height:280px;overflow-y:auto;">
+          <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+            <div class="d-flex gap-2 align-items-start">
+              <div class="mt-1"><i class="fa-solid fa-circle text-success" style="font-size:0.5rem;"></i></div>
+              <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">تسجيل جديد</div><div style="font-size:0.78rem;color:#6b7a7e;">انضمت طالبة جديدة لدورة التجويد</div><div style="font-size:0.7rem;color:#aab7bc;">منذ 5 دقائق</div></div>
+            </div>
+          </a>
+          <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+            <div class="d-flex gap-2 align-items-start">
+              <div class="mt-1"><i class="fa-solid fa-circle text-primary" style="font-size:0.5rem;"></i></div>
+              <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">امتحان جديد</div><div style="font-size:0.78rem;color:#6b7a7e;">قدمت الطالبة سارة امتحان التجويد</div><div style="font-size:0.7rem;color:#aab7bc;">منذ ساعة</div></div>
+            </div>
+          </a>
+          <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+            <div class="d-flex gap-2 align-items-start">
+              <div class="mt-1"><i class="fa-solid fa-circle text-warning" style="font-size:0.5rem;"></i></div>
+              <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">تذكير بجلسة</div><div style="font-size:0.78rem;color:#6b7a7e;">لديك جلسة بعد 30 دقيقة مع مجموعة الفتح</div><div style="font-size:0.7rem;color:#aab7bc;">منذ 3 ساعات</div></div>
+            </div>
+          </a>
+        </div>
+        <a class="dropdown-item text-center py-2 border-top fw-semibold" href="notifications.html" style="font-size:0.85rem;color:#0F6D80;">عرض كل الإشعارات</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="#" class="teacher-header-icon" data-bs-toggle="dropdown" aria-expanded="false" title="الإعدادات">
+        <i class="fa-solid fa-gear"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:200px;padding:8px;">
+        <li><a class="dropdown-item rounded-2 py-2" href="settings.html""><i class="fa-regular fa-user mr-2 text-primary opacity-75"></i>الملف الشخصي</a></li>
+        <li><a class="dropdown-item rounded-2 py-2" href="settings.html""><i class="fa-solid fa-palette mr-2 text-primary opacity-75"></i>المظهر</a></li>
+        <li><a class="dropdown-item rounded-2 py-2" href="settings.html""><i class="fa-solid fa-gear mr-2 text-primary opacity-75"></i>الإعدادات المتقدمة</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item rounded-2 py-2 text-danger" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>تسجيل الخروج</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="../images/logo.png" alt="المعلمة" class="teacher-avatar" />
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:180px;padding:8px;">
+        <li><a class="dropdown-item rounded-2 py-2" href="settings.html""><i class="fa-regular fa-user mr-2 text-primary opacity-75"></i>الملف الشخصي</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item rounded-2 py-2 text-danger" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>تسجيل الخروج</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+<nav class="bottom-mobile-nav">
+  <a class="mobile-nav-item" href="dashboard.html"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-pie"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+  <a class="mobile-nav-item" href="courses.html"><span class="mobile-nav-icon"><i class="fa-solid fa-book-open"></i></span><span class="mobile-nav-label">الدورات</span></a>
+  <a class="mobile-nav-item" href="students.html"><span class="mobile-nav-icon"><i class="fa-solid fa-users"></i></span><span class="mobile-nav-label">الطلبات</span></a>
+  <a class="mobile-nav-item" href="sessions.html"><span class="mobile-nav-icon"><i class="fa-solid fa-video"></i></span><span class="mobile-nav-label">الجلسات</span></a>
+  <a class="mobile-nav-item" href="exams.html"><span class="mobile-nav-icon"><i class="fa-solid fa-pen-to-square"></i></span><span class="mobile-nav-label">الامتحانات</span></a>
+  <a class="mobile-nav-item" href="certificates.html"><span class="mobile-nav-icon"><i class="fa-solid fa-certificate"></i></span><span class="mobile-nav-label">الشهادات</span></a>
+</nav>
+<main class="teacher-main">
+  <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+    <div>
+      <h1 class="fw-bold fs-4 mb-0" style="color:#1f2937;">الإشعارات</h1>
+      <span style="font-size:0.82rem;color:#6b7a7e;">جميع الإشعارات والتنبيهات</span>
+    </div>
+    <button class="mark-all-btn" onclick="Swal.fire({icon:'success',title:'تم',text:'تم تحديد الكل كمقروء',confirmButtonColor:'#0F6D80'});"><i class="fa-regular fa-circle-check mr-1"></i>تحديد الكل كمقروء</button>
+  </div>
+  <div class="teacher-card p-0">
+    <div class="notif-item unread d-flex align-items-start gap-3">
+      <div class="notif-icon" style="background:rgba(25,135,84,0.08);color:#198754;"><i class="fa-solid fa-user-plus"></i></div>
+      <div class="flex-grow-1">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-1">
+          <div><span class="notif-type" style="color:#198754;">تسجيل جديد</span><span class="teacher-badge teacher-badge-success ml-2" style="font-size:0.65rem;padding:1px 8px;">جديد</span></div>
+          <span class="notif-time">منذ 5 دقائق</span>
+        </div>
+        <div class="notif-title fw-semibold mt-1" style="color:#1f2937;">انضمت طالبة جديدة لدورة التجويد</div>
+        <div class="notif-desc mt-1">سجلت الطالبة ريم عبدالله في دورة التجويد النظري. يمكنك مراجعة بياناتها من صفحة الطلبات.</div>
+      </div>
+    </div>
+    <div class="notif-item unread d-flex align-items-start gap-3">
+      <div class="notif-icon" style="background:rgba(13,110,253,0.08);color:#0d6efd;"><i class="fa-solid fa-pen-to-square"></i></div>
+      <div class="flex-grow-1">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-1">
+          <div><span class="notif-type" style="color:#0d6efd;">امتحان جديد</span><span class="teacher-badge teacher-badge-success ml-2" style="font-size:0.65rem;padding:1px 8px;">جديد</span></div>
+          <span class="notif-time">منذ ساعة</span>
+        </div>
+        <div class="notif-title fw-semibold mt-1" style="color:#1f2937;">قدمت الطالبة سارة امتحان التجويد</div>
+        <div class="notif-desc mt-1">حصلت على درجة ٩٢٪ في اختبار التجويد (١). يمكنك مراجعة الإجابات من صفحة الامتحانات.</div>
+      </div>
+    </div>
+    <div class="notif-item unread d-flex align-items-start gap-3">
+      <div class="notif-icon" style="background:rgba(255,193,7,0.08);color:#cc9a06;"><i class="fa-solid fa-bell"></i></div>
+      <div class="flex-grow-1">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-1">
+          <div><span class="notif-type" style="color:#cc9a06;">تذكير بجلسة</span></div>
+          <span class="notif-time">منذ 3 ساعات</span>
+        </div>
+        <div class="notif-title fw-semibold mt-1" style="color:#1f2937;">لديك جلسة بعد 30 دقيقة مع مجموعة الفتح</div>
+        <div class="notif-desc mt-1">جلسة مراجعة الجزء 30 - الساعة ١٠:٠٠ ص عبر Google Meet.</div>
+      </div>
+    </div>
+    <div class="notif-item d-flex align-items-start gap-3">
+      <div class="notif-icon" style="background:rgba(15,109,128,0.08);color:#0F6D80;"><i class="fa-solid fa-certificate"></i></div>
+      <div class="flex-grow-1">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-1">
+          <div><span class="notif-type" style="color:#0F6D80;">شهادة</span></div>
+          <span class="notif-time">منذ يومين</span>
+        </div>
+        <div class="notif-title fw-semibold mt-1" style="color:#1f2937;">تم إصدار شهادة للطالبة مريم أحمد</div>
+        <div class="notif-desc mt-1">شهادة إتمام دورة تحفيظ الكبار متاحة الآن للتحميل من صفحة الشهادات.</div>
+      </div>
+    </div>
+    <div class="notif-item d-flex align-items-start gap-3">
+      <div class="notif-icon" style="background:rgba(220,53,69,0.08);color:#dc3545;"><i class="fa-solid fa-calendar-xmark"></i></div>
+      <div class="flex-grow-1">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-1">
+          <div><span class="notif-type" style="color:#dc3545;">إلغاء جلسة</span></div>
+          <span class="notif-time">منذ 3 أيام</span>
+        </div>
+        <div class="notif-title fw-semibold mt-1" style="color:#1f2937;">تم إلغاء جلسة القراءات العشر</div>
+        <div class="notif-desc mt-1">الجلسة المقررة يوم الخميس ١١ يونيو تم إلغاؤها بسبب ظرف طارئ.</div>
+      </div>
+    </div>
+    <div class="notif-item d-flex align-items-start gap-3">
+      <div class="notif-icon" style="background:rgba(25,135,84,0.08);color:#198754;"><i class="fa-solid fa-circle-check"></i></div>
+      <div class="flex-grow-1">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-1">
+          <div><span class="notif-type" style="color:#198754;">تم الحضور</span></div>
+          <span class="notif-time">منذ 5 أيام</span>
+        </div>
+        <div class="notif-title fw-semibold mt-1" style="color:#1f2937;">سجلت الطالبة رنا سامر حضور جلسة التفسير</div>
+        <div class="notif-desc mt-1">حضرت جلسة تفسير سورة البقرة بتاريخ ٦ يونيو ٢٠٢٦.</div>
+      </div>
+    </div>
+    <div class="notif-item d-flex align-items-start gap-3">
+      <div class="notif-icon" style="background:rgba(111,66,193,0.08);color:#6f42c1;"><i class="fa-regular fa-message"></i></div>
+      <div class="flex-grow-1">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-1">
+          <div><span class="notif-type" style="color:#6f42c1;">رسالة</span></div>
+          <span class="notif-time">منذ أسبوع</span>
+        </div>
+        <div class="notif-title fw-semibold mt-1" style="color:#1f2937;">استفسار من ولي أمر الطالبة نور عادل</div>
+        <div class="notif-desc mt-1">يرغب في الاستفسار عن جدول الجلسات القادمة ومواعيد الامتحانات.</div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function toggleMobileNav() {
+  const sidebar = document.querySelector(".teacher-sidebar");
+  sidebar.style.display = (sidebar.style.display === "flex") ? "none" : "flex";
+}
+</script>
+  
+</body>
+</html>

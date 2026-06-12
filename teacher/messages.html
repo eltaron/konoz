@@ -1,0 +1,316 @@
+<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>الرسائل | منصة كنوز القرآن</title>
+<meta name="description" content="صندوق الرسائل - لوحة تحكم المعلم" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" /><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="../css/teacher/teacher-base.css" rel="stylesheet" />
+<style>
+  .chat-search { border-radius: 10px; border: 1.5px solid rgba(15,109,128,0.1); padding: 8px 14px; font-size: 0.85rem; width: 100%; }
+  .chat-search:focus { border-color: #0F6D80; box-shadow: 0 0 0 3px rgba(15,109,128,0.08); outline: none; }
+  .conv-item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; cursor: pointer; transition: all 0.2s; border: none; background: none; width: 100%; text-align: right; }
+  .conv-item:hover { background: rgba(15,109,128,0.04); }
+  .conv-item.active { background: rgba(15,109,128,0.08); }
+  .conv-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: #e9ecef; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #0F6D80; flex-shrink: 0; }
+  .conv-info { flex: 1; min-width: 0; }
+  .conv-name { font-weight: 700; font-size: 0.9rem; color: #1f2937; margin-bottom: 2px; }
+  .conv-msg { font-size: 0.8rem; color: #6b7a7e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .conv-time { font-size: 0.7rem; color: #aab7bc; white-space: nowrap; }
+  .unread-badge { background: #0F6D80; color: #fff; border-radius: 50%; min-width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; }
+  .msg-received { display: flex; justify-content: flex-start; margin-bottom: 12px; }
+  .msg-sent { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+  .msg-bubble { max-width: 75%; padding: 10px 16px; border-radius: 16px; font-size: 0.85rem; line-height: 1.5; }
+  .msg-received .msg-bubble { background: #f0f4f5; color: #1f2937; border-bottom-right-radius: 4px; }
+  .msg-sent .msg-bubble { background: #0F6D80; color: #fff; border-bottom-left-radius: 4px; }
+  .msg-time { font-size: 0.65rem; color: #aab7bc; margin-top: 4px; }
+  .msg-sent .msg-time { color: rgba(255,255,255,0.6); }
+  .chat-input { border-radius: 10px; border: 1.5px solid rgba(15,109,128,0.1); padding: 10px 14px; font-size: 0.85rem; flex: 1; }
+  .chat-input:focus { border-color: #0F6D80; box-shadow: 0 0 0 3px rgba(15,109,128,0.08); outline: none; }
+  .msg-area { max-height: 420px; overflow-y: auto; padding: 8px 4px; }
+</style>
+</head>
+  <body>
+    <aside class="teacher-sidebar p-3">
+  <div class="d-flex align-items-center gap-2 mb-4 px-2 pt-2">
+    <img src="../images/logo.png" alt="كنوز القرآن" class="teacher-sidebar-logo">
+    <span class="fw-bold fs-6 sidebar-brand">كنوز القرآن</span>
+  </div>
+  <span class="sidebar-section-label px-2 mb-2 d-block">القائمة الرئيسية</span>
+  <nav class="d-flex flex-column gap-1 flex-grow-1">
+    <a class="teacher-sidebar-link" href="dashboard.html"><i class="fa-solid fa-chart-pie" style="width:20px;"></i>لوحة التحكم</a>
+    <a class="teacher-sidebar-link" href="courses.html"><i class="fa-solid fa-book-open" style="width:20px;"></i>الدورات</a>
+    <a class="teacher-sidebar-link" href="students.html"><i class="fa-solid fa-users" style="width:20px;"></i>الطلبات</a>
+    <a class="teacher-sidebar-link" href="sessions.html"><i class="fa-solid fa-video" style="width:20px;"></i>الجلسات</a>
+    <a class="teacher-sidebar-link" href="schedule.html"><i class="fa-solid fa-calendar-days" style="width:20px;"></i>الجدول</a>
+    <a class="teacher-sidebar-link" href="messages.html"><i class="fa-solid fa-envelope" style="width:20px;"></i>الرسائل</a>
+    <a class="teacher-sidebar-link" href="exams.html"><i class="fa-solid fa-pen-to-square" style="width:20px;"></i>الامتحانات</a>
+    <a class="teacher-sidebar-link" href="certificates.html"><i class="fa-solid fa-certificate" style="width:20px;"></i>الشهادات</a>
+  </nav>
+  <div class="sidebar-divider border-top pt-3 mt-auto">
+    <a class="teacher-sidebar-link" href="reports.html"><i class="fa-solid fa-chart-simple" style="width:20px;"></i>التقارير</a>
+    <a class="teacher-sidebar-link" href="settings.html"><i class="fa-solid fa-gear" style="width:20px;"></i>الإعدادات</a>
+    <a class="teacher-sidebar-link logout" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket" style="width:20px;"></i>تسجيل الخروج</a>
+  </div>
+</aside>
+<!-- Mobile Offcanvas -->
+<div class="offcanvas offcanvas-start teacher-offcanvas" tabindex="-1" id="teacherOffcanvas">
+  <div class="offcanvas-header">
+    <img src="../images/logo.png" alt="كنوز القرآن" style="height:36px;">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="offcanvas-profile">
+      <img src="../images/logo.png" alt="المعلمة" class="offcanvas-avatar">
+      <h6 class="offcanvas-name">أ. نورة</h6>
+      <small class="offcanvas-role">معلمة قرآن كريم</small>
+    </div>
+    <nav class="p-3 d-flex flex-column gap-1">
+    <a class="teacher-sidebar-link" href="dashboard.html"><i class="fa-solid fa-chart-pie" style="width:20px;"></i>لوحة التحكم</a>
+    <a class="teacher-sidebar-link" href="courses.html"><i class="fa-solid fa-book-open" style="width:20px;"></i>الدورات</a>
+    <a class="teacher-sidebar-link" href="students.html"><i class="fa-solid fa-users" style="width:20px;"></i>الطلبات</a>
+    <a class="teacher-sidebar-link" href="sessions.html"><i class="fa-solid fa-video" style="width:20px;"></i>الجلسات</a>
+    <a class="teacher-sidebar-link" href="exams.html"><i class="fa-solid fa-pen-to-square" style="width:20px;"></i>الامتحانات</a>
+    <a class="teacher-sidebar-link" href="certificates.html"><i class="fa-solid fa-certificate" style="width:20px;"></i>الشهادات</a>
+    </nav>
+    <div class="p-3 mt-2">
+      <a href="settings.html" class="teacher-sidebar-link"><i class="fa-solid fa-gear" style="width:20px;"></i>الإعدادات</a>
+      <a href="../index.html" class="teacher-sidebar-link logout"><i class="fa-solid fa-arrow-right-from-bracket" style="width:20px;"></i>تسجيل الخروج</a>
+    </div>
+  </div>
+</div>
+    <header class="teacher-header">
+      <div>
+        <button class="hamburger-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#teacherOffcanvas" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+        <h6 class="d-inline header-greeting d-none d-sm-inline">مرحباً بكِ، أ. نورة</h6>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="small header-last-login d-none d-md-inline">آخر دخول: اليوم ٨:١٥ ص</span>
+        <div class="dropdown">
+          <a href="#" class="teacher-header-icon position-relative" data-bs-toggle="dropdown" aria-expanded="false" title="الإشعارات">
+            <i class="fa-solid fa-bell"></i>
+            <span class="teacher-badge-dot"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:300px;padding:0;">
+            <div class="px-3 py-2 fw-bold border-bottom" style="color:#1f2937;font-size:0.9rem;">الإشعارات</div>
+            <div style="max-height:280px;overflow-y:auto;">
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-success" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">تسجيل جديد</div><div style="font-size:0.78rem;color:#6b7a7e;">انضمت طالبة جديدة لدورة التجويد</div><div style="font-size:0.7rem;color:#aab7bc;">منذ 5 دقائق</div></div>
+                </div>
+              </a>
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-primary" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">امتحان جديد</div><div style="font-size:0.78rem;color:#6b7a7e;">قدمت الطالبة سارة امتحان التجويد</div><div style="font-size:0.7rem;color:#aab7bc;">منذ ساعة</div></div>
+                </div>
+              </a>
+              <a class="dropdown-item px-3 py-2" href="#" style="white-space:normal;">
+                <div class="d-flex gap-2 align-items-start">
+                  <div class="mt-1"><i class="fa-solid fa-circle text-warning" style="font-size:0.5rem;"></i></div>
+                  <div><div class="fw-semibold" style="font-size:0.85rem;color:#1f2937;">تذكير بجلسة</div><div style="font-size:0.78rem;color:#6b7a7e;">لديك جلسة بعد 30 دقيقة مع مجموعة الفتح</div><div style="font-size:0.7rem;color:#aab7bc;">منذ 3 ساعات</div></div>
+                </div>
+              </a>
+            </div>
+            <a class="dropdown-item text-center py-2 border-top fw-semibold" href="notifications.html" style="font-size:0.85rem;color:#0F6D80;">عرض كل الإشعارات</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="teacher-header-icon" data-bs-toggle="dropdown" aria-expanded="false" title="الإعدادات">
+            <i class="fa-solid fa-gear"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:200px;padding:8px;">
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html"><i class="fa-regular fa-user mr-2 text-primary opacity-75"></i>الملف الشخصي</a></li>
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html"><i class="fa-solid fa-palette mr-2 text-primary opacity-75"></i>المظهر</a></li>
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html"><i class="fa-solid fa-gear mr-2 text-primary opacity-75"></i>الإعدادات المتقدمة</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item rounded-2 py-2 text-danger" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>تسجيل الخروج</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../images/logo.png" alt="المعلمة" class="teacher-avatar" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0" style="min-width:180px;padding:8px;">
+            <li><a class="dropdown-item rounded-2 py-2" href="settings.html"><i class="fa-regular fa-user mr-2 text-primary opacity-75"></i>الملف الشخصي</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item rounded-2 py-2 text-danger" href="../index.html"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>تسجيل الخروج</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <nav class="bottom-mobile-nav">
+      <a class="mobile-nav-item" href="dashboard.html"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-pie"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+      <a class="mobile-nav-item" href="courses.html"><span class="mobile-nav-icon"><i class="fa-solid fa-book-open"></i></span><span class="mobile-nav-label">الدورات</span></a>
+      <a class="mobile-nav-item" href="students.html"><span class="mobile-nav-icon"><i class="fa-solid fa-users"></i></span><span class="mobile-nav-label">الطلبات</span></a>
+      <a class="mobile-nav-item" href="sessions.html"><span class="mobile-nav-icon"><i class="fa-solid fa-video"></i></span><span class="mobile-nav-label">الجلسات</span></a>
+      <a class="mobile-nav-item" href="exams.html"><span class="mobile-nav-icon"><i class="fa-solid fa-pen-to-square"></i></span><span class="mobile-nav-label">الامتحانات</span></a>
+      <a class="mobile-nav-item" href="certificates.html"><span class="mobile-nav-icon"><i class="fa-solid fa-certificate"></i></span><span class="mobile-nav-label">الشهادات</span></a>
+    </nav>
+    <main class="teacher-main">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+        <h5 class="fw-bold mb-0">الرسائل</h5>
+        <button class="add-btn" onclick="sendMessage()"><i class="fa-solid fa-pen ml-1"></i>إرسال رسالة</button>
+      </div>
+      <div class="row g-3">
+        <div class="col-12 col-lg-4">
+          <div class="teacher-card">
+            <h6 class="teacher-section-title"><i class="fa-solid fa-comments text-primary"></i>قائمة المحادثات</h6>
+            <input type="text" class="chat-search mb-3" placeholder="البحث في المحادثات..." />
+            <div style="max-height:480px;overflow-y:auto;">
+              <button class="conv-item active" onclick="selectConversation(this)">
+                <div class="conv-avatar" style="background:#0F6D80;color:#fff;">م</div>
+                <div class="conv-info">
+                  <div class="conv-name">مريم أحمد</div>
+                  <div class="conv-msg">تم بحمد الله، شكراً جزيلاً</div>
+                </div>
+                <div class="text-end">
+                  <div class="conv-time">منذ ٥ د</div>
+                  <div class="unread-badge mt-1">٣</div>
+                </div>
+              </button>
+              <button class="conv-item" onclick="selectConversation(this)">
+                <div class="conv-avatar" style="background:#198754;color:#fff;">س</div>
+                <div class="conv-info">
+                  <div class="conv-name">سارة نور</div>
+                  <div class="conv-msg">عندي استفسار عن موعد الامتحان القادم</div>
+                </div>
+                <div class="text-end">
+                  <div class="conv-time">منذ ١ س</div>
+                  <div class="unread-badge mt-1">١</div>
+                </div>
+              </button>
+              <button class="conv-item" onclick="selectConversation(this)">
+                <div class="conv-avatar" style="background:#cc9a06;color:#fff;">ن</div>
+                <div class="conv-info">
+                  <div class="conv-name">نور عادل</div>
+                  <div class="conv-msg">أريد تأكيد موعد الجلسة القادمة</div>
+                </div>
+                <div class="text-end">
+                  <div class="conv-time">منذ ٣ س</div>
+                </div>
+              </button>
+              <button class="conv-item" onclick="selectConversation(this)">
+                <div class="conv-avatar" style="background:#6f42c1;color:#fff;">ر</div>
+                <div class="conv-info">
+                  <div class="conv-name">رنا سامر</div>
+                  <div class="conv-msg">جزاك الله خيراً على الشرح الرائع</div>
+                </div>
+                <div class="text-end">
+                  <div class="conv-time">منذ يوم</div>
+                </div>
+              </button>
+              <button class="conv-item" onclick="selectConversation(this)">
+                <div class="conv-avatar" style="background:#dc3545;color:#fff;">آ</div>
+                <div class="conv-info">
+                  <div class="conv-name">آمنة حسن</div>
+                  <div class="conv-msg">هل يمكن الحصول على رابط التسجيل؟</div>
+                </div>
+                <div class="text-end">
+                  <div class="conv-time">منذ يومين</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="teacher-card d-flex flex-column">
+            <div class="d-flex align-items-center gap-3 pb-3 border-bottom mb-3">
+              <div class="conv-avatar" style="background:#0F6D80;color:#fff;width:40px;height:40px;font-size:0.9rem;">م</div>
+              <div>
+                <h6 class="fw-bold mb-0" style="font-size:0.95rem;">مريم أحمد</h6>
+                <small style="color:#6b7a7e;">تحفيظ الكبار</small>
+              </div>
+              <div class="ml-auto"></div>
+              <button class="btn btn-sm" style="color:#6b7a7e;" title="المزيد"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            </div>
+            <div class="msg-area flex-grow-1" id="chatMessages">
+              <div class="msg-received">
+                <div>
+                  <div class="msg-bubble">السلام عليكم معلمة، كيف يمكنني تحسين مستوى التلاوة؟</div>
+                  <div class="msg-time">اليوم ٩:١٥ ص</div>
+                </div>
+              </div>
+              <div class="msg-sent">
+                <div>
+                  <div class="msg-bubble">وعليكم السلام ورحمة الله يا مريم، أنصحك بالاستماع للقراء المجيدين والتكرار بعدهم</div>
+                  <div class="msg-time">اليوم ٩:٢٠ ص</div>
+                </div>
+              </div>
+              <div class="msg-received">
+                <div>
+                  <div class="msg-bubble">هل يوجد تمارين محددة للحروف؟</div>
+                  <div class="msg-time">اليوم ٩:٢٢ ص</div>
+                </div>
+              </div>
+              <div class="msg-sent">
+                <div>
+                  <div class="msg-bubble">نعم، سأرسل لك مجموعة من تمارين مخارج الحروف في ملف PDF</div>
+                  <div class="msg-time">اليوم ٩:٢٥ ص</div>
+                </div>
+              </div>
+              <div class="msg-received">
+                <div>
+                  <div class="msg-bubble">جزاك الله خيراً معلمة</div>
+                  <div class="msg-time">اليوم ٩:٢٦ ص</div>
+                </div>
+              </div>
+              <div class="msg-received">
+                <div>
+                  <div class="msg-bubble">لقد استلمت الملف، شكراً جزيلاً</div>
+                  <div class="msg-time">اليوم ٩:٣٠ ص</div>
+                </div>
+              </div>
+              <div class="msg-sent">
+                <div>
+                  <div class="msg-bubble">على الرحب والسعة، بالتوفيق لكِ يا مريم</div>
+                  <div class="msg-time">اليوم ٩:٣٢ ص</div>
+                </div>
+              </div>
+              <div class="msg-received">
+                <div>
+                  <div class="msg-bubble">تم بحمد الله، شكراً جزيلاً</div>
+                  <div class="msg-time">منذ ٥ دقائق</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-3 border-top mt-3">
+              <input type="text" class="chat-input" id="chatInput" placeholder="اكتبي رسالتك..." onkeypress="if(event.key==='Enter'){sendChatMessage();}" />
+              <button class="add-btn" style="padding:8px 16px;" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      function selectConversation(el) {
+        document.querySelectorAll(".conv-item").forEach(function(e){e.classList.remove("active");});
+        el.classList.add("active");
+      }
+      function sendChatMessage() {
+        var input = document.getElementById("chatInput");
+        var text = input.value.trim();
+        if (!text) return;
+        var msgArea = document.getElementById("chatMessages");
+        var div = document.createElement("div");
+        div.className = "msg-sent";
+        div.innerHTML = "<div><div class=\"msg-bubble\">" + text + "</div><div class=\"msg-time\">الآن</div></div>";
+        msgArea.appendChild(div);
+        msgArea.scrollTop = msgArea.scrollHeight;
+        input.value = "";
+      }
+      function sendMessage() {
+        Swal.fire({ icon: 'info', title: 'إرسال رسالة جديدة', html: '<div class="text-end"><div class="mb-3"><select class="teacher-input form-control"><option>مريم أحمد</option><option>سارة نور</option><option>نور عادل</option><option>رنا سامر</option><option>آمنة حسن</option></select></div><div class="mb-3"><textarea class="teacher-input form-control" rows="4" placeholder="نص الرسالة"></textarea></div></div>', showCancelButton: true, confirmButtonColor: '#0F6D80', confirmButtonText: 'إرسال', cancelButtonText: 'إلغاء' });
+      }
+    </script>
+    <script src="../js/teacher/teacher.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

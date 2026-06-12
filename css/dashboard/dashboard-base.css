@@ -1,0 +1,17 @@
+body { font-family: 'Tajawal', sans-serif; background: #f7fafb; overflow-x: hidden; }
+.dashboard-sidebar { width: 260px; min-width: 260px; height: 100vh; position: fixed; top: 0; right: 0; background: #fff; border-left: 1px solid rgba(15,109,128,0.06); display: flex; flex-direction: column; z-index: 1020; }
+.dashboard-main { margin-right: 260px; min-height: 100vh; padding: 100px 24px 88px; }
+.dash-header { position: fixed; top: 0; right: 260px; left: 0; height: 72px; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(15,109,128,0.06); z-index: 1010; display: flex; align-items: center; padding: 0 24px; }
+.dash-card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 20px rgba(15,109,128,0.04); border: 1px solid rgba(15,109,128,0.04); }
+.sidebar-link { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 10px; color: #3f484b; transition: all 0.2s; text-decoration: none; font-size: 0.9rem; }
+.sidebar-link:hover { background: rgba(15,109,128,0.04); color: #005363; }
+.sidebar-link.active { background: rgba(15,109,128,0.06); color: #005363; font-weight: 700; border-right: 3px solid #0F6D80; }
+.bottom-mobile-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; box-shadow: 0 -4px 20px rgba(0,0,0,0.04); display: none; justify-content: space-around; padding: 2px 0 6px; z-index: 1020; direction: rtl; }
+.mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 4px 0; text-decoration: none; min-width: 56px; position: relative; transition: all 0.2s; }
+.mobile-nav-item .mobile-nav-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 1rem; color: #bec8cc; transition: all 0.25s; }
+.mobile-nav-item .mobile-nav-label { font-size: 0.55rem; font-weight: 500; color: #c8d0d2; transition: color 0.25s; }
+.mobile-nav-item.active .mobile-nav-icon { color: #0F6D80; background: rgba(15,109,128,0.06); }
+.mobile-nav-item.active .mobile-nav-label { color: #0F6D80; font-weight: 700; }
+.mobile-nav-item.active::before { content: ''; position: absolute; top: 0; width: 20px; height: 2.5px; background: #0F6D80; border-radius: 0 0 4px 4px; }
+.mobile-nav-item:not(.active):hover .mobile-nav-icon { background: rgba(15,109,128,0.03); color: #8a989d; }
+@media (max-width: 767.98px) { .dashboard-sidebar { display: none; } .dashboard-main { margin-right: 0; padding-top: 72px; padding-bottom: 72px; } .dash-header { right: 0; } .bottom-mobile-nav { display: flex; } }

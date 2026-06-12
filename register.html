@@ -1,0 +1,448 @@
+﻿<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>إنشاء حساب | منصة كنوز القرآن</title>
+    <meta name="description" content="أنشئي حسابك في منصة كنوز القرآن وابدئي رحلتك التعليمية في حفظ وتدبر كتاب الله." />
+    <meta property="og:title" content="إنشاء حساب | منصة كنوز القرآن" />
+    <meta property="og:image" content="/images/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="page-loader" class="page-loader">
+      <div class="page-loader-content">
+        <div class="page-loader-logo-wrapper"><img src="images/logo.png" alt="كنوز القرآن" class="page-loader-logo" /></div>
+        <div class="page-loader-spinner"></div>
+        <p class="page-loader-text">جاري تحميل المنصة...</p>
+      </div>
+    </div>
+
+    <header class="sticky-top header-nav">
+      <div class="container d-flex align-items-center justify-content-between" style="height: 72px">
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn d-lg-none mobile-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+          <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none"><img alt="شعار كنوز القرآن" src="images/logo.png" class="header-logo" /><span class="brand-name d-none d-sm-inline">كنوز القرآن</span></a>
+          
+          <div class="header-brand-sep d-none d-lg-block"></div>
+<nav class="d-none d-lg-flex header-nav-links">
+  <a class="nav-link-active" href="index.html">الرئيسية</a>
+  <a class="nav-link-custom" href="departments.html">الأقسام</a>
+  <a class="nav-link-custom" href="blog.html">المدونة</a>
+  <a class="nav-link-custom" href="about.html">من نحن</a>
+  <a class="nav-link-custom" href="reviews.html">التقييمات</a>
+  <a class="nav-link-custom" href="contact.html">اتصلي بنا</a>
+  <a class="nav-lang-link" href="#" onclick="return false;"><i class="fa-solid fa-globe"></i> English</a>
+</nav>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <a href="tel:+201001234567" class="header-phone-btn d-none d-sm-flex" aria-label="اتصل بنا"><i class="fa-solid fa-phone"></i></a>
+          <button class="btn btn-primary fw-bold btn-header-cta btn-custom"><i class="fa-solid fa-gem ml-1 d-none d-sm-inline"></i>احجزي حصتك</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <div class="d-flex align-items-center gap-2">
+      <img alt="شعار كنوز القرآن" src="images/logo.png" class="header-logo" style="height:40px;" />
+      <span class="brand-name" style="font-size:1rem;">كنوز القرآن</span>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
+  </div>
+  <div class="offcanvas-body">
+    <nav class="d-flex flex-column gap-1">
+      <a class="mobile-nav-link-active" href="index.html">الرئيسية</a>
+      <a class="mobile-nav-link" href="departments.html">الأقسام</a>
+      <a class="mobile-nav-sublink" href="languages.html"><i class="fa-solid fa-language"></i>اللغات واللغويات</a>
+      <a class="mobile-nav-sublink" href="coding.html"><i class="fa-solid fa-laptop-code"></i>التكنولوجيا والبرمجة</a>
+      <a class="mobile-nav-sublink" href="educational-support.html"><i class="fa-solid fa-hands-holding-child"></i>الدعم التربوي</a>
+      <a class="mobile-nav-link" href="blog.html">المدونة</a>
+      <a class="mobile-nav-link" href="about.html">من نحن</a>
+      <a class="mobile-nav-link" href="reviews.html">التقييمات</a>
+      <a class="mobile-nav-link" href="contact.html">اتصلي بنا</a>
+      <a class="mobile-nav-link" href="#" onclick="return false;"><i class="fa-solid fa-globe"></i> English</a>
+    </nav>
+    <hr class="my-3" />
+    <a href="tel:+201001234567" class="btn btn-outline-primary w-100 rounded-3 py-3 mb-2"><i class="fa-solid fa-phone ml-2"></i>اتصل بنا</a>
+    <button class="btn btn-primary w-100 rounded-3 py-3 btn-custom mobile-offcanvas-cta">احجزي حصتك التجريبية مجاناً</button>
+  </div>
+</div>
+
+    <main class="bg-light py-5" style="min-height: calc(100vh - 76px);">
+      <div class="container">
+        <div class="row g-5">
+          <!-- Left sidebar -->
+          <aside class="col-lg-4 d-none d-lg-block" data-aos="fade-up">
+            <div class="card border-0 shadow-sm rounded-4 p-4 position-relative overflow-hidden">
+              <div style="position: absolute; top: -80px; right: -80px; width: 200px; height: 200px; border-radius: 50%; background: rgba(216,139,18,0.06); pointer-events: none;"></div>
+              <div class="page-hero-icon mx-auto mb-4" style="width: 60px; height: 60px; font-size: 1.4rem;"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h3 class="fw-bold text-primary mb-3">رحلة التعلم تبدأ بخطوة</h3>
+              <p class="text-secondary opacity-75 small mb-4">انضم إلى مجتمع كنوز القرآن واستكشف مسارات تعليمية مصممة خصيصاً لتناسب احتياجاتك في بيئة تعليمية آمنة ومحفزة.</p>
+              <ul class="list-unstyled d-flex flex-column gap-3 mb-4">
+                <li class="d-flex align-items-center gap-3">
+                  <span class="d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; background: rgba(216,139,18,0.1); color: var(--pumpkin); min-width: 40px;"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                  <span class="small fw-medium">مناهج تعليمية معتمدة</span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                  <span class="d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; background: rgba(216,139,18,0.1); color: var(--pumpkin); min-width: 40px;"><i class="fa-solid fa-chalkboard-user"></i></span>
+                  <span class="small fw-medium">نخبة من المعلمين المتميزين</span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                  <span class="d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; background: rgba(216,139,18,0.1); color: var(--pumpkin); min-width: 40px;"><i class="fa-solid fa-clock"></i></span>
+                  <span class="small fw-medium">مرونة في المواعيد</span>
+                </li>
+              </ul>
+            </div>
+          </aside>
+
+          <!-- Right side: Form -->
+          <div class="col-lg-8" data-aos="fade-up">
+            <!-- Progress Stepper -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+              <div class="d-flex justify-content-between align-items-center position-relative">
+                <div class="position-absolute top-50 start-0 translate-middle-y w-100" style="height: 4px; background: rgba(15,109,128,0.08); z-index: 0;"></div>
+                <div class="position-absolute top-50 start-0 translate-middle-y" id="progress-bar" style="height: 4px; width: 0%; background: var(--pumpkin); z-index: 0; transition: width 0.5s; border-radius: 4px;"></div>
+                <!-- Step 1 -->
+                <div class="step-indicator text-center position-relative d-flex flex-column align-items-center gap-1" data-step="1" style="z-index: 1;">
+                  <div class="d-flex align-items-center justify-content-center rounded-circle fw-bold shadow-sm" id="stepCircle1" style="width: 44px; height: 44px; background: #0F6D80; color: #fff; font-size: 0.9rem; transition: all 0.3s;">١</div>
+                  <span class="small fw-medium" id="stepLabel1" style="color: #0F6D80;">بيانات الطالب</span>
+                </div>
+                <!-- Step 2 -->
+                <div class="step-indicator text-center position-relative d-flex flex-column align-items-center gap-1" data-step="2" style="z-index: 1;">
+                  <div class="d-flex align-items-center justify-content-center rounded-circle fw-bold shadow-sm" id="stepCircle2" style="width: 44px; height: 44px; background: rgba(15,109,128,0.08); color: rgba(15,109,128,0.35); font-size: 0.9rem; transition: all 0.3s;">٢</div>
+                  <span class="small" id="stepLabel2" style="color: rgba(15,109,128,0.35);">اختيار الدورة</span>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-indicator text-center position-relative d-flex flex-column align-items-center gap-1" data-step="3" style="z-index: 1;">
+                  <div class="d-flex align-items-center justify-content-center rounded-circle fw-bold shadow-sm" id="stepCircle3" style="width: 44px; height: 44px; background: rgba(15,109,128,0.08); color: rgba(15,109,128,0.35); font-size: 0.9rem; transition: all 0.3s;">٣</div>
+                  <span class="small" id="stepLabel3" style="color: rgba(15,109,128,0.35);">تحديد الموعد</span>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-indicator text-center position-relative d-flex flex-column align-items-center gap-1" data-step="4" style="z-index: 1;">
+                  <div class="d-flex align-items-center justify-content-center rounded-circle fw-bold shadow-sm" id="stepCircle4" style="width: 44px; height: 44px; background: rgba(15,109,128,0.08); color: rgba(15,109,128,0.35); font-size: 0.9rem; transition: all 0.3s;">٤</div>
+                  <span class="small" id="stepLabel4" style="color: rgba(15,109,128,0.35);">التأكيد</span>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-2 mt-4 small text-secondary opacity-50">
+                <i class="fa-solid fa-arrows-rotate"></i>
+                <span>تم الحفظ تلقائياً: <span id="autoSaveTime">١٠:٤٥ ص</span></span>
+              </div>
+            </div>
+
+            <!-- Form -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+              <form id="registrationForm" onsubmit="return handleRegister(event)">
+
+                <!-- Step 1 -->
+                <div class="form-step" id="step-1">
+                  <h3 class="fw-bold text-primary mb-4">بيانات الطالب الأساسية</h3>
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label fw-medium small text-secondary">اسم الطالب الثلاثي <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control rounded-3 py-3 px-3" placeholder="أدخل الاسم بالكامل" required style="border: 1.5px solid rgba(15,109,128,0.12);" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-medium small text-secondary">العمر <span class="text-danger">*</span></label>
+                      <input type="number" class="form-control rounded-3 py-3 px-3" placeholder="مثال: ١٠" required style="border: 1.5px solid rgba(15,109,128,0.12);" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-medium small text-secondary">رقم التواصل (واتساب) <span class="text-danger">*</span></label>
+                      <input type="tel" class="form-control rounded-3 py-3 px-3 ltr" placeholder="+966 50 000 0000" dir="ltr" required style="border: 1.5px solid rgba(15,109,128,0.12);" />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label fw-medium small text-secondary">المستوى التعليمي الحالي</label>
+                      <select class="form-select rounded-3 py-3 px-3" style="border: 1.5px solid rgba(15,109,128,0.12);">
+                        <option value="">اختياري</option>
+                        <option>ابتدائي</option>
+                        <option>متوسط</option>
+                        <option>ثانوي</option>
+                        <option>جامعي</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="form-step d-none" id="step-2">
+                  <h3 class="fw-bold text-primary mb-4">اختر الدورة التعليمية</h3>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="course-option d-block cursor-pointer">
+                        <input type="radio" name="course" value="علوم القرآن" class="d-none" checked />
+                        <div class="p-4 rounded-3 border" style="border: 2px solid var(--pumpkin) !important; background: rgba(216,139,18,0.04); cursor: pointer; transition: all 0.3s;">
+                          <div class="d-flex align-items-start gap-3">
+                            <span class="d-flex align-items-center justify-content-center rounded-3" style="width: 48px; height: 48px; min-width: 48px; background: rgba(216,139,18,0.1); color: var(--pumpkin); font-size: 1.2rem;"><i class="fa-solid fa-book-quran"></i></span>
+                            <div class="flex-grow-1">
+                              <h4 class="fw-bold small mb-1">علوم القرآن</h4>
+                              <p class="small text-secondary opacity-75 mb-0">تحفيظ، تجويد، وتفسير</p>
+                            </div>
+                            <i class="fa-solid fa-circle-check" style="color: var(--pumpkin); font-size: 1.2rem;"></i>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="course-option d-block cursor-pointer">
+                        <input type="radio" name="course" value="اللغة العربية" class="d-none" />
+                        <div class="p-4 rounded-3 border" style="border: 2px solid rgba(15,109,128,0.12); cursor: pointer; transition: all 0.3s;">
+                          <div class="d-flex align-items-start gap-3">
+                            <span class="d-flex align-items-center justify-content-center rounded-3" style="width: 48px; height: 48px; min-width: 48px; background: rgba(15,109,128,0.06); color: #0F6D80; font-size: 1.2rem;"><i class="fa-solid fa-language"></i></span>
+                            <div class="flex-grow-1">
+                              <h4 class="fw-bold small mb-1">اللغة العربية</h4>
+                              <p class="small text-secondary opacity-75 mb-0">نحو، بلاغة، وصرف</p>
+                            </div>
+                            <i class="fa-regular fa-circle text-secondary opacity-25" style="font-size: 1.2rem;"></i>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="course-option d-block cursor-pointer">
+                        <input type="radio" name="course" value="القراءات" class="d-none" />
+                        <div class="p-4 rounded-3 border" style="border: 2px solid rgba(15,109,128,0.12); cursor: pointer; transition: all 0.3s;">
+                          <div class="d-flex align-items-start gap-3">
+                            <span class="d-flex align-items-center justify-content-center rounded-3" style="width: 48px; height: 48px; min-width: 48px; background: rgba(15,109,128,0.06); color: #0F6D80; font-size: 1.2rem;"><i class="fa-solid fa-microphone-lines"></i></span>
+                            <div class="flex-grow-1">
+                              <h4 class="fw-bold small mb-1">القراءات</h4>
+                              <p class="small text-secondary opacity-75 mb-0">القراءات العشر المتواترة</p>
+                            </div>
+                            <i class="fa-regular fa-circle text-secondary opacity-25" style="font-size: 1.2rem;"></i>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="course-option d-block cursor-pointer">
+                        <input type="radio" name="course" value="دعم دراسي" class="d-none" />
+                        <div class="p-4 rounded-3 border" style="border: 2px solid rgba(15,109,128,0.12); cursor: pointer; transition: all 0.3s;">
+                          <div class="d-flex align-items-start gap-3">
+                            <span class="d-flex align-items-center justify-content-center rounded-3" style="width: 48px; height: 48px; min-width: 48px; background: rgba(15,109,128,0.06); color: #0F6D80; font-size: 1.2rem;"><i class="fa-solid fa-hand-holding-hand"></i></span>
+                            <div class="flex-grow-1">
+                              <h4 class="fw-bold small mb-1">دعم دراسي</h4>
+                              <p class="small text-secondary opacity-75 mb-0">تقوية في المواد المنهجية</p>
+                            </div>
+                            <i class="fa-regular fa-circle text-secondary opacity-25" style="font-size: 1.2rem;"></i>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="form-step d-none" id="step-3">
+                  <h3 class="fw-bold text-primary mb-4">تفضيلات المواعيد</h3>
+                  <div class="row g-4">
+                    <div class="col-12">
+                      <label class="form-label fw-medium small text-secondary mb-3">عدد الحصص الأسبوعية</label>
+                      <div class="d-flex gap-3">
+                        <button type="button" class="sessions-btn flex-fill py-3 px-3 rounded-3 fw-bold border-0" data-value="2" style="background: #0F6D80; color: #fff; transition: all 0.3s;">٢ حصة</button>
+                        <button type="button" class="sessions-btn flex-fill py-3 px-3 rounded-3 border" data-value="3" style="border: 2px solid rgba(15,109,128,0.12) !important; background: transparent; color: var(--text-body); transition: all 0.3s;">٣ حصص</button>
+                        <button type="button" class="sessions-btn flex-fill py-3 px-3 rounded-3 border" data-value="5" style="border: 2px solid rgba(15,109,128,0.12) !important; background: transparent; color: var(--text-body); transition: all 0.3s;">٥ حصص</button>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label fw-medium small text-secondary mb-3">الفترة المفضلة</label>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label class="d-flex align-items-center gap-3 p-3 rounded-3 border" style="border: 1.5px solid rgba(15,109,128,0.12); cursor: pointer;">
+                            <input type="checkbox" class="form-check-input" style="border-color: rgba(15,109,128,0.2);" />
+                            <span class="small">الصباحية (٨ ص - ١٢ م)</span>
+                          </label>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="d-flex align-items-center gap-3 p-3 rounded-3 border" style="border: 1.5px solid rgba(15,109,128,0.12); cursor: pointer;">
+                            <input type="checkbox" class="form-check-input" checked style="border-color: rgba(15,109,128,0.2);" />
+                            <span class="small">المسائية (٤ م - ٩ م)</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label fw-medium small text-secondary">تاريخ البدء المفضل</label>
+                      <input type="date" class="form-control rounded-3 py-3 px-3" style="border: 1.5px solid rgba(15,109,128,0.12);" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="form-step d-none" id="step-4">
+                  <div class="text-center mb-4">
+                    <div class="d-flex align-items-center justify-content-center mx-auto mb-3 rounded-circle" style="width: 72px; height: 72px; background: rgba(216,139,18,0.1); color: var(--pumpkin); font-size: 2rem;"><i class="fa-solid fa-check-double"></i></div>
+                    <h3 class="fw-bold text-primary mb-1">تأكيد البيانات</h3>
+                    <p class="small text-secondary opacity-75">يرجى مراجعة بياناتك قبل إتمام التسجيل</p>
+                  </div>
+                  <div class="rounded-3 p-4 mb-3" style="background: rgba(15,109,128,0.03); border: 1px solid rgba(15,109,128,0.06);">
+                    <div class="d-flex justify-content-between border-bottom pb-2 mb-2" style="border-color: rgba(15,109,128,0.06) !important;">
+                      <span class="small text-secondary opacity-75">اسم الطالب:</span>
+                      <span class="small fw-bold text-primary" id="confirmName">أحمد بن محمد</span>
+                    </div>
+                    <div class="d-flex justify-content-between border-bottom pb-2 mb-2" style="border-color: rgba(15,109,128,0.06) !important;">
+                      <span class="small text-secondary opacity-75">الدورة المختارة:</span>
+                      <span class="small fw-bold text-primary" id="confirmCourse">علوم القرآن الكريم</span>
+                    </div>
+                    <div class="d-flex justify-content-between border-bottom pb-2 mb-2" style="border-color: rgba(15,109,128,0.06) !important;">
+                      <span class="small text-secondary opacity-75">النظام الأسبوعي:</span>
+                      <span class="small fw-bold text-primary" id="confirmSessions">٢ حصة / الأسبوع</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="small text-secondary opacity-75">الفترة:</span>
+                      <span class="small fw-bold text-primary" id="confirmPeriod">المسائية</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Navigation buttons -->
+                <div class="d-flex justify-content-between gap-3 mt-4 pt-4" style="border-top: 1px solid rgba(15,109,128,0.08);">
+                  <button type="button" class="btn px-4 py-2 rounded-3 border fw-medium" id="prevBtn" onclick="changeStep(-1)" disabled style="opacity: 0.4; cursor: not-allowed; border-color: rgba(15,109,128,0.12) !important;"><i class="fa-solid fa-arrow-right ml-1"></i>السابق</button>
+                  <button type="button" class="btn px-5 py-2 rounded-3 fw-bold btn-custom" id="nextBtn" onclick="changeStep(1)" style="background: linear-gradient(135deg, #D4AF37, #f0d060); border: none; color: #0F6D80; box-shadow: 0 4px 16px rgba(212,175,55,0.3);">
+                    <span id="nextBtnText">التالي</span>
+                    <i class="fa-solid fa-arrow-left ml-1"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <p class="text-center mt-4 small text-secondary opacity-75">
+              لديكِ حساب بالفعل؟
+              <a href="login.html" class="fw-bold text-decoration-none" style="color: var(--pumpkin);">تسجيل الدخول</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <a id="support-fab" class="support-fab" href="support.html"><i class="fa-solid fa-headset"></i></a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+    <script>
+      let currentStep = 1;
+      const totalSteps = 4;
+
+      function updateStepUI() {
+        // Progress bar
+        const pct = ((currentStep - 1) / (totalSteps - 1)) * 100;
+        document.getElementById('progress-bar').style.width = pct + '%';
+
+        // Circles & labels
+        for (let i = 1; i <= totalSteps; i++) {
+          const circle = document.getElementById('stepCircle' + i);
+          const label = document.getElementById('stepLabel' + i);
+          if (i <= currentStep) {
+            circle.style.background = '#0F6D80';
+            circle.style.color = '#fff';
+            label.style.color = '#0F6D80';
+            label.style.fontWeight = '600';
+          } else {
+            circle.style.background = 'rgba(15,109,128,0.08)';
+            circle.style.color = 'rgba(15,109,128,0.35)';
+            label.style.color = 'rgba(15,109,128,0.35)';
+            label.style.fontWeight = '400';
+          }
+        }
+
+        // Steps visibility
+        document.querySelectorAll('.form-step').forEach(el => el.classList.add('d-none'));
+        document.getElementById('step-' + currentStep).classList.remove('d-none');
+
+        // Prev button
+        const prevBtn = document.getElementById('prevBtn');
+        if (currentStep === 1) {
+          prevBtn.disabled = true;
+          prevBtn.style.opacity = '0.4';
+          prevBtn.style.cursor = 'not-allowed';
+        } else {
+          prevBtn.disabled = false;
+          prevBtn.style.opacity = '1';
+          prevBtn.style.cursor = 'pointer';
+        }
+
+        // Next button text
+        const nextBtn = document.getElementById('nextBtn');
+        const nextText = document.getElementById('nextBtnText');
+        if (currentStep === totalSteps) {
+          nextText.textContent = 'إتمام التسجيل';
+        } else {
+          nextText.textContent = 'التالي';
+        }
+
+        // Course option hover styling
+        document.querySelectorAll('.course-option input[type="radio"]').forEach(radio => {
+          radio.addEventListener('change', function() {
+            document.querySelectorAll('.course-option > div').forEach(div => {
+              div.style.borderColor = 'rgba(15,109,128,0.12)';
+              div.style.background = 'transparent';
+              div.querySelector('.fa-circle-check')?.classList.replace('fa-circle-check', 'fa-circle');
+              div.querySelector('.fa-circle')?.classList.remove('text-primary');
+              div.querySelector('.fa-circle')?.classList.add('text-secondary', 'opacity-25');
+            });
+            if (this.checked) {
+              const parent = this.closest('.course-option').querySelector('> div');
+              parent.style.borderColor = 'var(--pumpkin)';
+              parent.style.background = 'rgba(216,139,18,0.04)';
+              const icon = parent.querySelector('.fa-circle');
+              if (icon) {
+                icon.classList.replace('fa-circle', 'fa-circle-check');
+                icon.classList.remove('text-secondary', 'opacity-25');
+                icon.style.color = 'var(--pumpkin)';
+              }
+            }
+          });
+        });
+
+        // Session buttons
+        document.querySelectorAll('.sessions-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            document.querySelectorAll('.sessions-btn').forEach(b => {
+              b.style.background = 'transparent';
+              b.style.color = 'var(--text-body)';
+              b.style.borderColor = 'rgba(15,109,128,0.12)';
+            });
+            this.style.background = '#0F6D80';
+            this.style.color = '#fff';
+            this.style.borderColor = '#0F6D80';
+          });
+        });
+      }
+
+      function changeStep(dir) {
+        // Basic validation
+        if (dir === 1 && currentStep === 1) {
+          const name = document.querySelector('#step-1 input[type="text"]').value.trim();
+          const age = document.querySelector('#step-1 input[type="number"]').value.trim();
+          const phone = document.querySelector('#step-1 input[type="tel"]').value.trim();
+          if (!name || !age || !phone) {
+            Swal.fire({ icon: 'warning', title: 'بيانات ناقصة', text: 'يرجى تعبئة جميع الحقول المطلوبة', confirmButtonColor: '#0F6D80', confirmButtonText: 'حسناً' });
+            return;
+          }
+        }
+        if (dir === -1 && currentStep > 1) currentStep--;
+        else if (dir === 1 && currentStep < totalSteps) currentStep++;
+        else if (dir === 1 && currentStep === totalSteps) {
+          document.getElementById('registrationForm').dispatchEvent(new Event('submit'));
+          return;
+        }
+        updateStepUI();
+      }
+
+      function handleRegister(e) {
+        e.preventDefault();
+        Swal.fire({ icon: 'success', title: 'تم التسجيل بنجاح!', text: 'مرحباً بكِ في كنوز القرآن', confirmButtonColor: '#0F6D80', confirmButtonText: 'حسناً', timer: 2000, timerProgressBar: true });
+        return false;
+      }
+
+      // Init
+      updateStepUI();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>خريطة كنوز القرآن | منصة كنوز القرآن</title>
+    <meta name="description" content="خريطة متكاملة لتتبع حفظ أجزاء القرآن الكريم." />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/dashboard/dashboard-base.css" rel="stylesheet" />
+    <link href="../css/dashboard/dashboard-treasure.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="dash-header">
+      <div class="d-flex align-items-center gap-2 d-md-none">
+        <button class="btn p-2 text-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileDashMenu"><i class="fa-solid fa-bars fs-5"></i></button>
+      </div>
+      <div class="d-flex align-items-center gap-2 flex-grow-1 justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <a href="../index.html"><img src="../images/logo.png" alt="كنوز القرآن" style="height: 40px;" /></a>
+          <span class="fw-bold d-none d-sm-inline" style="color: #0F6D80;">كنوز القرآن</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="dropdown">
+            <button class="btn p-2 text-primary position-relative" style="background: transparent; border: none;" data-bs-toggle="dropdown">
+              <i class="fa-regular fa-bell fs-6"></i>
+              <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill" style="background: var(--pumpkin); font-size: 0.55rem; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;">3</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="width: 260px; border: none;">
+              <h6 class="px-3 py-2 small fw-bold" style="color: #0F6D80;">الإشعارات</h6>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 موعد الاختبار غداً</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 تم تحديث نتيجة التجويد</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 الحلقة القادمة بعد ساعة</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn p-2 text-primary" style="background: transparent; border: none;" data-bs-toggle="dropdown"><i class="fa-solid fa-gear fs-6"></i></button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-sliders mr-2" style="width: 16px;"></i>الإعدادات</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="text-decoration-none" data-bs-toggle="dropdown">
+              <img src="../images/logo.png" alt="الطالبة" class="rounded-circle border-2" style="width: 40px; height: 40px; object-fit: cover; border-color: #F5BD58 !important;" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <div class="px-3 py-2">
+                <p class="fw-bold small mb-0" style="color: #0F6D80;">عائشة أحمد</p>
+                <small class="text-secondary opacity-75">aisha@example.com</small>
+              </div>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="dashboard-sidebar">
+      <div class="text-center py-4 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+        <div class="position-relative d-inline-block mb-2">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2" style="width: 80px; height: 80px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <span class="position-absolute bottom-0 start-0 badge rounded-3 px-2 py-1 small fw-bold" style="background: #F5BD58; color: #5f4100; font-size: 0.6rem; transform: translate(-4px, 4px);">متميز</span>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+        <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+      </div>
+      <nav class="p-3 d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+        <a href="hifdh-journey.html" class="sidebar-link"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+          <a href="schedule.html" class="sidebar-link"><i class="fa-solid fa-calendar" style="width: 20px;"></i> جدولي</a>
+          <a href="messages.html" class="sidebar-link"><i class="fa-solid fa-envelope" style="width: 20px;"></i> رسائلي</a>
+        <a href="treasure-map.html" class="sidebar-link active"><i class="fa-solid fa-map" style="width: 20px;"></i> خريطة كنوز القرآن</a>
+        <a href="certificates.html" class="sidebar-link"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+        <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+      </nav>
+      <div class="p-3">
+        <a href="live.html" class="btn w-100 rounded-3 py-3 fw-bold d-flex align-items-center justify-content-center gap-2" style="background: #0F6D80; color: #fff;"><i class="fa-solid fa-video"></i> انضم للبث المباشر</a>
+      </div>
+    </aside>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileDashMenu" style="width: 280px;">
+      <div class="offcanvas-header border-bottom" style="border-color: rgba(15,109,128,0.06);">
+        <img src="../images/logo.png" alt="كنوز القرآن" style="height: 36px;" />
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="margin: calc(-.5 * var(--bs-offcanvas-padding-y)) auto calc(-.5 * var(--bs-offcanvas-padding-x)) calc(-.5 * var(--bs-offcanvas-padding-y));"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <div class="text-center py-4" style="background: #f7fafb;">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2 mb-2" style="width: 72px; height: 72px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+          <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+        </div>
+        <nav class="p-3 d-flex flex-column gap-1">
+          <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+          <a href="hifdh-journey.html" class="sidebar-link"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+          <a href="treasure-map.html" class="sidebar-link active"><i class="fa-solid fa-map" style="width: 20px;"></i> خريطة كنوز القرآن</a>
+          <a href="certificates.html" class="sidebar-link"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+          <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+          <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="dashboard-main px-3 px-md-4">
+      <div class="d-flex align-items-center justify-content-between mb-4" data-aos="fade-up">
+        <div>
+          <h1 class="fw-bold mb-1" style="color: #0F6D80; font-size: 1.6rem;">خريطة كنوز القرآن</h1>
+          <p class="text-secondary opacity-75 mb-0">رحلتك الإيمانية عبر أجزاء القرآن الكريم الثلاثين</p>
+        </div>
+        <a href="index.html" class="btn rounded-3 px-3 py-2" style="border: 1.5px solid rgba(15,109,128,0.08);"><i class="fa-solid fa-arrow-right mr-1"></i>العودة</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="row g-3 mb-4" data-aos="fade-up">
+        <div class="col-4 col-md-2">
+          <div class="dash-card text-center p-3">
+            <h4 class="fw-bold mb-0" style="color: #0F6D80;">١٢</h4>
+            <small class="text-secondary opacity-75">مكتمل</small>
+          </div>
+        </div>
+        <div class="col-4 col-md-2">
+          <div class="dash-card text-center p-3">
+            <h4 class="fw-bold mb-0" style="color: var(--pumpkin);">١</h4>
+            <small class="text-secondary opacity-75">قيد الحفظ</small>
+          </div>
+        </div>
+        <div class="col-4 col-md-2">
+          <div class="dash-card text-center p-3">
+            <h4 class="fw-bold mb-0" style="color: #e74c3c;">١٨</h4>
+            <small class="text-secondary opacity-75">متبقي</small>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="dash-card text-center p-3">
+            <h4 class="fw-bold mb-0" style="color: #0F6D80;">٤٠٪</h4>
+            <small class="text-secondary opacity-75">الإنجاز الكلي</small>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="dash-card text-center p-3">
+            <h4 class="fw-bold mb-0" style="color: var(--pumpkin);">١٢٠</h4>
+            <small class="text-secondary opacity-75">يوم منذ البداية</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master progress bar -->
+      <div class="dash-card mb-4" data-aos="fade-up">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="fw-bold small" style="color: #0F6D80;">التقدم العام</span>
+          <span class="small fw-bold" style="color: #0F6D80;">١٢/٣٠</span>
+        </div>
+        <div style="height: 12px; background: #e0e3e4; border-radius: 10px; overflow: hidden;">
+          <div style="width: 40%; height: 100%; background: linear-gradient(to left, #F5BD58, #0F6D80); border-radius: 10px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); animation: shimmer 2s infinite;"></div>
+          </div>
+        </div>
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+      </div>
+
+      <!-- Juz grid with surah names -->
+      <div class="dash-card" data-aos="fade-up">
+        <div class="row g-3" id="juzMap"></div>
+      </div>
+    </main>
+
+    <nav class="bottom-mobile-nav">
+  <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-school"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+  <a href="schedule.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-calendar"></i></span><span class="mobile-nav-label">جدولي</span></a>
+  <a href="messages.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-envelope"></i></span><span class="mobile-nav-label">رسائلي</span></a>
+  <a href="hifdh-journey.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-line"></i></span><span class="mobile-nav-label">التقدم</span></a>
+  <a href="settings.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-sliders"></i></span><span class="mobile-nav-label">الإعدادات</span></a>
+</nav>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      const juzData = [
+        { n: 1, surah: 'الفاتحة — البقرة', sta: 'done' }, { n: 2, surah: 'البقرة (١٤٢—٢٥٢)', sta: 'done' }, { n: 3, surah: 'البقرة (٢٥٣—٢٨٦) + آل عمران', sta: 'done' },
+        { n: 4, surah: 'آل عمران (١—٩٣)', sta: 'done' }, { n: 5, surah: 'النساء (١—٢٤)', sta: 'done' }, { n: 6, surah: 'النساء (٢٥—١٧٦)', sta: 'done' },
+        { n: 7, surah: 'المائدة', sta: 'done' }, { n: 8, surah: 'الأنعام', sta: 'done' }, { n: 9, surah: 'الأعراف', sta: 'done' },
+        { n: 10, surah: 'الأنفال + التوبة', sta: 'done' }, { n: 11, surah: 'التوبة (٩٣—١٢٩) + يونس', sta: 'done' }, { n: 12, surah: 'هود + يوسف', sta: 'current' },
+        { n: 13, surah: 'يوسف (١—١١١) + الرعد + إبراهيم', sta: 'locked' }, { n: 14, surah: 'الحجر — النحل', sta: 'locked' }, { n: 15, surah: 'الإسراء (١—١١١) + الكهف', sta: 'locked' },
+        { n: 16, surah: 'مريم — طه', sta: 'locked' }, { n: 17, surah: 'الأنبياء — الحج', sta: 'locked' }, { n: 18, surah: 'المؤمنون — الفرقان', sta: 'locked' },
+        { n: 19, surah: 'الشعراء — النمل', sta: 'locked' }, { n: 20, surah: 'القصص — العنكبوت', sta: 'locked' }, { n: 21, surah: 'الروم — السجدة', sta: 'locked' },
+        { n: 22, surah: 'الأحزاب — سبأ', sta: 'locked' }, { n: 23, surah: 'فاطر — يس', sta: 'locked' }, { n: 24, surah: 'الصافات — الزمر', sta: 'locked' },
+        { n: 25, surah: 'غافر — فصلت', sta: 'locked' }, { n: 26, surah: 'الشورى — الزخرف — الدخان', sta: 'locked' }, { n: 27, surah: 'الجاثية — الحديد', sta: 'locked' },
+        { n: 28, surah: 'المجادلة — التحريم', sta: 'locked' }, { n: 29, surah: 'تبارك — المرسلات', sta: 'locked' }, { n: 30, surah: 'النبأ — الناس', sta: 'locked' },
+      ];
+
+      document.getElementById('juzMap').innerHTML = juzData.map(j => {
+        const cls = j.sta === 'done' ? 'completed' : j.sta === 'current' ? 'current' : 'locked';
+        return `<div class="col-6 col-md-2">
+          <div class="map-juz ${cls}">
+            <div class="juz-icon">${j.sta === 'done' ? '<i class="fa-solid fa-check"></i>' : j.sta === 'current' ? '<i class="fa-solid fa-book-open"></i>' : '<i class="fa-solid fa-lock"></i>'}</div>
+            <div class="fw-bold small" style="color: #0F6D80;">الجزء ${j.n}</div>
+            <span class="surah-tag">${j.surah}</span>
+          </div>
+        </div>`;
+      }).join('');
+
+      AOS.init({ duration: 600, once: true });
+    </script>
+  </body>
+</html>

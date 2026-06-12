@@ -1,0 +1,268 @@
+﻿<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>الرسائل | منصة كنوز القرآن</title>
+    <meta name="description" content="صندوق رسائلك في منصة كنوز القرآن." />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/dashboard/dashboard-base.css" rel="stylesheet" />
+    <style>
+      .chat-conversation { cursor: pointer; transition: 0.2s; border-radius: 12px; padding: 12px 16px; }
+      .chat-conversation:hover, .chat-conversation.active { background: rgba(15,109,128,0.04); }
+      .chat-conversation.active { border-right: 3px solid #0F6D80; }
+      .unread-dot { width: 10px; height: 10px; border-radius: 50%; background: #0F6D80; display: inline-block; flex-shrink: 0; }
+      .chat-bubble-received { background: #f1f4f5; border-radius: 16px 16px 16px 4px; padding: 12px 16px; max-width: 80%; align-self: flex-end; }
+      .chat-bubble-sent { background: #0F6D80; color: #fff; border-radius: 16px 16px 4px 16px; padding: 12px 16px; max-width: 80%; align-self: flex-start; }
+      .chat-area { display: flex; flex-direction: column; gap: 12px; max-height: 460px; overflow-y: auto; padding: 16px; }
+      .chat-input-area { border-top: 1px solid rgba(15,109,128,0.08); padding: 12px 16px; background: #fff; border-radius: 0 0 12px 12px; }
+      .chat-header { border-bottom: 1px solid rgba(15,109,128,0.08); padding: 12px 16px; }
+      @media (max-width: 991.98px) { .conversations-col { border-bottom: 1px solid rgba(15,109,128,0.08); } }
+    </style>
+  </head>
+  <body>
+    <header class="dash-header">
+      <div class="d-flex align-items-center gap-2 d-md-none">
+        <button class="btn p-2 text-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileDashMenu"><i class="fa-solid fa-bars fs-5"></i></button>
+      </div>
+      <div class="d-flex align-items-center gap-2 flex-grow-1 justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <a href="../index.html"><img src="../images/logo.png" alt="كنوز القرآن" style="height: 40px;" /></a>
+          <span class="fw-bold d-none d-sm-inline" style="color: #0F6D80;">كنوز القرآن</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="dropdown">
+            <button class="btn p-2 text-primary position-relative" style="background: transparent; border: none;" data-bs-toggle="dropdown">
+              <i class="fa-regular fa-bell fs-6"></i>
+              <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill" style="background: var(--pumpkin); font-size: 0.55rem; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;">3</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="width: 260px; border: none;">
+              <h6 class="px-3 py-2 small fw-bold" style="color: #0F6D80;">الإشعارات</h6>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 موعد الاختبار غداً</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 تم تحديث نتيجة التجويد</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#">📌 الحلقة القادمة بعد ساعة</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn p-2 text-primary" style="background: transparent; border: none;" data-bs-toggle="dropdown"><i class="fa-solid fa-gear fs-6"></i></button>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-sliders mr-2" style="width: 16px;"></i>الإعدادات</a>
+              <a class="dropdown-item small rounded-2 py-2" href="#"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="text-decoration-none" data-bs-toggle="dropdown">
+              <img src="../images/logo.png" alt="الطالبة" class="rounded-circle border-2" style="width: 40px; height: 40px; object-fit: cover; border-color: #F5BD58 !important;" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
+              <div class="px-3 py-2">
+                <p class="fw-bold small mb-0" style="color: #0F6D80;">عائشة أحمد</p>
+                <small class="text-secondary opacity-75">aisha@example.com</small>
+              </div>
+              <hr class="my-1" />
+              <a class="dropdown-item small rounded-2 py-2" href="settings.html"><i class="fa-solid fa-user mr-2" style="width: 16px;"></i>الملف الشخصي</a>
+              <a class="dropdown-item small rounded-2 py-2 text-danger" href="../login.html"><i class="fa-solid fa-right-from-bracket mr-2" style="width: 16px;"></i>تسجيل الخروج</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="dashboard-sidebar">
+      <div class="text-center py-4 border-bottom" style="border-color: rgba(15,109,128,0.04) !important;">
+        <div class="position-relative d-inline-block mb-2">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2" style="width: 80px; height: 80px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <span class="position-absolute bottom-0 start-0 badge rounded-3 px-2 py-1 small fw-bold" style="background: #F5BD58; color: #5f4100; font-size: 0.6rem; transform: translate(-4px, 4px);">متميز</span>
+        </div>
+        <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+        <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+      </div>
+      <nav class="p-3 d-flex flex-column gap-1 flex-grow-1">
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+        <a href="hifdh-journey.html" class="sidebar-link"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+          <a href="schedule.html" class="sidebar-link"><i class="fa-solid fa-calendar" style="width: 20px;"></i> جدولي</a>
+          <a href="messages.html" class="sidebar-link"><i class="fa-solid fa-envelope" style="width: 20px;"></i> رسائلي</a>
+        <a href="certificates.html" class="sidebar-link"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+        <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+      </nav>
+      <div class="p-3">
+        <a href="live.html" class="btn w-100 rounded-3 py-3 fw-bold d-flex align-items-center justify-content-center gap-2" style="background: #0F6D80; color: #fff;"><i class="fa-solid fa-video"></i> انضم للبث المباشر</a>
+      </div>
+    </aside>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileDashMenu" style="width: 280px;">
+      <div class="offcanvas-header border-bottom" style="border-color: rgba(15,109,128,0.06);">
+        <img src="../images/logo.png" alt="كنوز القرآن" style="height: 36px;" />
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="margin: calc(-.5 * var(--bs-offcanvas-padding-y)) auto calc(-.5 * var(--bs-offcanvas-padding-x)) calc(-.5 * var(--bs-offcanvas-padding-y));"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <div class="text-center py-4" style="background: #f7fafb;">
+          <img src="../images/logo.png" alt="عائشة أحمد" class="rounded-circle border-2 mb-2" style="width: 72px; height: 72px; object-fit: cover; border-color: #0F6D80 !important;" />
+          <h6 class="fw-bold mb-0" style="color: #0F6D80;">عائشة أحمد</h6>
+          <small class="text-secondary opacity-75">حافظة قرآن - مستوى متقدم</small>
+        </div>
+        <nav class="p-3 d-flex flex-column gap-1">
+          <a href="index.html" class="sidebar-link"><i class="fa-solid fa-school" style="width: 20px;"></i> لوحة المعلومات</a>
+          <a href="hifdh-journey.html" class="sidebar-link"><i class="fa-solid fa-chart-line" style="width: 20px;"></i> رحلة الحفظ</a>
+          <a href="certificates.html" class="sidebar-link"><i class="fa-solid fa-certificate" style="width: 20px;"></i> الشهادات</a>
+          <a href="exams.html" class="sidebar-link"><i class="fa-solid fa-file-pen" style="width: 20px;"></i> الاختبارات</a>
+          <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-sliders" style="width: 20px;"></i> الإعدادات</a>
+        </nav>
+        <div class="p-3 mt-2">
+          <a href="live.html" class="btn w-100 rounded-3 py-3 fw-bold d-flex align-items-center justify-content-center gap-2" style="background: #0F6D80; color: #fff;"><i class="fa-solid fa-video"></i> انضم للبث المباشر</a>
+        </div>
+      </div>
+    </div>
+
+    <main class="dashboard-main px-3 px-md-4">
+      <h1 class="fw-bold mb-4" style="color: #0F6D80; font-size: 1.6rem;" data-aos="fade-up">الرسائل</h1>
+
+      <div class="dash-card p-0 overflow-hidden" data-aos="fade-up">
+        <div class="row g-0">
+          <div class="col-lg-6 conversations-col p-3">
+            <div class="d-flex flex-column gap-1">
+              <div class="chat-conversation active d-flex align-items-center gap-3" data-conversation="0">
+                <img src="../images/logo.png" alt="" class="rounded-circle flex-shrink-0" style="width: 48px; height: 48px; object-fit: cover;" />
+                <div class="flex-grow-1 min-width-0">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span class="fw-bold small" style="color: #0F6D80;">المعلمة سمية علي</span>
+                    <small class="text-secondary opacity-50" style="font-size: 0.65rem;">منذ 5 د</small>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="small text-secondary opacity-75 text-truncate d-block">تم التقييم، أحسنتِ في سورة الكهف</span>
+                    <span class="unread-dot"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-conversation d-flex align-items-center gap-3" data-conversation="1">
+                <img src="../images/logo.png" alt="" class="rounded-circle flex-shrink-0" style="width: 48px; height: 48px; object-fit: cover;" />
+                <div class="flex-grow-1 min-width-0">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span class="fw-bold small" style="color: #0F6D80;">إدارة المنصة</span>
+                    <small class="text-secondary opacity-50" style="font-size: 0.65rem;">أمس</small>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="small text-secondary opacity-75 text-truncate d-block">تم إضافة اختبار جديد للتجويد</span>
+                    <span class="unread-dot"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-conversation d-flex align-items-center gap-3" data-conversation="2">
+                <img src="../images/logo.png" alt="" class="rounded-circle flex-shrink-0" style="width: 48px; height: 48px; object-fit: cover;" />
+                <div class="flex-grow-1 min-width-0">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span class="fw-bold small" style="color: #0F6D80;">المعلمة مريم خالد</span>
+                    <small class="text-secondary opacity-50" style="font-size: 0.65rem;">قبل يومين</small>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="small text-secondary opacity-75 text-truncate d-block">تذكير: غداً موعد تسليم الواجب</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-conversation d-flex align-items-center gap-3" data-conversation="3">
+                <img src="../images/logo.png" alt="" class="rounded-circle flex-shrink-0" style="width: 48px; height: 48px; object-fit: cover;" />
+                <div class="flex-grow-1 min-width-0">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span class="fw-bold small" style="color: #0F6D80;">الدعم الفني</span>
+                    <small class="text-secondary opacity-50" style="font-size: 0.65rem;">15 ديسمبر</small>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="small text-secondary opacity-75 text-truncate d-block">تم حل مشكلة تسجيل الدخول</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex flex-col">
+            <div class="chat-header d-flex align-items-center gap-3">
+              <img src="../images/logo.png" alt="" class="rounded-circle flex-shrink-0" style="width: 40px; height: 40px; object-fit: cover;" />
+              <div>
+                <span class="fw-bold small" style="color: #0F6D80;" id="chatContactName">المعلمة سمية علي</span>
+                <small class="d-block text-secondary opacity-50" style="font-size: 0.65rem;">متصل الآن</small>
+              </div>
+            </div>
+            <div class="chat-area" id="chatMessages">
+              <div class="chat-bubble-received">
+                <small>السلام عليكم، كيف تمت مراجعة سورة الكهف اليوم؟</small>
+                <div class="mt-1 text-start"><small style="font-size: 0.6rem; opacity: 0.5;">10:30 ص</small></div>
+              </div>
+              <div class="chat-bubble-sent">
+                <small>وعليكم السلام، الحمد لله كانت جيدة. أكملت الحفظ مع التفسير.</small>
+                <div class="mt-1 text-start"><small style="font-size: 0.6rem; opacity: 0.5;">10:32 ص</small></div>
+              </div>
+              <div class="chat-bubble-received">
+                <small>ممتاز! هل واجهتِ صعوبة في بعض الآيات؟</small>
+                <div class="mt-1 text-start"><small style="font-size: 0.6rem; opacity: 0.5;">10:34 ص</small></div>
+              </div>
+              <div class="chat-bubble-sent">
+                <small>نعم، الآيات من ٥٠ إلى ٦٠ كانت تحتاج لتركيز أكثر.</small>
+                <div class="mt-1 text-start"><small style="font-size: 0.6rem; opacity: 0.5;">10:36 ص</small></div>
+              </div>
+              <div class="chat-bubble-received">
+                <small>سنركز عليها في الحصة القادمة. أحسنتِ مجهود رائع.</small>
+                <div class="mt-1 text-start"><small style="font-size: 0.6rem; opacity: 0.5;">10:40 ص</small></div>
+              </div>
+              <div class="chat-bubble-sent">
+                <small>شكراً جزيلاً، أتشوق للحصة القادمة 😊</small>
+                <div class="mt-1 text-start"><small style="font-size: 0.6rem; opacity: 0.5;">10:42 ص</small></div>
+              </div>
+              <div class="chat-bubble-received">
+                <small>تم التقييم، أحسنتِ في سورة الكهف. درجتك: ٩٥/١٠٠</small>
+                <div class="mt-1 text-start"><small style="font-size: 0.6rem; opacity: 0.5;">11:00 ص</small></div>
+              </div>
+            </div>
+            <div class="chat-input-area d-flex align-items-center gap-2">
+              <input type="text" class="form-control form-control-custom py-2" placeholder="اكتب رسالتك..." style="border-radius: 30px;" />
+              <button class="btn rounded-circle flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px; background: #0F6D80; color: #fff;"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <nav class="bottom-mobile-nav">
+  <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-school"></i></span><span class="mobile-nav-label">الرئيسية</span></a>
+  <a href="schedule.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-calendar"></i></span><span class="mobile-nav-label">جدولي</span></a>
+  <a href="messages.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-envelope"></i></span><span class="mobile-nav-label">رسائلي</span></a>
+  <a href="hifdh-journey.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-chart-line"></i></span><span class="mobile-nav-label">التقدم</span></a>
+  <a href="settings.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-sliders"></i></span><span class="mobile-nav-label">الإعدادات</span></a>
+</nav>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      AOS.init({ duration: 600, once: true });
+
+      document.querySelectorAll('.chat-conversation').forEach(el => {
+        el.addEventListener('click', function() {
+          document.querySelectorAll('.chat-conversation').forEach(c => c.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      document.querySelector('.chat-input-area .btn')?.addEventListener('click', function() {
+        const input = this.previousElementSibling;
+        if (input && input.value.trim()) {
+          const msg = document.createElement('div');
+          msg.className = 'chat-bubble-sent';
+          const now = new Date();
+          const t = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') + (now.getHours() >= 12 ? ' م' : ' ص');
+          msg.innerHTML = '<small>' + input.value.trim() + '</small><div class="mt-1 text-start"><small style="font-size:0.6rem;opacity:0.5;">' + t + '</small></div>';
+          document.getElementById('chatMessages').appendChild(msg);
+          document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+          input.value = '';
+        }
+      });
+    </script>
+  </body>
+</html>

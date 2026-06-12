@@ -1,0 +1,17 @@
+.dash-stat-card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 20px rgba(15,109,128,0.04); transition: all 0.3s; }
+.dash-stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(15,109,128,0.08); }
+.progress-node { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.progress-node.completed { background: #F5BD58; color: #5f4100; }
+.progress-node.current { background: #0F6D80; color: #fff; animation: pulse-node 2s infinite; }
+.progress-node.locked { background: #e0e3e4; color: #6f797c; }
+.progress-node.goal { background: linear-gradient(135deg, #D89B1D, #F5BD58); color: #fff; }
+@keyframes pulse-node { 0%, 100% { box-shadow: 0 0 0 0 rgba(15,109,128,0.3); } 50% { box-shadow: 0 0 0 10px rgba(15,109,128,0); } }
+.dash-path { stroke-dasharray: 8 8; animation: dashMove 15s linear infinite; }
+@keyframes dashMove { to { stroke-dashoffset: -200; } }
+.exam-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: #f7fafb; border-radius: 12px; border: 1px solid rgba(15,109,128,0.04); transition: all 0.2s; }
+.exam-item:hover { border-color: rgba(15,109,128,0.15); }
+.cert-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #eceef0; border-radius: 12px; border-right: 4px solid #F5BD58; transition: all 0.3s; }
+.cert-card:hover { background: #e6e8ea; }
+.dash-search { border: none; background: transparent; outline: none; font-size: 0.9rem; width: 240px; }
+.dash-search:focus { box-shadow: none; }
+@media (max-width: 767.98px) { .dash-header .search-desktop { display: none; } }
