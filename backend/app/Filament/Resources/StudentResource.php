@@ -38,14 +38,14 @@ class StudentResource extends Resource
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
     protected static string|\UnitEnum|null $navigationGroup = 'شؤون الطلاب';
 
-    protected static ?string $navigationLabel = 'الطلاب';
-    protected static ?string $pluralLabel = 'الطلاب';
-    protected static ?string $label = 'طالب';
+    protected static ?string $navigationLabel = 'الطالبات';
+    protected static ?string $pluralLabel = 'الطالبات';
+    protected static ?string $label = 'طالبة';
     protected static ?int $navigationSort = 1;
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) static::getModel()::count();
+        return (string) static::getModel()::where('gender', 'female')->count();
     }
 
     public static function getNavigationBadgeColor(): string | array | null
@@ -245,6 +245,11 @@ class StudentResource extends Resource
                 ]),
             ])
             ->striped();
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('gender', 'female');
     }
 
     public static function getRelations(): array
