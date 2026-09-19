@@ -41,7 +41,7 @@
 <body>
   <div class="toolbar">
     <button class="btn-print" onclick="window.print()">&#128424; طباعة التقرير</button>
-    <a class="btn-back" href="{{ route('filament.admin.pages.reports') }}">العودة إلى التقارير</a>
+    <a class="btn-back" href="{{ route('filament.admin.pages.reports-center') }}">العودة إلى التقارير</a>
   </div>
 
   <div class="sheet" dir="rtl">

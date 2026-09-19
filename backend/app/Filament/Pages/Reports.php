@@ -76,10 +76,12 @@ class Reports extends Page
     public function exportExcel(): void
     {
         // TODO: Implement Excel export functionality
-        notification()->success()
-            ->title('جاري التصدير')
-            ->body('سيتم تحميل ملف Excel قريباً')
-            ->send();
+        $this->notify(
+            \Filament\Notifications\Notification::make()
+                ->success()
+                ->title('جاري التصدير')
+                ->body('سيتم تحميل ملف Excel قريباً')
+        );
     }
 
     public function getTypesProperty(): array
