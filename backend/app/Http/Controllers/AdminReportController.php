@@ -10,7 +10,8 @@ class AdminReportController extends Controller
 {
     public function print(Request $request)
     {
-        $type = ReportBuilder::find($request->query('type'));
+        $type = ReportBuilder::find($request->query('type', 'students'));
+        $format = $request->query('format', 'pdf');
         $filters = $request->only(['search', 'from', 'to', 'status', 'course_id']);
         $results = ReportBuilder::query($type, $filters);
         $columns = ReportBuilder::columns($type);
@@ -31,7 +32,8 @@ class AdminReportController extends Controller
             $meta['الدورة'] = Course::find($filters['course_id'])?->name_ar ?? $filters['course_id'];
         }
         $meta['عدد السجلات'] = (string) $results->count();
+        $meta['تاريخ الطباعة'] = now()->format('Y/m/d H:i');
 
-        return view('filament.pages.reports-print', compact('type', 'results', 'columns', 'meta'));
+        return view('filament.pages.reports-print', compact('type', 'format', 'results', 'columns', 'meta'));
     }
 }
