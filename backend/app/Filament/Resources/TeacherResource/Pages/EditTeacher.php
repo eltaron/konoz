@@ -4,18 +4,16 @@ namespace App\Filament\Resources\TeacherResource\Pages;
 
 use App\Filament\Resources\TeacherResource;
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\EditRecord;
 
-class ListTeachers extends ListRecords
+class EditTeacher extends EditRecord
 {
     protected static string $resource = TeacherResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()
-                ->label('إضافة معلمة')
-                ->icon('heroicon-o-user-plus'),
+            Actions\DeleteAction::make(),
         ];
     }
 }
