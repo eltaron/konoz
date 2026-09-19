@@ -1,44 +1,46 @@
-```
-# Compiled and build artifacts
-*.pyc
-__pycache__/
-*.o
-*.obj
-*.class
-*.so
-*.dll
-*.exe
-*.out
-
 # Dependencies
 vendor/
-node_modules/
+composer.lock
+
+# Logs
+*.log
+storage/logs/*
+
+# Environment specific
 .env
 .env.local
 .env.*
 
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-*.swo
-
-# Editors
+# IDE
 .vscode/
 .idea/
-
-# Coverage
-.coverage
-coverage/
-htmlcov/
 
 # OS
 .DS_Store
 Thumbs.db
 
 # Cache
-.mypy_cache/
-.pytest_cache/
-target/
-.gradle/
-```
+bootstrap/cache/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+
+# Compiled
+*.php~
+*.bak
+*.tmp
+
+# Assets
+public/build/
+public/storage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.phpunit.result.cache
+.php-cs-fixer.cache
+
+# Filament
+filament/
+storage/app/filament/
