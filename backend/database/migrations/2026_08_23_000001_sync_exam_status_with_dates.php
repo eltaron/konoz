@@ -7,7 +7,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        DB::statement("UPDATE exams SET status = CASE WHEN date < CURDATE() THEN 'ended' ELSE 'current' END WHERE status IS NULL OR status NOT IN ('current','ended')");
+        DB::statement("UPDATE exams SET status = CASE WHEN date < date('now') THEN 'ended' ELSE 'current' END WHERE status IS NULL OR status NOT IN ('current','ended')");
     }
 
     public function down(): void
