@@ -1,0 +1,21 @@
+{
+  "Dashboard": "لوحة التحكم",
+  "Categories": "الأقسام",
+  "Courses": "الدورات",
+  "Course Lessons": "دروس الدورة",
+  "Free Sessions": "الحصص المجانية",
+  "Students": "الطلاب",
+  "Sessions": "الجلسات",
+  "Exams": "الامتحانات",
+  "Exam Questions": "أسئلة الامتحان",
+  "Certificates": "الشهادات",
+  "Messages": "الرسائل",
+  "Settings": "الإعدادات",
+  "Name": "الاسم",
+  "Description": "الوصف",
+  "Price": "السعر",
+  "Status": "الحالة",
+  "Active": "نشط",
+  "Inactive": "غير نشط",
+  "Created At": "تاريخ الإنشاء"
+}

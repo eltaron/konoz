@@ -1,0 +1,8 @@
+.live-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; }
+.live-badge.active { background: rgba(231,76,60,0.08); color: #e74c3c; }
+.live-badge.active::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #e74c3c; animation: livePulse 1.5s infinite; }
+@keyframes livePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.session-schedule { padding: 12px; border-radius: 10px; border-right: 3px solid #0F6D80; background: #f7fafb; transition: all 0.2s; }
+.session-schedule:hover { background: #eceef0; }
+.recorded-session { padding: 12px; border-radius: 10px; background: #f7fafb; border: 1px solid rgba(15,109,128,0.04); transition: all 0.2s; }
+.recorded-session:hover { border-color: rgba(15,109,128,0.12); }

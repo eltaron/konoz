@@ -1,3 +1,0 @@
-languages.html
-coding.html
-educational-support.html
