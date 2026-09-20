@@ -30,12 +30,12 @@ class CertificateResource extends Resource
 
     // القواعد الصارمة للـ Type hints
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-academic-cap';
-    protected static string|\UnitEnum|null $navigationGroup = 'شؤون الطلاب';
+    protected static string|\UnitEnum|null $navigationGroup = 'الطلاب والكادر';
 
     protected static ?string $navigationLabel = 'الشهادات';
     protected static ?string $pluralLabel = 'الشهادات الممنوحة';
     protected static ?string $label = 'شهادة';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public static function getGloballySearchableAttributes(): array
     {

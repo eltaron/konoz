@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\WelcomeMail;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -52,6 +54,8 @@ class RegisterController extends Controller
                 'joined_at' => now(),
             ]);
         }
+
+        Mail::to($user->email)->send(new WelcomeMail($user->name));
 
         Auth::login($user);
 

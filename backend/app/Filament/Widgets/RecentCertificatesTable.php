@@ -3,7 +3,6 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Certificate;
-use Filament\Actions\Action;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -58,13 +57,6 @@ class RecentCertificatesTable extends BaseWidget
                     }),
             ])
             ->defaultSort('issued_at', 'desc')
-            ->headerActions([
-                Action::make('view_reports')
-                    ->label('عرض التقرير الكامل')
-                    ->icon('heroicon-m-chart-bar')
-                    ->url(fn (): string => '/admin/reports?type=certificates')
-                    ->openUrlInNewTab(),
-            ])
             ->paginated(false);
     }
 }

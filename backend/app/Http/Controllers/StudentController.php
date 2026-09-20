@@ -11,14 +11,19 @@ use App\Models\Exam;
 use App\Models\ExamResult;
 use App\Models\JuzProgress;
 use App\Models\Message;
+use App\Models\PaymentMethod;
+use App\Models\PaymentReceipt;
 use App\Models\Session;
 use App\Models\Student;
 use App\Models\StudentActivity;
 use App\Models\StudentNotification;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
@@ -38,7 +43,10 @@ class StudentController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->get();
                 $unreadNotifications = $notifications->whereNull('read_at');
-                $view->with(compact('notifications', 'unreadNotifications'));
+                $unreadMessagesCount = $user
+                    ? \App\Models\Message::where('receiver_id', $user->id)->where('is_read', false)->count()
+                    : 0;
+                $view->with(compact('notifications', 'unreadNotifications', 'unreadMessagesCount'));
             }
         });
     }
@@ -214,7 +222,53 @@ class StudentController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
         }
-        return view('pages.student.messages', compact('student', 'messages', 'user'));
+        $conversations = $this->buildConversations($messages, $user);
+        $admins = User::where('role', 'admin')->get();
+        $unreadTotal = $user
+            ? Message::where('receiver_id', $user->id)->where('is_read', false)->count()
+            : 0;
+        return view('pages.student.messages', compact('student', 'messages', 'conversations', 'admins', 'user', 'unreadTotal'));
+    }
+
+    private function buildConversations($messages, $user)
+    {
+        if (!$user || $messages->count() === 0) {
+            return collect();
+        }
+
+        return $messages
+            ->groupBy(function ($m) use ($user) {
+                return $m->sender_id === $user->id ? $m->receiver_id : $m->sender_id;
+            })
+            ->map(function ($msgs, $contactId) use ($user) {
+                $msgs = $msgs->sortBy('created_at');
+                $last = $msgs->last();
+                $contact = $last->sender_id === $user->id ? $last->receiver : $last->sender;
+                $unread = $msgs->where('is_read', false)->where('receiver_id', (int) $user->id)->count();
+                return (object)[
+                    'contact_id' => (int) $contactId,
+                    'name' => $this->contactName($contact),
+                    'last_msg' => \Illuminate\Support\Str::limit($last->body, 60),
+                    'last_sender_me' => $last->sender_id === $user->id,
+                    'time' => $last->created_at->diffForHumans(),
+                    'datetime' => $last->created_at,
+                    'unread' => $unread,
+                ];
+            })
+            ->sortByDesc(fn($c) => $c->datetime && $c->datetime instanceof \Carbon\CarbonInterface ? $c->datetime : \Carbon\Carbon::parse($c->datetime))
+            ->values();
+    }
+
+    private function contactName($contact)
+    {
+        if (!$contact) {
+            return 'غير معروف';
+        }
+        $student = Student::where('user_id', $contact->id)->first();
+        if ($student && $student->name_ar) {
+            return $student->name_ar;
+        }
+        return $contact->name ?: 'غير معروف';
     }
 
     public function fetchMessages(Request $request, $contactId)
@@ -252,13 +306,35 @@ class StudentController extends Controller
         $student = $this->getStudent();
         $request->validate([
             'name_ar' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'name_en' => 'nullable|string|max:255',
+            'email' => ['required','email','max:255', Rule::unique('students','email')->ignore($student->id), Rule::unique('users','email')->ignore(Auth::id())],
             'phone' => 'nullable|string|max:20',
-            'level' => 'nullable|string',
+            'level' => 'nullable|string|max:50',
+            'gender' => 'nullable|string|in:woman,girl,boy',
+            'age' => 'nullable|integer|min:3|max:100',
             'current_password' => 'nullable|current_password',
             'new_password' => 'nullable|string|min:8|confirmed',
+            'notification_preferences' => 'nullable|array',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
-        $student->update($request->only('name_ar', 'email', 'phone', 'level'));
+
+        $data = $request->only('name_ar', 'name_en', 'email', 'phone', 'level', 'gender', 'age');
+
+        $prefs = $request->input('notification_preferences', []);
+        $prefs = array_map(
+            fn($v) => in_array($v, [true, 1, '1', 'on', 'true'], true),
+            is_array($prefs) ? $prefs : []
+        );
+        $data['notification_preferences'] = array_merge(Student::DEFAULT_NOTIFICATION_PREFS, $prefs);
+
+        if ($request->hasFile('avatar')) {
+            if ($student->avatar && Storage::disk('public')->exists($student->avatar)) {
+                Storage::disk('public')->delete($student->avatar);
+            }
+            $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+        }
+
+        $student->update($data);
         $user = Auth::user();
         if ($user) {
             $user->update(['name' => $request->name_ar, 'email' => $request->email]);
@@ -266,7 +342,7 @@ class StudentController extends Controller
                 $user->update(['password' => Hash::make($request->new_password)]);
             }
         }
-        return back()->with('success', 'تم حفظ الإعدادات بنجاح');
+        return back()->with('success', __('messages.student_settings_saved'));
     }
 
     public function schedule()
@@ -503,26 +579,23 @@ class StudentController extends Controller
 
         $isPaidCourse = !$course->is_free && $course->price > 0;
 
-        if ($isPaidCourse && ($request->has('payment_method_id') || $request->hasFile('receipt'))) {
-            $request->validate([
-                'payment_method_id' => 'nullable|exists:payment_methods,id',
-                'receipt' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
+        if ($isPaidCourse) {
+            $data = $request->validate([
+                'payment_method_id' => 'required|exists:payment_methods,id',
+                'receipt' => 'required|file|mimes:jpg,jpeg,png,webp,pdf|max:5120',
                 'receipt_note' => 'nullable|string|max:1000',
             ]);
 
-            $receiptPath = null;
-            if ($request->hasFile('receipt')) {
-                $receiptPath = $request->file('receipt')->store('receipts', 'public');
-            }
+            $receiptPath = $request->file('receipt')->store('receipts', 'public');
 
             PaymentReceipt::create([
                 'enrollment_request_id' => $enrollmentRequest->id,
                 'student_id' => $student->id,
                 'course_id' => $course->id,
-                'payment_method_id' => $request->input('payment_method_id'),
+                'payment_method_id' => $data['payment_method_id'],
                 'receipt_path' => $receiptPath,
                 'amount' => $course->price,
-                'note' => $request->input('receipt_note'),
+                'note' => $data['receipt_note'] ?? null,
                 'status' => 'pending',
             ]);
 

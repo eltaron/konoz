@@ -181,20 +181,46 @@
 @endif
 
 @if($availableCourses->count() > 0 && $myCourses->count() > 0)
-<h5 class="fw-bold mb-3" style="color: #0F6D80;">{{ __('messages.dash_other_courses') }}</h5>
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 mt-2">
+  <h5 class="fw-bold mb-0" style="color: #0F6D80;"><i class="fa-solid fa-layer-group me-2" style="color: #F5BD58;"></i>{{ __('messages.dash_other_courses') }}</h5>
+  <a href="{{ route('student.courses') }}" class="small fw-semibold" style="color: #0F6D80;">{{ __('messages.dash_browse_courses') }} <i class="fa-solid fa-arrow-left ml-1"></i></a>
+</div>
 <div class="row g-3 mb-4">
   @foreach($availableCourses as $course)
   <div class="col-md-4">
-    <div class="dash-card h-100" data-aos="fade-up">
-      <h6 class="fw-bold mb-1" style="color: #0F6D80;font-size:0.9rem;">{{ $course->name }}</h6>
-      @if($course->desc)
-      <p class="small text-secondary opacity-50 mb-2">{{ \Illuminate\Support\Str::limit($course->desc, 60) }}</p>
+    <div class="dash-card h-100 d-flex flex-column" data-aos="fade-up">
+      <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+        <div class="rounded-3 flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: rgba(245,189,88,0.12); color: #B57E10; font-size: 1.1rem;">
+          <i class="fa-solid {{ $course->icon ?: 'fa-book-quran' }}"></i>
+        </div>
+        @if($course->is_free)
+        <span class="dash-badge dash-badge-success" style="font-size:0.68rem;">{{ __('messages.dash_course_free') }}</span>
+        @endif
+      </div>
+      <h6 class="fw-bold mb-1" style="color: #0F6D80;">{{ $course->name }}</h6>
+      @if($course->instructor_name)
+      <p class="small text-secondary opacity-75 mb-1"><i class="fa-regular fa-user me-1"></i>{{ __('messages.dash_course_instructor') }}: {{ $course->instructor_name }}</p>
       @endif
-      <div class="d-flex align-items-center justify-content-between mt-auto">
-        <small class="text-secondary opacity-75">{{ $course->level ?? '' }}</small>
+      @if($course->desc)
+      <p class="small text-secondary opacity-50 mb-2 flex-grow-1">{{ \Illuminate\Support\Str::limit($course->desc, 80) }}</p>
+      @endif
+      <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
+        @if($course->level)
+        <span class="dash-badge dash-badge-info" style="font-size:0.7rem;"><i class="fa-solid fa-layer-group me-1"></i>{{ $course->level }}</span>
+        @endif
+        @if($course->duration)
+        <span class="dash-badge dash-badge-info" style="font-size:0.7rem;"><i class="fa-regular fa-clock me-1"></i>{{ $course->duration }}</span>
+        @endif
+        @if($course->sessions_per_week)
+        <span class="dash-badge dash-badge-info" style="font-size:0.7rem;"><i class="fa-regular fa-calendar me-1"></i>{{ $course->sessions_per_week }} {{ __('messages.dash_session_week') }}</span>
+        @endif
+      </div>
+      <hr class="my-0" style="border-color: rgba(15,109,128,0.04);" />
+      <div class="d-flex align-items-center justify-content-between pt-3">
+        <a href="{{ route('student.course-detail', $course) }}" class="small fw-semibold" style="color: #0F6D80;"><i class="fa-solid fa-arrow-left ml-1"></i>{{ __('messages.dash_view_details') }}</a>
         <form method="POST" action="{{ route('student.courses.enroll', $course) }}">
           @csrf
-          <button class="dash-btn dash-btn-outline" style="font-size:0.75rem;padding:4px 12px;" type="submit">{{ __('messages.dash_request_enroll') }}</button>
+          <button class="dash-btn dash-btn-primary" style="font-size:0.75rem;padding:5px 14px;" type="submit"><i class="fa-solid fa-user-plus ml-1"></i>{{ __('messages.dash_request_enroll') }}</button>
         </form>
       </div>
     </div>

@@ -7,11 +7,35 @@ class Student extends Model
 {
     use \App\Traits\HasLocalizedFields;
 
-    protected $fillable = ['user_id', 'name_ar', 'name_en', 'gender', 'email', 'phone', 'age', 'level', 'status', 'joined_at'];
+    public const DEFAULT_NOTIFICATION_PREFS = [
+        'upcoming_sessions' => true,
+        'exam_results' => true,
+        'daily_reminder' => false,
+        'certificates' => true,
+        'newsletter' => false,
+    ];
+
+    protected $fillable = ['user_id', 'name_ar', 'name_en', 'gender', 'email', 'phone', 'age', 'level', 'status', 'joined_at', 'avatar', 'notification_preferences'];
 
     public function getNameAttribute()
     {
         return $this->localizedField('name_ar', 'name_en');
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        return $this->avatar ? asset('storage/' . $this->avatar) : null;
+    }
+
+    public function getNotificationPreferencesAttribute($value)
+    {
+        $stored = $value ? json_decode($value, true) : [];
+        return array_merge(self::DEFAULT_NOTIFICATION_PREFS, is_array($stored) ? $stored : []);
+    }
+
+    public function setNotificationPreferencesAttribute($value)
+    {
+        $this->attributes['notification_preferences'] = json_encode(array_merge(self::DEFAULT_NOTIFICATION_PREFS, is_array($value) ? $value : []));
     }
 
     public function user()

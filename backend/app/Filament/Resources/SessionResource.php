@@ -30,12 +30,12 @@ class SessionResource extends Resource
 
     // القواعد الصارمة للـ Type hints والمسارات
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-video-camera';
-    protected static string|\UnitEnum|null $navigationGroup = 'المحتوى التعليمي';
+    protected static string|\UnitEnum|null $navigationGroup = 'إدارة التعليم';
 
     protected static ?string $navigationLabel = 'الجلسات';
     protected static ?string $pluralLabel = 'الجلسات التعليمية';
     protected static ?string $label = 'جلسة';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     // شارة ذكية للجلسات القادمة اليوم
     public static function getNavigationBadge(): ?string

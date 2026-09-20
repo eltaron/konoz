@@ -32,6 +32,11 @@ class Course extends Model
 
     protected $casts = ['is_active' => 'boolean', 'is_free' => 'boolean'];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

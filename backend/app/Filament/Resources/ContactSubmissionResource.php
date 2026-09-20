@@ -31,7 +31,7 @@ class ContactSubmissionResource extends Resource
 
     // الالتزام بالـ Type hints المحددة من قبلك
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
-    protected static string|\UnitEnum|null $navigationGroup = 'مركز التواصل والدعم';
+    protected static string|\UnitEnum|null $navigationGroup = 'الدعم والتواصل';
 
     protected static ?string $navigationLabel = 'رسائل اتصل بنا';
     protected static ?string $pluralLabel = 'صندوق الوارد';

@@ -64,12 +64,12 @@
         </div>
         <a href="{{ route('password.request') }}" class="auth-link small">{{ __('messages.auth_forgot_password') }}</a>
       </div>
-      <button type="submit" class="btn-auth"><i class="fa-solid fa-arrow-left ml-1"></i>{{ __('messages.auth_login_btn') }}</button>
+      <button type="submit" class="btn-auth">{{ __('messages.auth_login_btn') }}</button>
     </form>
 
     <div class="divider">{{ session('locale', 'ar') === 'en' ? 'OR' : 'أو' }}</div>
 
-    <a href="#" class="social-btn mb-3" onclick="event.preventDefault();alert('{{ session('locale', 'ar') === 'en' ? 'Coming soon' : 'سيتم تفعيل هذه الميزة قريباً' }}')">
+    <a href="{{ route('auth.google.redirect') }}" class="social-btn mb-3">
       <i class="fa-brands fa-google" style="color:#DB4437;"></i>{{ session('locale', 'ar') === 'en' ? 'Sign in with Google' : 'تسجيل الدخول بواسطة Google' }}
     </a>
 

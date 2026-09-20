@@ -25,7 +25,7 @@ class PaymentMethodResource extends Resource
     protected static ?string $recordTitleAttribute = 'name_ar';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-credit-card';
-    protected static string|\UnitEnum|null $navigationGroup = 'الإعدادات العامة';
+    protected static string|\UnitEnum|null $navigationGroup = 'الإعدادات';
     protected static ?string $navigationLabel = 'طرق الدفع';
     protected static ?string $pluralLabel = 'طرق الدفع';
     protected static ?string $label = 'طريقة دفع';

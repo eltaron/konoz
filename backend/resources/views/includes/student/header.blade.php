@@ -5,7 +5,6 @@
   <div class="d-flex align-items-center gap-2 flex-grow-1 justify-content-between">
     <div class="d-flex align-items-center gap-3">
       <a href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="{{ __('messages.site_name') }}" style="height: 40px;" /></a>
-      
     </div>
     <div class="d-flex align-items-center gap-2 search-desktop">
       <div class="d-flex align-items-center gap-2 px-3 py-1 rounded-3" style="background: #f1f4f5;">
@@ -13,61 +12,71 @@
         <input type="text" class="dash-search" placeholder="{{ __('messages.student_search') }}" id="globalSearch" onkeydown="if(event.key==='Enter' && this.value.trim()) window.location.href='{{ route('student.courses') }}?q='+encodeURIComponent(this.value.trim());" />
       </div>
     </div>
-    <div class="d-flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-1">
       <div class="dropdown">
-        <button class="btn p-2 text-primary position-relative" style="background: transparent; border: none;" data-bs-toggle="dropdown">
-          <i class="fa-regular fa-bell fs-6"></i>
+        <button type="button" class="dropdown-toggle-btn position-relative" data-bs-toggle="dropdown" aria-label="{{ __('messages.student_notifications') }}" title="{{ __('messages.student_notifications') }}">
+          <i class="fa-regular fa-bell"></i>
           @php $unreadCount = $unreadNotifications->count() ?? 0; @endphp
           @if($unreadCount > 0)
-          <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill" style="background: var(--pumpkin); font-size: 0.55rem; min-width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;">{{ $unreadCount > 9 ? '9+' : $unreadCount }}</span>
+          <span class="notif-dot">{{ $unreadCount > 9 ? '9+' : $unreadCount }}</span>
           @endif
         </button>
-        <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="width: 280px; border: none;">
-          <div class="d-flex align-items-center justify-content-between px-3 py-2">
-            <h6 class="small fw-bold mb-0" style="color: #0F6D80;">{{ __('messages.student_notifications') }}</h6>
+        <div class="dropdown-menu dropdown-menu-end notif-menu">
+          <div class="dropdown-menu-head">
+            <span class="notif-head-icon"><i class="fa-solid fa-bell"></i></span>
+            <h6>{{ __('messages.student_notifications') }}</h6>
             @if($unreadCount > 0)
             <form method="POST" action="{{ route('student.notifications.read-all') }}" style="display:inline;">
               @csrf
-              <button class="btn p-0 small text-primary" style="background:none;border:none;font-size:0.7rem;">{{ __('messages.student_mark_read') }}</button>
+              <button type="submit" class="mark-all">{{ __('messages.student_mark_read') }}</button>
             </form>
             @endif
           </div>
           @forelse($notifications->take(5) as $notif)
-          <a class="dropdown-item small rounded-2 py-2 d-flex align-items-start gap-2 {{ $notif->read_at ? '' : 'fw-bold' }}" href="{{ $notif->url ?? '#' }}" style="white-space:normal;">
-            <span>{{ $notif->icon ?? '📌' }}</span>
-            <span>{{ $notif->body ?? $notif->data['message'] ?? $notif->title ?? '' }}</span>
+          <a class="dropdown-item notif-item {{ $notif->read_at ? '' : 'fw-bold' }}" href="{{ $notif->url ?? '#' }}">
+            <span class="notif-icon">{{ $notif->icon ?? '📌' }}</span>
+            <span class="notif-text">{{ $notif->body ?? $notif->data['message'] ?? $notif->title ?? '' }}</span>
+            @if(!$notif->read_at)
+            <span class="notif-unread-dot"></span>
+            @endif
           </a>
           @empty
-          <div class="text-center py-3 text-secondary opacity-50 small">{{ __('messages.student_no_notifications') }}</div>
+          <div class="text-center py-4 text-secondary opacity-50 small">{{ __('messages.student_no_notifications') }}</div>
           @endforelse
         </div>
       </div>
       <div class="dropdown">
-        <button class="btn p-2 text-primary" style="background: transparent; border: none;" data-bs-toggle="dropdown"><i class="fa-solid fa-gear fs-6"></i></button>
-        <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
-          <a class="dropdown-item small rounded-2 py-2" href="{{ route('student.settings') }}"><i class="fa-solid fa-sliders me-2" style="width: 16px;"></i>{{ __('messages.student_settings') }}</a>
-          <a class="dropdown-item small rounded-2 py-2" href="{{ route('student.settings') }}#profile"><i class="fa-solid fa-user me-2" style="width: 16px;"></i>{{ __('messages.student_profile') }}</a>
-          <hr class="my-1" />
+        <button type="button" class="dropdown-toggle-btn" data-bs-toggle="dropdown" aria-label="{{ __('messages.student_settings') }}" title="{{ __('messages.student_settings') }}">
+          <i class="fa-solid fa-gear"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a class="dropdown-item" href="{{ route('student.settings') }}"><span class="di-icon"><i class="fa-solid fa-sliders"></i></span>{{ __('messages.student_settings') }}</a>
+          <a class="dropdown-item" href="{{ route('student.settings') }}#profile"><span class="di-icon"><i class="fa-solid fa-user"></i></span>{{ __('messages.student_profile') }}</a>
+          <hr class="dropdown-divider" />
           <form method="POST" action="{{ route('logout') }}" style="display:inline;">
             @csrf
-            <button type="submit" class="dropdown-item small rounded-2 py-2 text-danger" style="border:none;background:none;width:100%;text-align:right;"><i class="fa-solid fa-right-from-bracket me-2" style="width: 16px;"></i>{{ __('messages.nav_logout_full') }}</button>
+            <button type="submit" class="dropdown-item text-danger" style="border:none;background:none;width:100%;"><span class="di-icon"><i class="fa-solid fa-right-from-bracket"></i></span>{{ __('messages.nav_logout_full') }}</button>
           </form>
         </div>
       </div>
       <div class="dropdown">
-        <a href="#" class="text-decoration-none" data-bs-toggle="dropdown">
+        <a href="#" class="profile-avatar-link" data-bs-toggle="dropdown" title="{{ $student->name ?? __('messages.student_student_female') }}">
           <img src="{{ $student->avatar_url ?? asset('images/logo.png') }}" alt="{{ $student->name ?? __('messages.student_student_female') }}" class="rounded-circle border-2" style="width: 40px; height: 40px; object-fit: cover; border-color: #F5BD58 !important;" />
         </a>
-        <div class="dropdown-menu dropdown-menu-end shadow-sm rounded-3 p-2" style="border: none;">
-          <div class="px-3 py-2">
-            <p class="fw-bold small mb-0" style="color: #0F6D80;">{{ $student->name ?? __('messages.student_student_female') }}</p>
-            <small class="text-secondary opacity-75">{{ $student->email ?? '' }}</small>
+        <div class="dropdown-menu dropdown-menu-end profile-menu">
+          <div class="profile-menu-head">
+            <img src="{{ $student->avatar_url ?? asset('images/logo.png') }}" alt="{{ $student->name ?? __('messages.student_student_female') }}" />
+            <div class="pm-text">
+              <p class="pm-name mb-0">{{ $student->name ?? __('messages.student_student_female') }}</p>
+              <small class="pm-email">{{ $student->email ?? '' }}</small>
+            </div>
           </div>
-          <hr class="my-1" />
-          <a class="dropdown-item small rounded-2 py-2" href="{{ route('student.settings') }}"><i class="fa-solid fa-user me-2" style="width: 16px;"></i>{{ __('messages.student_profile') }}</a>
+          <hr class="dropdown-divider" />
+          <a class="dropdown-item" href="{{ route('student.settings') }}"><span class="di-icon"><i class="fa-solid fa-user"></i></span>{{ __('messages.student_profile') }}</a>
+          <hr class="dropdown-divider" />
           <form method="POST" action="{{ route('logout') }}" style="display:inline;">
             @csrf
-            <button type="submit" class="dropdown-item small rounded-2 py-2 text-danger" style="border:none;background:none;width:100%;text-align:right;"><i class="fa-solid fa-right-from-bracket me-2" style="width: 16px;"></i>{{ __('messages.nav_logout_full') }}</button>
+            <button type="submit" class="dropdown-item text-danger" style="border:none;background:none;width:100%;"><span class="di-icon"><i class="fa-solid fa-right-from-bracket"></i></span>{{ __('messages.nav_logout_full') }}</button>
           </form>
         </div>
       </div>

@@ -20,6 +20,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Placeholder;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Notifications\Notification;
 
 class EnrollmentRequestResource extends Resource
@@ -30,12 +31,12 @@ class EnrollmentRequestResource extends Resource
 
     // القواعد الصارمة للـ Type hints والمسارات
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-check';
-    protected static string|\UnitEnum|null $navigationGroup = 'شؤون الطلاب';
+    protected static string|\UnitEnum|null $navigationGroup = 'الطلاب والكادر';
 
     protected static ?string $navigationLabel = 'طلبات الالتحاق';
     protected static ?string $pluralLabel = 'طلبات الالتحاق بالدورات';
     protected static ?string $label = 'طلب التحاق';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     // شارة ذكية تعرض عدد الطلبات المعلقة (Pending) فقط للتنبيه
     public static function getNavigationBadge(): ?string
@@ -80,6 +81,14 @@ class EnrollmentRequestResource extends Resource
                                 Placeholder::make('course.name_ar')
                                     ->label('الدورة التعليمية')
                                     ->content(fn($record): string => $record?->course?->name_ar ?? '-')
+                                    ->columnSpanFull(),
+
+                                Placeholder::make('receipt.preview')
+                                    ->label('الإيصال المرفق')
+                                    ->content(fn($record): string => $record?->latestPaymentReceipt?->getReceiptUrlAttribute()
+                                        ? '<a href="' . e($record->latestPaymentReceipt->getReceiptUrlAttribute()) . '" target="_blank" rel="noopener"><img src="' . e($record->latestPaymentReceipt->getReceiptUrlAttribute()) . '" style="max-width:130px;border-radius:10px;border:1px solid rgba(0,0,0,0.08);" /></a>'
+                                        : 'لا يوجد إيصال مرفق')
+                                    ->html()
                                     ->columnSpanFull(),
 
                                 Textarea::make('notes')
@@ -133,6 +142,14 @@ class EnrollmentRequestResource extends Resource
                     ->badge()
                     ->color('gray')
                     ->searchable(),
+
+                ImageColumn::make('receipt_path')
+                    ->label('الإيصال')
+                    ->square()
+                    ->extraImgAttributes(['style' => 'border-radius:10px;'])
+                    ->state(fn(EnrollmentRequest $record): ?string => $record->latestPaymentReceipt?->getReceiptUrlAttribute())
+                    ->tooltip('الإيصال المرفق')
+                    ->toggleable(),
 
                 TextColumn::make('status')
                     ->label('الحالة')

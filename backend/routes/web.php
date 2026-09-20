@@ -18,6 +18,10 @@ Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEm
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
+// ========== Social Login (Google) ==========
+Route::get('auth/google/redirect', [\App\Http\Controllers\Auth\GoogleController::class, 'redirect'])->name('auth.google.redirect');
+Route::get('auth/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'callback'])->name('auth.google.callback');
+
 // ========== Public Pages ==========
 Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
@@ -120,9 +124,9 @@ Route::prefix('student')->name('student.')->middleware(['auth', 'role:admin,stud
     Route::post('/live/attendance', [\App\Http\Controllers\StudentController::class, 'markAttendance'])->name('live.attendance');
     Route::post('/live/quiz', [\App\Http\Controllers\StudentController::class, 'saveQuizResult'])->name('live.quiz');
     Route::get('/courses', [\App\Http\Controllers\StudentController::class, 'courses'])->name('courses');
-    Route::post('/courses/enroll/{course}', [\App\Http\Controllers\StudentController::class, 'enrollRequest'])->name('courses.enroll');
+    Route::post('/courses/enroll/{course:slug}', [\App\Http\Controllers\StudentController::class, 'enrollRequest'])->name('courses.enroll');
     Route::get('/my-courses', [\App\Http\Controllers\StudentController::class, 'myCourses'])->name('my-courses');
-    Route::get('/course/{course}', [\App\Http\Controllers\StudentController::class, 'courseDetail'])->name('course-detail');
+    Route::get('/course/{course:slug}', [\App\Http\Controllers\StudentController::class, 'courseDetail'])->name('course-detail');
     Route::get('/lesson/{lesson}', [\App\Http\Controllers\StudentController::class, 'lessonShow'])->name('lesson.show');
     Route::get('/exam/{exam}', [\App\Http\Controllers\StudentController::class, 'exam'])->name('exam.show');
     Route::post('/exam/{exam}/submit', [\App\Http\Controllers\StudentController::class, 'submitExam'])->name('exam.submit');

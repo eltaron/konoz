@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class PaymentReceipt extends Model
 {
@@ -49,7 +50,7 @@ class PaymentReceipt extends Model
         if (!$this->receipt_path) {
             return null;
         }
-        if (str_starts_with($this->receipt_path, ['http://', 'https://'])) {
+        if (Str::startsWith($this->receipt_path, ['http://', 'https://'])) {
             return $this->receipt_path;
         }
         if (str_starts_with($this->receipt_path, 'storage/')) {

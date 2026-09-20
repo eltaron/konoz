@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EnrollmentConfirmationMail;
 use App\Models\EnrollmentRequest;
 use App\Models\Student;
 use App\Models\Category;
@@ -17,6 +18,7 @@ use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
 {
@@ -276,6 +278,20 @@ class FrontendController extends Controller
             'student_id' => $student->id,
             'course_id' => $data['course_id'],
         ]);
+
+        $recipientEmail = $user?->email ?? $student->email;
+        if ($recipientEmail) {
+            try {
+                Mail::to($recipientEmail)->send(new EnrollmentConfirmationMail(
+                    $student->name,
+                    $course->name,
+                    $course->level,
+                    $course->is_free || !$course->price ? 'مجانية' : number_format((float) $course->price) . ' ج.م'
+                ));
+            } catch (\Throwable $e) {
+                // لا نعطل الطلب إذا تعذر الإرسال
+            }
+        }
 
         // إذا كانت الدورة مدفوعة وتم إرسال بيانات الدفع
         if ($isPaidCourse && ($request->has('payment_method_id') || $request->hasFile('receipt'))) {

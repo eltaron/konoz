@@ -29,7 +29,7 @@ class SupportTicketResource extends Resource
 
     // الالتزام بالـ Type hints المحددة
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-lifebuoy';
-    protected static string|\UnitEnum|null $navigationGroup = 'مركز التواصل والدعم';
+    protected static string|\UnitEnum|null $navigationGroup = 'الدعم والتواصل';
 
     protected static ?string $navigationLabel = 'تذاكر الدعم';
     protected static ?string $pluralLabel = 'تذاكر الدعم الفني';

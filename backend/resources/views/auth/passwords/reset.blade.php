@@ -56,7 +56,7 @@
         <input type="password" name="password_confirmation" class="form-control" id="password-confirm" placeholder="{{ __('messages.auth_confirm_password') }}" required>
         <label for="password-confirm"><i class="fa-solid fa-lock ml-1"></i>{{ __('messages.auth_confirm_password') }}</label>
       </div>
-      <button type="submit" class="btn-auth"><i class="fa-solid fa-check ml-1"></i>{{ __('messages.auth_reset_password_btn') }}</button>
+      <button type="submit" class="btn-auth">{{ __('messages.auth_reset_password_btn') }}</button>
     </form>
   </div>
 

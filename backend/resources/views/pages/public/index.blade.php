@@ -490,7 +490,7 @@
                     <div id="quiz-step-3" class="quiz-step-content d-none">
                         <h4 class="fw-bold text-heading text-center mb-2">{{ __('messages.enroll_step3_title') }}</h4>
                         <p class="text-secondary text-center mb-4 small">{{ __('messages.enroll_step3_subtitle') }}</p>
-                        <div class="row g-3" style="max-width: 500px; margin: 0 auto;">
+                        <div class="row g-3" style="max-width: 600px; margin: 0 auto;">
                             <div class="col-12">
                                 <label
                                     class="small fw-medium text-secondary mb-1">{{ __('messages.enroll_name') }}</label>
@@ -504,6 +504,33 @@
                                 <input type="tel" name="phone" id="enrollPhone"
                                     class="form-control form-control-lg rounded-3"
                                     placeholder="{{ __('messages.enroll_phone_placeholder') }}" required />
+                            </div>
+                            <div class="col-12">
+                                <label
+                                    class="small fw-medium text-secondary mb-1">{{ __('messages.enroll_email') }}</label>
+                                <input type="email" name="email" id="enrollEmail"
+                                    class="form-control form-control-lg rounded-3"
+                                    placeholder="{{ __('messages.enroll_email_placeholder') }}" required />
+                            </div>
+                            <div class="col-12">
+                                <label
+                                    class="small fw-medium text-secondary mb-1">{{ __('messages.enroll_password') }}</label>
+                                <input type="password" name="password" id="enrollPassword"
+                                    class="form-control form-control-lg rounded-3"
+                                    placeholder="{{ __('messages.enroll_password_placeholder') }}" required />
+                                <small class="text-secondary d-block mt-2">
+                                    {{ __('messages.enroll_password_note') }}
+                                </small>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label
+                                    class="small fw-medium text-secondary mb-1">{{ __('messages.enroll_receipt') }}</label>
+                                <input type="file" name="receipt" id="enrollReceipt"
+                                    class="form-control form-control-lg rounded-3"
+                                    accept="image/*,.pdf" />
+                                <small class="text-secondary d-block mt-2">
+                                    {{ __('messages.enroll_receipt_note') }}
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -535,6 +562,7 @@
         <script>
             let currentStep = 1;
             let selectedGender = null;
+            let paymentMethods = [];
             let selectedCourseId = null;
             let coursesData = [];
 
@@ -610,7 +638,9 @@
 
                 fetch('{{ route('enroll.courses') }}')
                     .then(r => r.json())
-                    .then(courses => {
+                    .then(res => {
+                        const courses = res.courses || res;
+                        paymentMethods = res.payment_methods || [];
                         loading.classList.add('d-none');
                         if (!courses.length) {
                             empty.classList.remove('d-none');
@@ -715,7 +745,7 @@
                             throw new Error(data.message || 'Error');
                         }
                     })
-                    .catch(err => {
+.catch(err => {
                         Swal.fire({
                             icon: 'error',
                             title: '{{ __('messages.student_hifdh_save_error') }}',

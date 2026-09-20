@@ -23,6 +23,10 @@
     .auth-link { color: #0F6D80; text-decoration: none; font-weight: 500; }
     .auth-link:hover { color: #d89b1d; }
     .alert-danger { border-radius: 12px; font-size: 0.9rem; }
+    .divider { display: flex; align-items: center; gap: 15px; margin: 20px 0; color: #000000; font-weight: bold; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e9ecef; }
+    .social-btn { border: 2px solid #e9ecef; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #495057; text-decoration: none; transition: all 0.3s; font-weight: 500; }
+    .social-btn:hover { border-color: #0F6D80; color: #0F6D80; background: rgba(15,109,128,0.05); }
     .form-check-input:checked { background-color: #0F6D80; border-color: #0F6D80; }
     .password-hint { font-size: 0.8rem; color: #6c757d; margin-top: 5px; }
     @media (max-width: 480px) { .auth-card { padding: 25px 20px; } }
@@ -66,8 +70,14 @@
         <input type="checkbox" class="form-check-input" id="agree" required>
         <label class="form-check-label small" for="agree">{{ session('locale', 'ar') === 'en' ? 'I agree to the' : 'أوافق على' }} <a href="{{ route('terms') }}" class="auth-link">{{ session('locale', 'ar') === 'en' ? 'Terms & Conditions' : 'الشروط والأحكام' }}</a> {{ session('locale', 'ar') === 'en' ? 'and' : 'و' }} <a href="{{ route('privacy') }}" class="auth-link">{{ session('locale', 'ar') === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية' }}</a></label>
       </div>
-      <button type="submit" class="btn-auth"><i class="fa-solid fa-user-plus ml-1"></i>{{ __('messages.auth_register_btn') }}</button>
+      <button type="submit" class="btn-auth">{{ __('messages.auth_register_btn') }}</button>
     </form>
+
+    <div class="divider">{{ session('locale', 'ar') === 'en' ? 'OR' : 'أو' }}</div>
+
+    <a href="{{ route('auth.google.redirect') }}" class="social-btn mb-3">
+      <i class="fa-brands fa-google" style="color:#DB4437;"></i>{{ session('locale', 'ar') === 'en' ? 'Sign up with Google' : 'إنشاء حساب بواسطة Google' }}
+    </a>
 
     <p class="text-center mt-3 mb-0 small">
       {{ __('messages.auth_have_account') }}

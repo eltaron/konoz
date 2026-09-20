@@ -5,23 +5,23 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TestimonialResource\Pages;
 use App\Models\Testimonial;
 use Filament\Actions;
-use Filament\Forms;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Grid;
+use Filament\Actions\ActionGroup;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Resources\Resource;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
-use Filament\Actions\ActionGroup;
-use Filament\Support\Enums\FontWeight;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Table;
 
 class TestimonialResource extends Resource
 {
@@ -34,14 +34,14 @@ class TestimonialResource extends Resource
     protected static ?string $navigationLabel = 'آراء الطلاب';
     protected static ?string $pluralLabel = 'آراء الطلاب';
     protected static ?string $label = 'رأي طالب';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 4;
 
     public static function getNavigationBadge(): ?string
     {
         return (string) static::getModel()::count();
     }
 
-    public static function getNavigationBadgeColor(): string | array | null
+    public static function getNavigationBadgeColor(): string|array|null
     {
         return static::getModel()::where('is_published', false)->exists() ? 'warning' : 'success';
     }
@@ -49,17 +49,26 @@ class TestimonialResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1) // الـ schema كله عمود واحد ياخد العرض كامل
             ->schema([
-                Grid::make(3) // تقسيم الصفحة لـ 3 أعمدة
+                Grid::make([
+                    'default' => 1,
+                    'lg'      => 3,
+                ])
+                    ->columnSpanFull()
                     ->schema([
                         // القسم الأول: بيانات الطالب وتقييمه
                         Section::make('بيانات الطالب')
                             ->description('المعلومات الأساسية وصورة صاحب الرأي')
-                            ->columnSpan(2)
+                            ->columnSpan([
+                                'default' => 1,
+                                'lg'      => 2,
+                            ])
                             ->schema([
                                 Grid::make(2)
+                                    ->columnSpanFull()
                                     ->schema([
-                                        Forms\Components\TextInput::make('student_name')
+                                        TextInput::make('student_name')
                                             ->label('اسم الطالب')
                                             ->required()
                                             ->maxLength(255)
@@ -77,28 +86,30 @@ class TestimonialResource extends Resource
                                             ])
                                             ->required()
                                             ->default(5)
-                                            ->native(false), // عرض قائمة مودرن
+                                            ->native(false),
                                     ]),
 
                                 Grid::make(2)
+                                    ->columnSpanFull()
                                     ->schema([
                                         Textarea::make('content_ar')
                                             ->label('الرأي (بالعربية)')
                                             ->required()
-                                            ->rows(4)
-                                            ->columnSpan(1),
+                                            ->rows(4),
 
                                         Textarea::make('content_en')
                                             ->label('الرأي (بالإنجليزية)')
-                                            ->rows(4)
-                                            ->columnSpan(1),
+                                            ->rows(4),
                                     ]),
                             ]),
 
                         // القسم الثاني: الصورة والإعدادات
                         Section::make('الإعدادات والصورة')
                             ->description('إدارة حالة النشر وصورة الملف الشخصي')
-                            ->columnSpan(1)
+                            ->columnSpan([
+                                'default' => 1,
+                                'lg'      => 1,
+                            ])
                             ->schema([
                                 FileUpload::make('image')
                                     ->label('صورة الطالب')
@@ -116,7 +127,7 @@ class TestimonialResource extends Resource
                                     ->offColor('danger'),
                             ]),
                     ]),
-            ])->columns(1); // تحديد عدد الأعمدة في النموذج
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -156,27 +167,28 @@ class TestimonialResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TernaryFilter::make('is_published')
+                TernaryFilter::make('is_published')
                     ->label('حالة النشر')
                     ->trueLabel('الآراء المنشورة')
                     ->falseLabel('الآراء المخفية'),
 
-                Tables\Filters\SelectFilter::make('rating')
+                SelectFilter::make('rating')
                     ->label('التقييم')
                     ->options([
                         5 => '5 نجوم',
                         4 => '4 نجوم',
                         3 => '3 نجوم',
+                        2 => 'نجمتان',
+                        1 => 'نجمة',
                     ]),
             ])
             ->actions([
                 ActionGroup::make([
-                    Actions\ViewAction::make(),
                     Actions\EditAction::make()->color('info'),
                     Actions\DeleteAction::make(),
                 ])
                     ->icon('heroicon-m-ellipsis-vertical')
-                    ->tooltip('خيارات')
+                    ->tooltip('خيارات'),
             ])
             ->bulkActions([
                 Actions\BulkActionGroup::make([
@@ -190,9 +202,9 @@ class TestimonialResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTestimonials::route('/'),
+            'index'  => Pages\ListTestimonials::route('/'),
             'create' => Pages\CreateTestimonial::route('/create'),
-            'edit' => Pages\EditTestimonial::route('/{record}/edit'),
+            'edit'   => Pages\EditTestimonial::route('/{record}/edit'),
         ];
     }
 }

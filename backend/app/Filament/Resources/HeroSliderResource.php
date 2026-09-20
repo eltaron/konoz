@@ -35,7 +35,7 @@ class HeroSliderResource extends Resource
     protected static ?string $navigationLabel = 'السلايدر';
     protected static ?string $pluralLabel = 'شرائح العرض (Slider)';
     protected static ?string $label = 'شريحة عرض';
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     public static function getNavigationBadge(): ?string
     {

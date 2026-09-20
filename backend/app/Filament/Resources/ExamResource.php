@@ -33,12 +33,12 @@ class ExamResource extends Resource
 
     // القواعد الصارمة للـ Type hints والمسارات
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-pencil-square';
-    protected static string|\UnitEnum|null $navigationGroup = 'المحتوى التعليمي';
+    protected static string|\UnitEnum|null $navigationGroup = 'إدارة التعليم';
 
     protected static ?string $navigationLabel = 'الامتحانات';
     protected static ?string $pluralLabel = 'الامتحانات';
     protected static ?string $label = 'امتحان';
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 5;
 
     public static function getNavigationBadge(): ?string
     {

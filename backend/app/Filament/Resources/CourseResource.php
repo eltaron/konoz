@@ -26,11 +26,13 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Facades\Storage;
 use App\Support\SlugGenerator;
 use App\Filament\Resources\CourseResource\RelationManagers\LessonsRelationManager;
 use App\Filament\Resources\CourseResource\RelationManagers\SessionsRelationManager;
 use App\Filament\Resources\CourseResource\RelationManagers\ExamsRelationManager;
 use App\Filament\Resources\CourseResource\RelationManagers\FreeSessionsRelationManager;
+use Filament\Schemas\Components\View;
 
 class CourseResource extends Resource
 {
@@ -40,7 +42,7 @@ class CourseResource extends Resource
 
     // القواعد الصارمة للـ Type hints
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-book-open';
-    protected static string|\UnitEnum|null $navigationGroup = 'المحتوى التعليمي';
+    protected static string|\UnitEnum|null $navigationGroup = 'إدارة التعليم';
 
     protected static ?string $navigationLabel = 'الدورات';
     protected static ?string $pluralLabel = 'الدورات التدريبية';
@@ -64,29 +66,14 @@ class CourseResource extends Resource
                 Section::make('التحكم الكامل في الدورة')
                     ->description('إدارة المحتوى، المعلمين، والأسعار في مكان واحد')
                     ->icon('heroicon-m-cog-6-tooth')
-                    ->footerActions([
-                        Actions\Action::make('previousTab')
-                            ->label('التبويب السابق')
-                            ->icon('heroicon-m-chevron-right')
-                            ->color('gray')
-                            ->action(function ($livewire) {
-                                $livewire->courseTab = (string) max(0, ((int) $livewire->courseTab) - 1);
-                            }),
-                        Actions\Action::make('nextTab')
-                            ->label('التبويب التالي')
-                            ->icon('heroicon-m-chevron-left')
-                            ->color('primary')
-                            ->action(function ($livewire) {
-                                $livewire->courseTab = (string) min(3, ((int) $livewire->courseTab) + 1);
-                            }),
-                    ])
+
                     ->schema([
                         Tabs::make('Course Management')
-                            ->livewireProperty('courseTab')
                             ->tabs([
                                 // التبويب الأول: الهوية والبيانات الأساسية
                                 TabsTab::make('البيانات الأساسية')
                                     ->icon('heroicon-m-identification')
+                                    ->key('basic')
                                     ->schema([
                                         Grid::make(2)->schema([
                                             TextInput::make('name_ar')
@@ -131,6 +118,7 @@ class CourseResource extends Resource
 
                                 // التبويب الثاني: الأوصاف والمحتوى العلمي
                                 TabsTab::make('الوصف العلمي')
+                                    ->key('desc')
                                     ->icon('heroicon-m-document-text')
                                     ->schema([
                                         RichEditor::make('desc_ar')
@@ -166,6 +154,7 @@ class CourseResource extends Resource
                                 // التبويب الثالث: المعلمة والمسؤوليات
                                 TabsTab::make('بيانات المعلمة')
                                     ->icon('heroicon-m-user-circle')
+                                    ->key('teacher')
                                     ->schema([
                                         Grid::make(2)->schema([
                                             Select::make('user_id')
@@ -191,6 +180,7 @@ class CourseResource extends Resource
 
                                 // التبويب الرابع: الإعدادات المالية والوسائط
                                 TabsTab::make('المالية والوسائط')
+                                    ->key('finance')
                                     ->icon('heroicon-m-photo')
                                     ->schema([
                                         Grid::make(2)->schema([
@@ -224,10 +214,14 @@ class CourseResource extends Resource
                                                 ->disk('public')
                                                 ->directory('courses-covers')
                                                 ->columnSpanFull(),
+
                                         ]),
                                     ]),
                             ])->columnSpanFull(),
                     ])->columnSpanFull(),
+
+                View::make('filament.schemas.components.course-tabs-nav')
+                    ->columnSpanFull(),
             ]);
     }
 

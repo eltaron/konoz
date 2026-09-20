@@ -3,30 +3,31 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StudentResource\Pages;
-use App\Models\Student;
-use Filament\Actions;
-use Filament\Forms;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Grid;
-use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Tabs\Tab as TabsTab;
-use Filament\Actions\ActionGroup;
-use Filament\Support\Enums\FontWeight;
-use Illuminate\Database\Eloquent\Builder;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Hidden;
-use Filament\Tables\Columns\TextColumn;
 use App\Filament\Resources\StudentResource\RelationManagers\AttendanceRelationManager;
-use App\Filament\Resources\StudentResource\RelationManagers\JuzProgressRelationManager;
 use App\Filament\Resources\StudentResource\RelationManagers\CertificatesRelationManager;
 use App\Filament\Resources\StudentResource\RelationManagers\CoursesRelationManager;
+use App\Filament\Resources\StudentResource\RelationManagers\JuzProgressRelationManager;
+use App\Models\Student;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Resources\Resource;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class StudentResource extends Resource
 {
@@ -34,10 +35,8 @@ class StudentResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name_ar';
 
-    // القواعد الصارمة للـ Type hints
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
-    protected static string|\UnitEnum|null $navigationGroup = 'شؤون الطلاب';
-
+    protected static string|\UnitEnum|null $navigationGroup = 'الطلاب والكادر';
     protected static ?string $navigationLabel = 'الطالبات';
     protected static ?string $pluralLabel = 'الطالبات';
     protected static ?string $label = 'طالبة';
@@ -57,14 +56,13 @@ class StudentResource extends Resource
     {
         return $schema
             ->schema([
-                Section::make('الملف الشخصي للطالب')
-                    ->description('إدارة البيانات الشخصية والأكاديمية للطالب')
-                    ->aside()
+                Section::make('الملف الشخصي للطالبة')
+                    ->description('إدارة البيانات الشخصية والحساب والحالة الدراسية للطالبة')
+                    ->icon('heroicon-o-user-group')
                     ->schema([
                         Tabs::make('Student Data')
                             ->tabs([
-                                // التبويب الأول: الهوية الشخصية
-                                TabsTab::make('البيانات الأساسية')
+                                Tab::make('البيانات الأساسية')
                                     ->icon('heroicon-m-user')
                                     ->schema([
                                         Grid::make(2)->schema([
@@ -72,29 +70,30 @@ class StudentResource extends Resource
                                                 ->label('الاسم الكامل (عربي)')
                                                 ->required()
                                                 ->maxLength(255)
-                                                ->columnSpanFull(), // شغل المساحة كاملة
-
+                                                ->columnSpanFull(),
                                             TextInput::make('name_en')
                                                 ->label('الاسم الكامل (English)')
                                                 ->maxLength(255)
                                                 ->columnSpanFull(),
-
                                             Select::make('gender')
                                                 ->label('الجنس')
                                                 ->options([
                                                     'male' => 'ذكر',
                                                     'female' => 'أنثى',
-                                                ])->native(false),
-
+                                                ])
+                                                ->default('female')
+                                                ->native(false)
+                                                ->required(),
                                             TextInput::make('age')
                                                 ->label('العمر')
                                                 ->numeric()
+                                                ->minValue(3)
+                                                ->maxValue(90)
                                                 ->prefixIcon('heroicon-m-calendar'),
                                         ]),
                                     ]),
 
-                                // التبويب الثاني: التواصل والربط التقني
-                                TabsTab::make('معلومات التواصل')
+                                Tab::make('معلومات التواصل والحساب')
                                     ->icon('heroicon-m-phone')
                                     ->schema([
                                         Grid::make(2)->schema([
@@ -102,65 +101,63 @@ class StudentResource extends Resource
                                                 ->label('البريد الإلكتروني')
                                                 ->email()
                                                 ->prefixIcon('heroicon-m-at-symbol'),
-
                                             TextInput::make('phone')
                                                 ->label('رقم الجوال / واتساب')
                                                 ->tel()
                                                 ->prefixIcon('heroicon-m-phone'),
 
                                             Toggle::make('create_user')
-                                                ->label('إنشاء حساب مستخدم')
+                                                ->label('إنشاء حساب تسجيل دخول')
                                                 ->default(false)
                                                 ->live()
-                                                ->helperText('فعّل لإنشاء حساب تسجيل دخول للطالب')
+                                                ->helperText('فعّلي هذا الخيار لإنشاء حساب دخول للطالبة أو لتحديث بيانات حسابها')
                                                 ->columnSpanFull(),
 
                                             TextInput::make('user_email')
                                                 ->label('البريد الإلكتروني للحساب')
                                                 ->email()
-                                                ->visible(fn($get) => $get('create_user'))
-                                                ->required(fn($get) => $get('create_user'))
-                                                ->prefixIcon('heroicon-m-at-symbol')
-                                                ->columnSpanFull(),
+                                                ->visible(fn ($get): bool => (bool) $get('create_user'))
+                                                ->required(fn ($get): bool => (bool) $get('create_user'))
+                                                ->prefixIcon('heroicon-m-at-symbol'),
 
                                             TextInput::make('user_password')
-                                                ->label('كلمة المرور')
+                                                ->label('كلمة المرور للحساب')
                                                 ->password()
-                                                ->visible(fn($get) => $get('create_user'))
-                                                ->required(fn($get) => $get('create_user'))
-                                                ->prefixIcon('heroicon-m-lock-closed')
-                                                ->columnSpanFull(),
+                                                ->revealable()
+                                                ->minLength(8)
+                                                ->visible(fn ($get): bool => (bool) $get('create_user'))
+                                                ->helperText('اتركيها فارغة عند الإنشاء ليتم توليد كلمة مرور تلقائية')
+                                                ->dehydrated(fn ($state): bool => filled($state))
+                                                ->prefixIcon('heroicon-m-lock-closed'),
 
                                             Select::make('user_id')
-                                                ->label('أو ربط بحساب مستخدم موجود')
+                                                ->label('أو ربط بحساب موجود مسبقاً')
                                                 ->relationship('user', 'name')
                                                 ->searchable()
                                                 ->preload()
-                                                ->helperText('اربط الطالب بحساب موجود مسبقاً')
+                                                ->visible(fn ($get): bool => ! (bool) $get('create_user'))
+                                                ->helperText('اربطي الطالبة بحساب مستخدم موجود في النظام')
                                                 ->columnSpanFull(),
                                         ]),
                                     ]),
 
-                                // التبويب الثالث: الحالة الدراسية
-                                TabsTab::make('الوضع الأكاديمي')
+                                Tab::make('الوضع الأكاديمي')
                                     ->icon('heroicon-m-academic-cap')
                                     ->schema([
                                         Grid::make(2)->schema([
                                             TextInput::make('level')
                                                 ->label('المستوى الحالي')
                                                 ->placeholder('مثال: المستوى الثالث'),
-
                                             Select::make('status')
-                                                ->label('حالة الطالب')
+                                                ->label('حالة الطالبة')
                                                 ->options([
-                                                    'active' => 'نشط',
-                                                    'suspended' => 'معلق',
-                                                    'inactive' => 'غير نشط',
+                                                    'active' => 'نشطة',
+                                                    'suspended' => 'معلقة',
+                                                    'inactive' => 'غير نشطة',
                                                 ])
                                                 ->default('active')
                                                 ->required()
                                                 ->native(false),
-
                                             DatePicker::make('joined_at')
                                                 ->label('تاريخ الالتحاق')
                                                 ->default(now())
@@ -176,40 +173,54 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->sortable()
-                    ->color('gray'),
+                TextColumn::make('id')->label('ID')->sortable()->color('gray'),
 
                 TextColumn::make('name_ar')
-                    ->label('اسم الطالب')
-                    ->searchable(['name_ar', 'name_en'])
+                    ->label('اسم الطالبة')
+                    ->searchable(['name_ar', 'name_en', 'phone'])
                     ->sortable()
                     ->weight(FontWeight::Bold)
-                    ->description(fn(Student $record): string => $record->name_en ?? ''),
+                    ->description(fn (Student $record): string => $record->name_en ?? ''),
 
                 TextColumn::make('phone')
                     ->label('الجوال')
                     ->copyable()
                     ->icon('heroicon-m-phone'),
 
+                TextColumn::make('user.email')
+                    ->label('الحساب')
+                    ->icon(fn ($state) => filled($state) ? 'heroicon-m-check-circle' : 'heroicon-m-minus-circle')
+                    ->iconColor(fn ($state) => filled($state) ? 'success' : 'gray')
+                    ->placeholder('بدون حساب')
+                    ->toggleable(),
+
                 TextColumn::make('status')
                     ->label('الحالة')
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'active' => 'success',
-                        'suspended' => 'danger',
+                        'suspended' => 'warning',
                         'inactive' => 'gray',
                     })
-                    ->formatStateUsing(fn(string $state): string => match ($state) {
-                        'active' => 'نشط',
-                        'suspended' => 'معلق',
-                        'inactive' => 'غير نشط',
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'active' => 'نشطة',
+                        'suspended' => 'معلقة',
+                        'inactive' => 'غير نشطة',
                     }),
 
-                TextColumn::make('level')
-                    ->label('المستوى')
-                    ->toggleable(),
+                TextColumn::make('level')->label('المستوى')->toggleable(),
+
+                TextColumn::make('enrollmentRequests_count')
+                    ->counts('enrollmentRequests')
+                    ->label('طلبات التسجيل')
+                    ->badge()
+                    ->color('primary'),
+
+                TextColumn::make('certificates_count')
+                    ->counts('certificates')
+                    ->label('الشهادات')
+                    ->badge()
+                    ->color('success'),
 
                 TextColumn::make('joined_at')
                     ->label('تاريخ الانضمام')
@@ -217,39 +228,52 @@ class StudentResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('status')
+                SelectFilter::make('status')
                     ->label('تصفية بالحالة')
                     ->options([
-                        'active' => 'نشط',
-                        'suspended' => 'معلق',
+                        'active' => 'نشطة',
+                        'suspended' => 'معلقة',
+                        'inactive' => 'غير نشطة',
                     ]),
-                Tables\Filters\SelectFilter::make('gender')
+                SelectFilter::make('gender')
                     ->label('الجنس')
                     ->options([
                         'male' => 'ذكر',
                         'female' => 'أنثى',
                     ]),
+                TernaryFilter::make('user_id')
+                    ->label('تمتلك حساب دخول')
+                    ->trueLabel('نعم')
+                    ->falseLabel('لا')
+                    ->placeholder('الكل')
+                    ->queries(
+                        true: fn (Builder $query) => $query->whereNotNull('user_id'),
+                        false: fn (Builder $query) => $query->whereNull('user_id'),
+                    ),
             ])
             ->actions([
                 ActionGroup::make([
-                    Actions\ViewAction::make(),
-                    Actions\EditAction::make()->color('info'),
-                    Actions\DeleteAction::make(),
+                    ViewAction::make()->color('info'),
+                    EditAction::make()->color('info'),
+                    DeleteAction::make()->requiresConfirmation(),
                 ])
                     ->icon('heroicon-m-ellipsis-vertical')
-                    ->tooltip('خيارات الطالب')
+                    ->tooltip('خيارات الطالبة'),
             ])
             ->bulkActions([
-                Actions\BulkActionGroup::make([
-                    Actions\DeleteBulkAction::make(),
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\DeleteBulkAction::make()->requiresConfirmation(),
                 ]),
             ])
+            ->defaultSort('created_at', 'desc')
             ->striped();
     }
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('gender', 'female');
+        return parent::getEloquentQuery()
+            ->where('gender', 'female')
+            ->withCount(['enrollmentRequests', 'certificates']);
     }
 
     public static function getRelations(): array
@@ -265,9 +289,10 @@ class StudentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListStudents::route('/'),
+            'index'  => Pages\ListStudents::route('/'),
             'create' => Pages\CreateStudent::route('/create'),
-            'edit' => Pages\EditStudent::route('/{record}/edit'),
+            'view'   => Pages\ViewStudent::route('/{record}'),
+            'edit'   => Pages\EditStudent::route('/{record}/edit'),
         ];
     }
 }

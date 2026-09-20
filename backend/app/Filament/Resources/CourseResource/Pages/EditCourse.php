@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Filament\Resources\CourseResource\Pages;
 
 use App\Filament\Resources\CourseResource;
@@ -9,7 +10,7 @@ class EditCourse extends EditRecord
 {
     protected static string $resource = CourseResource::class;
 
-    public string $courseTab = '0';
+    public string $courseTab = 'basic';
 
     protected function getHeaderActions(): array
     {

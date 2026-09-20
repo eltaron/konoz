@@ -17,6 +17,7 @@ class LatestStudents extends BaseWidget
     {
         return $table
             ->query(Student::withCount('courses')->latest()->limit(10))
+            ->paginated(false)
             ->columns([
                 Tables\Columns\TextColumn::make('name_ar')->label('الاسم')->searchable(),
                 Tables\Columns\TextColumn::make('email')->label('البريد الإلكتروني')->searchable(),

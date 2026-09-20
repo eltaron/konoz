@@ -16,6 +16,7 @@ use App\Models\Student;
 use App\Models\StudentActivity;
 use App\Models\SupportTicket;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class ReportBuilder
@@ -73,6 +74,11 @@ class ReportBuilder
 
     public static function query(string $type, array $filters = []): Collection
     {
+        return static::queryBuilder($type, $filters)->get();
+    }
+
+    public static function queryBuilder(string $type, array $filters = []): Builder
+    {
         $type = static::find($type);
         $search = $filters['search'] ?? null;
         $from = $filters['from'] ?? null;
@@ -95,7 +101,7 @@ class ReportBuilder
             'activities' => static::activities($search, $from, $to),
             'juz_progress' => static::juzProgress($search, $status, $from, $to),
             'users' => static::users($search, $from, $to),
-            default => collect(),
+            default => User::query()->whereKey(0),
         };
     }
 
@@ -238,7 +244,7 @@ class ReportBuilder
         }
     }
 
-    private static function students($search, $status, $from, $to): Collection
+    private static function students($search, $status, $from, $to): Builder
     {
         $q = Student::query();
         if ($search) {
@@ -248,10 +254,10 @@ class ReportBuilder
             $q->where('status', $status);
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->withCount('courses')->orderByDesc('id')->get();
+        return $q->withCount('courses')->orderByDesc('id');
     }
 
-    private static function courses($search, $status, $from, $to): Collection
+    private static function courses($search, $status, $from, $to): Builder
     {
         $q = Course::query();
         if ($search) {
@@ -261,10 +267,10 @@ class ReportBuilder
             $q->where('is_active', $status === '1');
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->withCount(['lessons', 'sessions', 'exams', 'students'])->orderByDesc('id')->get();
+        return $q->withCount(['lessons', 'sessions', 'exams', 'students'])->orderByDesc('id');
     }
 
-    private static function sessions($search, $status, $from, $to, $courseId): Collection
+    private static function sessions($search, $status, $from, $to, $courseId): Builder
     {
         $q = Session::with('course');
         if ($status) {
@@ -279,10 +285,10 @@ class ReportBuilder
             });
         }
         static::applyDate($q, 'date', $from, $to);
-        return $q->orderByDesc('date')->get();
+        return $q->orderByDesc('date');
     }
 
-    private static function exams($search, $status, $from, $to, $courseId): Collection
+    private static function exams($search, $status, $from, $to, $courseId): Builder
     {
         $q = Exam::with('course');
         if ($status) {
@@ -297,10 +303,10 @@ class ReportBuilder
             });
         }
         static::applyDate($q, 'date', $from, $to);
-        return $q->orderByDesc('date')->get();
+        return $q->orderByDesc('date');
     }
 
-    private static function examResults($search, $from, $to, $courseId): Collection
+    private static function examResults($search, $from, $to, $courseId): Builder
     {
         $q = ExamResult::with(['student', 'exam.course']);
         if ($courseId) {
@@ -313,10 +319,10 @@ class ReportBuilder
             });
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->latest()->get();
+        return $q->latest();
     }
 
-    private static function attendance($search, $status, $from, $to, $courseId): Collection
+    private static function attendance($search, $status, $from, $to, $courseId): Builder
     {
         $q = Attendance::with(['student', 'session.course']);
         if ($status) {
@@ -332,10 +338,10 @@ class ReportBuilder
             });
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->latest()->get();
+        return $q->latest();
     }
 
-    private static function certificates($search, $status, $from, $to, $courseId): Collection
+    private static function certificates($search, $status, $from, $to, $courseId): Builder
     {
         $q = Certificate::with(['student', 'course']);
         if ($status) {
@@ -352,10 +358,10 @@ class ReportBuilder
             });
         }
         static::applyDate($q, 'issued_at', $from, $to);
-        return $q->latest('issued_at')->get();
+        return $q->latest('issued_at');
     }
 
-    private static function enrollmentRequests($search, $status, $from, $to, $courseId): Collection
+    private static function enrollmentRequests($search, $status, $from, $to, $courseId): Builder
     {
         $q = EnrollmentRequest::with(['student', 'course']);
         if ($status) {
@@ -371,10 +377,10 @@ class ReportBuilder
             });
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->latest()->get();
+        return $q->latest();
     }
 
-    private static function messages($search, $from, $to): Collection
+    private static function messages($search, $from, $to): Builder
     {
         $q = Message::with(['sender', 'receiver']);
         if ($search) {
@@ -385,10 +391,10 @@ class ReportBuilder
             });
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->latest()->get();
+        return $q->latest();
     }
 
-    private static function supportTickets($search, $status, $from, $to): Collection
+    private static function supportTickets($search, $status, $from, $to): Builder
     {
         $q = SupportTicket::query();
         if ($status) {
@@ -398,20 +404,20 @@ class ReportBuilder
             $q->where(fn ($x) => $x->where('name', 'like', "%{$search}%")->orWhere('email', 'like', "%{$search}%")->orWhere('subject', 'like', "%{$search}%"));
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->latest()->get();
+        return $q->latest();
     }
 
-    private static function contactSubmissions($search, $from, $to): Collection
+    private static function contactSubmissions($search, $from, $to): Builder
     {
         $q = ContactSubmission::query();
         if ($search) {
             $q->where(fn ($x) => $x->where('name', 'like', "%{$search}%")->orWhere('email', 'like', "%{$search}%")->orWhere('subject', 'like', "%{$search}%")->orWhere('message', 'like', "%{$search}%"));
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->latest()->get();
+        return $q->latest();
     }
 
-    private static function activities($search, $from, $to): Collection
+    private static function activities($search, $from, $to): Builder
     {
         $q = StudentActivity::with('student');
         if ($search) {
@@ -421,10 +427,10 @@ class ReportBuilder
             });
         }
         static::applyDate($q, 'date', $from, $to);
-        return $q->latest('date')->get();
+        return $q->latest('date');
     }
 
-    private static function juzProgress($search, $status, $from, $to): Collection
+    private static function juzProgress($search, $status, $from, $to): Builder
     {
         $q = JuzProgress::with('student');
         if ($status) {
@@ -434,16 +440,16 @@ class ReportBuilder
             $q->where(fn ($x) => $x->whereHas('student', fn ($s) => $s->where('name_ar', 'like', "%{$search}%")));
         }
         static::applyDate($q, 'updated_at', $from, $to);
-        return $q->orderBy('student_id')->orderBy('juz_number')->get();
+        return $q->orderBy('student_id')->orderBy('juz_number');
     }
 
-    private static function users($search, $from, $to): Collection
+    private static function users($search, $from, $to): Builder
     {
         $q = User::query();
         if ($search) {
             $q->where(fn ($x) => $x->where('name', 'like', "%{$search}%")->orWhere('email', 'like', "%{$search}%"));
         }
         static::applyDate($q, 'created_at', $from, $to);
-        return $q->latest()->get();
+        return $q->latest();
     }
 }

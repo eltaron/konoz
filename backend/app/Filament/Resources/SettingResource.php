@@ -27,7 +27,7 @@ class SettingResource extends Resource
 
     // القواعد الصارمة للـ Type hints والمسارات المطلوبة
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
-    protected static string|\UnitEnum|null $navigationGroup = 'الإعدادات العامة';
+    protected static string|\UnitEnum|null $navigationGroup = 'الإعدادات';
 
     protected static ?string $navigationLabel = 'إعدادات الموقع';
     protected static ?string $pluralLabel = 'إعدادات النظام';

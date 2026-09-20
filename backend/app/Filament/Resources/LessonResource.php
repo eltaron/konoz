@@ -27,7 +27,7 @@ class LessonResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-book-open';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'المحتوى التعليمي';
+    protected static string|\UnitEnum|null $navigationGroup = 'إدارة التعليم';
 
     protected static ?string $navigationLabel = 'الدروس';
 
@@ -35,7 +35,7 @@ class LessonResource extends Resource
 
     protected static ?string $label = 'درس';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {

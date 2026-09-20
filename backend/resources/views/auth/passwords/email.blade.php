@@ -54,7 +54,7 @@
         <input type="email" name="email" class="form-control" id="email" placeholder="{{ __('messages.auth_email') }}" value="{{ old('email') }}" required autofocus>
         <label for="email"><i class="fa-regular fa-envelope ml-1"></i>{{ __('messages.auth_email') }}</label>
       </div>
-      <button type="submit" class="btn-auth"><i class="fa-solid fa-paper-plane ml-1"></i>{{ __('messages.auth_send_reset_link') }}</button>
+      <button type="submit" class="btn-auth">{{ __('messages.auth_send_reset_link') }}</button>
     </form>
 
     <div class="text-center mt-3">

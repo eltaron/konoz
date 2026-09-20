@@ -41,7 +41,7 @@
   <div class="profile-header mb-4">
     <div class="row g-4 align-items-center position-relative" style="z-index:1;">
       <div class="col-auto">
-        <img src="{{ $student->avatar ?? asset('images/logo.png') }}" alt="{{ __('messages.teacher_student_profile') }}" class="profile-avatar" />
+        <img src="{{ $student->avatar_url ?? asset('images/logo.png') }}" alt="{{ __('messages.teacher_student_profile') }}" class="profile-avatar" />
       </div>
       <div class="col">
         <div class="d-flex flex-wrap align-items-center gap-3">

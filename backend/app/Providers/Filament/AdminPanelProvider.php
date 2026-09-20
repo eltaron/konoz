@@ -10,7 +10,8 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
+use App\Filament\Admin\Dashboard;
+use Filament\Navigation\NavigationGroup;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -44,6 +45,19 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('favicon.ico'))
             ->font('Cairo')
             ->darkMode(true)
+            ->sidebarCollapsibleOnDesktop()
+            ->navigationGroups([
+                NavigationGroup::make('إدارة التعليم')
+                    ->icon('heroicon-o-book-open'),
+                NavigationGroup::make('الطلاب والكادر')
+                    ->icon('heroicon-o-user-group'),
+                NavigationGroup::make('واجهة الموقع')
+                    ->icon('heroicon-o-globe-alt'),
+                NavigationGroup::make('الدعم والتواصل')
+                    ->icon('heroicon-o-chat-bubble-left-right'),
+                NavigationGroup::make('الإعدادات')
+                    ->icon('heroicon-o-cog-6-tooth'),
+            ])
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->globalSearch(true)
 
@@ -103,6 +117,14 @@ class AdminPanelProvider extends PanelProvider
 .dark [dir="rtl"] .filament-main { background: #111827; }
 [dir="rtl"] .fi-global-search-input { border-radius: 10px !important; }
 [dir="rtl"] .fi-btn { border-radius: 10px !important; }
+.fi-header-sidebar-toggle-ctn { display: none; align-items: center; width: 2.25rem; margin-inline-end: 0.5rem; }
+.fi-topbar-brand-name { font-weight: 800; font-size: 1.05rem; color: #0f6d80; white-space: nowrap; margin-inline-start: 0.75rem; letter-spacing: -0.01em; }
+.dark .fi-topbar-brand-name { color: #ffffff; }
+@media (min-width: 1024px) {
+    .fi-header-sidebar-toggle-ctn { display: flex; }
+    .fi-topbar-open-sidebar-btn { display: none !important; }
+    .fi-topbar-collapse-sidebar-btn-ctn { display: none !important; }
+}
 </style>
 <meta name="description" content="منصة كُنوز التعليمية - نظام إدارة المنصة التعليمية لتحفيظ القرآن الكريم">
 <meta name="author" content="منصة كُنوز التعليمية">
@@ -117,6 +139,49 @@ BLADE
         FilamentView::registerRenderHook(
             PanelsRenderHook::BODY_START,
             fn() => '<script>document.documentElement.dir="rtl";document.documentElement.lang="ar";</script>',
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::TOPBAR_LOGO_AFTER,
+            fn() => Blade::render(
+                <<<'BLADE'
+@if ($brandName = filament()->getBrandName())
+<span class="fi-topbar-brand-name">{{ $brandName }}</span>
+@endif
+BLADE
+            ),
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::TOPBAR_START,
+            fn() => Blade::render(
+                <<<'BLADE'
+<div class="fi-header-sidebar-toggle-ctn">
+    <x-filament::icon-button
+        color="gray"
+        icon="heroicon-m-bars-3"
+        icon-size="lg"
+        :label="__('filament-panels::layout.actions.sidebar.expand.label')"
+        x-cloak
+        x-data="{}"
+        x-on:click="$store.sidebar.open()"
+        x-show="! $store.sidebar.isOpen"
+        class="fi-header-sidebar-toggle-btn"
+    />
+    <x-filament::icon-button
+        color="gray"
+        icon="heroicon-m-x-mark"
+        icon-size="lg"
+        :label="__('filament-panels::layout.actions.sidebar.collapse.label')"
+        x-cloak
+        x-data="{}"
+        x-on:click="$store.sidebar.close()"
+        x-show="$store.sidebar.isOpen"
+        class="fi-header-sidebar-toggle-btn"
+    />
+</div>
+BLADE
+            ),
         );
     }
 }

@@ -33,7 +33,7 @@ class SiteContentResource extends Resource
     protected static ?string $navigationLabel = 'نصوص الصفحات';
     protected static ?string $pluralLabel = 'محتوى صفحات الموقع';
     protected static ?string $label = 'عنصر محتوى';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 3;
 
     public static function getNavigationBadge(): ?string
     {

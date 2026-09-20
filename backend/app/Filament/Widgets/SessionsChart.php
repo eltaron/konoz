@@ -8,6 +8,7 @@ use Filament\Widgets\ChartWidget;
 class SessionsChart extends ChartWidget
 {
     protected int | string | array $columnSpan = 'full';
+    protected ?string $maxHeight = '280px';
     protected ?string $heading = 'الجلسات الأسبوعية';
     protected static ?int $sort = 2;
 

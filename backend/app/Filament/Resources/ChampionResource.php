@@ -5,19 +5,20 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ChampionResource\Pages;
 use App\Models\Champion;
 use Filament\Actions;
-use Filament\Forms;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Grid;
 use Filament\Actions\ActionGroup;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Resources\Resource;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class ChampionResource extends Resource
 {
@@ -35,48 +36,64 @@ class ChampionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1) // الـ schema كله عمود واحد ياخد العرض كامل
             ->schema([
                 Section::make('بيانات النجم')
                     ->description('أسماء وإنجازات الطلاب المتميزين')
+                    ->columnSpanFull()
                     ->schema([
-                        TextInput::make('name_ar')
-                            ->label('الاسم (عربي)')
-                            ->required()
-                            ->maxLength(255),
-                        TextInput::make('name_en')
-                            ->label('الاسم (English)')
-                            ->maxLength(255),
-                        TextInput::make('achievement_ar')
-                            ->label('الإنجاز (عربي)')
-                            ->placeholder('مثال: حافظة 5 أجزاء')
-                            ->maxLength(255),
-                        TextInput::make('achievement_en')
-                            ->label('الإنجاز (English)')
-                            ->maxLength(255),
-                        Select::make('icon')
-                            ->label('الأيقونة')
-                            ->options([
-                                'star' => '⭐ نجمة',
-                                'medal' => '🏅 وسام',
-                                'music' => '🎵 نوتة',
-                                'users' => '👥 مستخدمين',
-                                'trophy' => '🏆 كأس',
-                                'crown' => '👑 تاج',
-                            ])->native(false),
-                        Toggle::make('is_active')
-                            ->label('ظاهر على الموقع')
-                            ->default(true)
-                            ->onColor('success'),
-                        TextInput::make('sort_order')
-                            ->label('الترتيب')
-                            ->numeric()
-                            ->default(0),
-                        FileUpload::make('image')
-                            ->label('صورة الطالب')
-                            ->image()
-                            ->imageEditor()
-                            ->disk('public')
-                            ->directory('champions'),
+                        Grid::make(2)
+                            ->columnSpanFull()
+                            ->schema([
+                                TextInput::make('name_ar')
+                                    ->label('الاسم (عربي)')
+                                    ->required()
+                                    ->maxLength(255),
+
+                                TextInput::make('name_en')
+                                    ->label('الاسم (English)')
+                                    ->maxLength(255),
+
+                                TextInput::make('achievement_ar')
+                                    ->label('الإنجاز (عربي)')
+                                    ->placeholder('مثال: حافظة 5 أجزاء')
+                                    ->maxLength(255),
+
+                                TextInput::make('achievement_en')
+                                    ->label('الإنجاز (English)')
+                                    ->maxLength(255),
+
+                                Select::make('icon')
+                                    ->label('الأيقونة')
+                                    ->options([
+                                        'star'   => '⭐ نجمة',
+                                        'medal'  => '🏅 وسام',
+                                        'music'  => '🎵 نوتة',
+                                        'users'  => '👥 مستخدمين',
+                                        'trophy' => '🏆 كأس',
+                                        'crown'  => '👑 تاج',
+                                    ])
+                                    ->native(false),
+
+                                TextInput::make('sort_order')
+                                    ->label('الترتيب')
+                                    ->numeric()
+                                    ->default(0),
+
+                                Toggle::make('is_active')
+                                    ->label('ظاهر على الموقع')
+                                    ->default(true)
+                                    ->onColor('success')
+                                    ->columnSpanFull(),
+
+                                FileUpload::make('image')
+                                    ->label('صورة الطالب')
+                                    ->image()
+                                    ->imageEditor()
+                                    ->disk('public')
+                                    ->directory('champions')
+                                    ->columnSpanFull(),
+                            ]),
                     ]),
             ]);
     }
@@ -85,33 +102,32 @@ class ChampionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')
+                ImageColumn::make('image')
                     ->label('الصورة')
                     ->circular()
                     ->defaultImageUrl(url('/images/default-avatar.png')),
-                Tables\Columns\TextColumn::make('name')
+
+                TextColumn::make('name_ar')
                     ->label('الاسم')
-                    ->searchable()
-                    ->weight(\Filament\Support\Enums\FontWeight::Bold),
-                Tables\Columns\TextColumn::make('achievement')
+                    ->searchable(['name_ar', 'name_en'])
+                    ->weight(FontWeight::Bold),
+
+                TextColumn::make('achievement_ar')
                     ->label('الإنجاز')
-                    ->searchable(),
-                Tables\Columns\IconColumn::make('is_active')
+                    ->searchable(['achievement_ar', 'achievement_en']),
+
+                IconColumn::make('is_active')
                     ->label('نشط')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('sort_order')
+
+                TextColumn::make('sort_order')
                     ->label('الترتيب')
                     ->sortable(),
             ])
             ->defaultSort('sort_order')
             ->reorderable('sort_order')
-            ->headerActions([
-                Actions\CreateAction::make()
-                    ->label('إضافة نجم للمنصة'),
-            ])
             ->actions([
                 ActionGroup::make([
-                    Actions\ViewAction::make(),
                     Actions\EditAction::make()->color('info'),
                     Actions\DeleteAction::make(),
                 ]),
@@ -126,9 +142,9 @@ class ChampionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListChampions::route('/'),
+            'index'  => Pages\ListChampions::route('/'),
             'create' => Pages\CreateChampion::route('/create'),
-            'edit' => Pages\EditChampion::route('/{record}/edit'),
+            'edit'   => Pages\EditChampion::route('/{record}/edit'),
         ];
     }
 }
